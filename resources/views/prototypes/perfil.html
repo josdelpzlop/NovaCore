@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaCore - Perfil de Explorador</title>
+    <style>
+        :root {
+            --negro: #000000;
+            --azul: #2746FF;
+            --morado: #680EBC;
+            --lavanda: #8767EB;
+            --menta: #59DEA0;
+            --fondo-soft: rgba(20, 20, 20, 0.8);
+        }
+
+        body {
+            background-color: var(--negro);
+            background-image: radial-gradient(circle at top right, #1a1a2e, #000);
+            color: #e0e0e0;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* Header Consistente */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo-area h1 a {
+            color: var(--menta);
+            font-size: 1.5rem;
+            text-decoration: none;
+            font-weight: 800;
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--lavanda);
+        }
+
+        /* Contenedor Perfil */
+        .perfil-container {
+            max-width: 1000px;
+            margin: 3rem auto;
+            padding: 0 5%;
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            gap: 2rem;
+        }
+
+        /* Columna Izquierda: Info Usuario */
+        .user-sidebar {
+            background: var(--fondo-soft);
+            border-radius: 24px;
+            padding: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            height: fit-content;
+        }
+
+        .avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(45deg, var(--morado), var(--azul));
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            border: 4px solid var(--negro);
+            box-shadow: 0 0 20px rgba(39, 70, 255, 0.3);
+        }
+
+        .user-sidebar h2 { margin: 0; font-size: 1.5rem; }
+        .user-sidebar p { color: var(--lavanda); font-size: 0.9rem; margin-bottom: 2rem; }
+
+        .btn-panel {
+            display: block;
+            background: rgba(255,255,255,0.05);
+            color: white;
+            padding: 12px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: 0.3s;
+        }
+
+        .btn-panel:hover {
+            background: var(--morado);
+            border-color: var(--lavanda);
+        }
+
+        /* Columna Derecha: Actividad y Recompensas */
+        .main-content h3 {
+            color: var(--menta);
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+        }
+
+        .recompensas-mini {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 1rem;
+        }
+
+        .badge-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 1.5rem 1rem;
+            border-radius: 16px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .badge-item:hover {
+            transform: translateY(-5px);
+            border-color: var(--azul);
+            background: rgba(39, 70, 255, 0.1);
+        }
+
+        .badge-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .badge-name {
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: rgba(255,255,255,0.8);
+        }
+
+        .stats-box {
+            background: var(--fondo-soft);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .stat { text-align: center; }
+        .stat-val { display: block; font-size: 1.5rem; font-weight: 800; color: var(--menta); }
+        .stat-label { font-size: 0.7rem; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <h1><a href="inicio.html">NovaCore</a></h1>
+        </div>
+        <nav>
+            <a href="aprende.html">Aprende</a>
+            <a href="eventos.html">Eventos</a>
+            <a href="inicio.html">Salir</a>
+        </nav>
+    </header>
+
+    <main class="perfil-container">
+        <aside class="user-sidebar">
+            <div class="avatar">👨‍🚀</div>
+            <h2>Explorador_X</h2>
+            <p>Rango: Cadete Estelar</p>
+            
+            <a href="paneluser.html" class="btn-panel">Panel de Usuario</a>
+        </aside>
+
+        <section class="main-content">
+            <div class="stats-box">
+                <div class="stat">
+                    <span class="stat-val">12</span>
+                    <span class="stat-label">Niveles</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-val">4</span>
+                    <span class="stat-label">Eventos</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-val">850</span>
+                    <span class="stat-label">Créditos</span>
+                </div>
+            </div>
+
+            <h3>Tus Medallas Recientes</h3>
+            <div class="recompensas-mini">
+                <a href="recompensaespecifica.html" class="badge-item">
+                    <span class="badge-icon">🌑</span>
+                    <span class="badge-name">Pionero Lunar</span>
+                </a>
+                <a href="recompensaespecifica.html" class="badge-item">
+                    <span class="badge-icon">🔥</span>
+                    <span class="badge-name">Primer Contacto</span>
+                </a>
+                <a href="recompensaespecifica.html" class="badge-item">
+                    <span class="badge-icon">🌀</span>
+                    <span class="badge-name">Observador</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

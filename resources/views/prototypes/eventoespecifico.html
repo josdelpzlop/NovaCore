@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaCore - Detalle del Evento</title>
+    <style>
+        :root {
+            --negro: #000000;
+            --azul: #2746FF;
+            --morado: #680EBC;
+            --lavanda: #8767EB;
+            --menta: #59DEA0;
+            --fondo-soft: rgba(20, 20, 20, 0.8);
+        }
+
+        body {
+            background-color: var(--negro);
+            background-image: radial-gradient(circle at bottom right, #1a1a2e, #000);
+            color: #e0e0e0;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo-area h1 a {
+            color: var(--menta);
+            font-size: 1.5rem;
+            text-decoration: none;
+            font-weight: 800;
+        }
+
+        .btn-profile {
+            color: var(--menta);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            border: 1px solid var(--menta);
+            padding: 8px 15px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .btn-profile:hover {
+            background: var(--menta);
+            color: var(--negro);
+        }
+
+        .main-container {
+            max-width: 1000px;
+            margin: 3rem auto;
+            padding: 0 5%;
+        }
+
+        /* Banner del Evento */
+        .event-hero {
+            background: linear-gradient(135deg, var(--morado), var(--azul));
+            padding: 4rem;
+            border-radius: 30px;
+            text-align: center;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(39, 70, 255, 0.2);
+        }
+
+        .event-hero h2 {
+            font-size: 3rem;
+            margin: 0;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .countdown {
+            margin-top: 1.5rem;
+            font-family: monospace;
+            font-size: 1.5rem;
+            color: var(--menta);
+            background: rgba(0,0,0,0.3);
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 10px;
+        }
+
+        /* Contenido detallado */
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: var(--fondo-soft);
+            padding: 2.5rem;
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .info-card h3 {
+            color: var(--lavanda);
+            margin-top: 0;
+        }
+
+        .agenda-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 1.5rem;
+        }
+
+        .agenda-item {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .time {
+            color: var(--menta);
+            font-weight: bold;
+            min-width: 80px;
+        }
+
+        /* Lateral */
+        .sidebar-card {
+            background: rgba(255,255,255,0.03);
+            padding: 1.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+        }
+
+        .btn-assist {
+            display: block;
+            background: var(--menta);
+            color: var(--negro);
+            padding: 15px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            margin-top: 1rem;
+            transition: transform 0.2s;
+        }
+
+        .btn-assist:hover {
+            transform: scale(1.05);
+        }
+
+        .back-home {
+            display: inline-block;
+            margin-top: 2rem;
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .back-home:hover { color: white; }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <h1><a href="inicio.html">NovaCore</a></h1>
+        </div>
+        <a href="perfil.html" class="btn-profile">Mi Perfil</a>
+    </header>
+
+    <main class="main-container">
+        <section class="event-hero">
+            <h2>Eclipse de Menta-4</h2>
+            <div class="countdown">T-MINUS: 02d : 14h : 35m</div>
+        </section>
+
+        <div class="details-grid">
+            <section class="info-card">
+                <h3>Resumen de la Misión</h3>
+                <p>Únete a la observación masiva del eclipse total en el sistema Menta. Este fenómeno solo ocurre cada 40 años terrestres y permite analizar la corona estelar con una nitidez sin precedentes.</p>
+                
+                <ul class="agenda-list">
+                    <li class="agenda-item">
+                        <span class="time">18:00</span>
+                        <span>Apertura de transmisiones y calibración de lentes.</span>
+                    </li>
+                    <li class="agenda-item">
+                        <span class="time">19:30</span>
+                        <span>Fase de ocultación total y recolección de datos.</span>
+                    </li>
+                    <li class="agenda-item">
+                        <span class="time">21:00</span>
+                        <span>Panel de expertos: Análisis de la corona.</span>
+                    </li>
+                </ul>
+            </section>
+
+            <aside>
+                <div class="sidebar-card">
+                    <p style="font-size: 0.8rem; margin-bottom: 0.5rem;">ESTADO: <strong>ABIERTO</strong></p>
+                    <a href="#" class="btn-assist">Confirmar Asistencia</a>
+                    <p style="font-size: 0.7rem; color: rgba(255,255,255,0.4); margin-top: 10px;">+150 XP de Explorador</p>
+                </div>
+            </aside>
+        </div>
+
+        <a href="inicio.html" class="back-home">← Volver al Centro de Control</a>
+    </main>
+
+</body>
+</html>

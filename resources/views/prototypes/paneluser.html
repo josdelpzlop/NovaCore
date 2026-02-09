@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaCore - Centro de Control de Usuario</title>
+    <style>
+        :root {
+            --negro: #000000;
+            --azul: #2746FF;
+            --morado: #680EBC;
+            --lavanda: #8767EB;
+            --menta: #59DEA0;
+            --fondo-soft: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            background-color: var(--negro);
+            background-image: radial-gradient(circle at bottom left, #1a1a2e, #000);
+            color: #e0e0e0;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Caja del Panel */
+        .panel-box {
+            background: var(--fondo-soft);
+            backdrop-filter: blur(20px);
+            padding: 3rem;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+        }
+
+        .header-panel {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 1rem;
+        }
+
+        .header-panel h1 a {
+            color: var(--menta);
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+
+        .header-panel h2 {
+            font-size: 1.5rem;
+            margin: 0;
+            color: white;
+        }
+
+        /* Lista de Información */
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin: 2rem 0;
+        }
+
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .info-label {
+            color: var(--lavanda);
+            font-weight: bold;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+        }
+
+        .info-value {
+            color: white;
+            font-size: 1rem;
+        }
+
+        /* Botones de Acción */
+        .actions-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn-action {
+            padding: 12px;
+            border-radius: 12px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-edit {
+            background: rgba(39, 70, 255, 0.1);
+            border: 1px solid var(--azul);
+            color: white;
+        }
+
+        .btn-edit:hover {
+            background: var(--azul);
+            box-shadow: 0 0 15px var(--azul);
+        }
+
+        .btn-home {
+            background: rgba(89, 222, 160, 0.1);
+            border: 1px solid var(--menta);
+            color: var(--menta);
+        }
+
+        .btn-home:hover {
+            background: var(--menta);
+            color: var(--negro);
+        }
+
+        .status-pill {
+            background: rgba(135, 103, 235, 0.2);
+            color: var(--lavanda);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="panel-box">
+        <header class="header-panel">
+            <h1><a href="inicio.html">NovaCore</a></h1>
+            <h2>Panel de Control</h2>
+            <span class="status-pill">SISTEMA OK</span>
+        </header>
+
+        <ul class="info-list">
+            <li class="info-item">
+                <span class="info-label">ID de Explorador</span>
+                <span class="info-value">#EX-9982</span>
+            </li>
+            <li class="info-item">
+                <span class="info-label">Nombre de Usuario</span>
+                <span class="info-value">Explorador_X</span>
+            </li>
+            <li class="info-item">
+                <span class="info-label">Correo Vinculado</span>
+                <span class="info-value">explorador@universo.com</span>
+            </li>
+            <li class="info-item">
+                <span class="info-label">Fecha de Alistamiento</span>
+                <span class="info-value">08 Dic, 2025</span>
+            </li>
+            <li class="info-item">
+                <span class="info-label">Nivel de Seguridad</span>
+                <span class="info-value" style="color: var(--lavanda);">Nivel 1 (Usuario)</span>
+            </li>
+        </ul>
+
+        <div class="actions-container">
+            <a href="cambiardatos.html" class="btn-action btn-edit">Modificar Datos</a>
+            <a href="inicio.html" class="btn-action btn-home">Volver al Inicio</a>
+        </div>
+    </div>
+
+</body>
+</html>

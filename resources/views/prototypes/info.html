@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaCore - Información de la Misión</title>
+    <style>
+        :root {
+            --negro: #000000;
+            --azul: #2746FF;
+            --morado: #680EBC;
+            --lavanda: #8767EB;
+            --menta: #59DEA0;
+            --fondo-soft: rgba(20, 20, 20, 0.8);
+        }
+
+        body {
+            background-color: var(--negro);
+            background-image: radial-gradient(circle at bottom right, #1a1a2e, #000);
+            color: #e0e0e0;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+
+        /* Header NovaCore */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 5%;
+            background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+        }
+
+        .logo-area h1 a {
+            color: var(--menta);
+            font-size: 1.5rem;
+            text-decoration: none;
+            font-weight: 800;
+        }
+
+        /* Contenedor Info */
+        .info-container {
+            max-width: 900px;
+            margin: 2rem auto 5rem;
+            padding: 0 5%;
+        }
+
+        .info-section {
+            background: var(--fondo-soft);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            padding: 3rem;
+            backdrop-filter: blur(10px);
+        }
+
+        .info-section h2 {
+            font-size: 2.2rem;
+            color: var(--lavanda);
+            margin-bottom: 1.5rem;
+            border-left: 5px solid var(--menta);
+            padding-left: 1rem;
+        }
+
+        .info-section h3 {
+            color: var(--menta);
+            margin-top: 2rem;
+            font-size: 1.3rem;
+        }
+
+        .info-section p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.2rem;
+        }
+
+        /* Botones de navegación */
+        .navigation-footer {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .btn-nav {
+            padding: 12px 25px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            text-align: center;
+            flex: 1;
+        }
+
+        .btn-back {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+
+        .btn-back:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: white;
+        }
+
+        .btn-suggest {
+            background: rgba(39, 70, 255, 0.1);
+            border: 1px solid var(--azul);
+            color: var(--azul);
+        }
+
+        .btn-suggest:hover {
+            background: var(--azul);
+            color: white;
+            box-shadow: 0 0 15px rgba(39, 70, 255, 0.4);
+        }
+
+        .highlight {
+            color: var(--menta);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <h1><a href="inicio.html">NovaCore</a></h1>
+        </div>
+    </header>
+
+    <main class="info-container">
+        <article class="info-section">
+            <h2>Acerca de la Misión</h2>
+            <p>NovaCore es un nodo centralizado de conocimiento astronómico. Nuestra meta es <span class="highlight">democratizar el acceso al espacio</span> mediante el aprendizaje gamificado y la observación colaborativa.</p>
+
+            <h3>1. Sistema de Niveles</h3>
+            <p>Cada módulo en el apartado 'Aprende' está diseñado para desbloquear conceptos progresivamente. Al completar los cuestionarios y simulaciones, tu rango de explorador aumentará automáticamente.</p>
+
+            <h3>2. Eventos Galácticos</h3>
+            <p>Los eventos marcados en el calendario son transmisiones en tiempo real o hitos astronómicos reales que se pueden seguir desde la plataforma. Asistir a ellos otorga medallas exclusivas.</p>
+
+            <h3>3. Seguridad y Datos</h3>
+            <p>Tus datos están protegidos bajo protocolos de encriptación estelar. Puedes modificar tu alias o credenciales en cualquier momento desde tu panel de usuario.</p>
+
+            <div class="navigation-footer">
+                <a href="inicio.html" class="btn-nav btn-back">Volver a Inicio</a>
+                <a href="sugerencias.html" class="btn-nav btn-suggest">Enviar Sugerencia</a>
+            </div>
+        </article>
+    </main>
+
+</body>
+</html>

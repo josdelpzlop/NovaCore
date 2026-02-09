@@ -1,0 +1,244 @@
+:root {
+    --negro: #000000;
+    --azul: #2746FF;
+    --morado: #680EBC;
+    --lavanda: #8767EB;
+    --menta: #59DEA0;
+    --fondo-soft: rgba(20, 20, 20, 0.8);
+}
+
+body {
+    background-color: var(--negro);
+    background-image: radial-gradient(circle at top right, #1a1a2e, #000);
+    color: #e0e0e0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    margin: 0;
+    line-height: 1.8;
+    min-height: 100vh;
+}
+
+/* Cabecera Natural */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 5%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.8) 0%, transparent 100%);
+}
+
+.logo-area h1, .logo-area h1 a {
+    color: var(--menta);
+    font-size: 2rem;
+    margin: 0;
+    font-weight: 800;
+    letter-spacing: -1px;
+    text-decoration: none;
+}
+
+/* Navegación Suave */
+nav a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    margin-left: 2rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+nav a:hover {
+    color: var(--menta);
+}
+
+.btn-login {
+    background: linear-gradient(45deg, var(--morado), var(--azul));
+    color: white;
+    padding: 10px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    margin-left: 2rem;
+    box-shadow: 0 4px 15px rgba(39, 70, 255, 0.3);
+}
+
+/* Layout de Contenido - Inicio */
+.hero {
+    padding: 4rem 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.intro-text {
+    text-align: left;
+}
+
+.intro-text h2 {
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+}
+
+.intro-text p {
+    font-size: 1.1rem;
+    color: #b0b0b0;
+    max-width: 600px;
+}
+
+/* Lista de Fenómenos Estilizada */
+.fenomenos-box {
+    background: var(--fondo-soft);
+    padding: 2.5rem;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.fenomenos-box h3 {
+    color: var(--lavanda);
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.fenomenos-box ul {
+    list-style: none;
+    padding: 0;
+}
+
+.fenomenos-box li {
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.fenomenos-box li a {
+    color: #fff;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+
+.fenomenos-box li a:hover {
+    transform: translateX(10px);
+    color: var(--menta);
+}
+
+.fenomenos-box li a::before {
+    content: "→";
+    margin-right: 15px;
+    color: var(--azul);
+}
+
+/* Footer sutil */
+footer {
+    padding: 4rem 5%;
+    display: flex;
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.btn-outline {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.btn-outline:hover {
+    border-color: var(--lavanda);
+    background: rgba(135, 103, 235, 0.1);
+}
+
+/* Contenido Aprende */
+.aprende-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 5%;
+}
+
+.intro-aprende {
+    margin-bottom: 4rem;
+}
+
+.intro-aprende h2 {
+    font-size: 2.5rem;
+    color: white;
+    margin-bottom: 1rem;
+}
+
+.intro-aprende p {
+    max-width: 650px;
+    color: #b0b0b0;
+    font-size: 1.1rem;
+}
+
+/* Grid de Niveles */
+.niveles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+}
+
+.nivel-card {
+    background: var(--fondo-soft);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    text-decoration: none;
+    color: white;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
+    backdrop-filter: blur(10px);
+}
+
+.nivel-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--menta);
+    box-shadow: 0 15px 30px rgba(89, 222, 160, 0.1);
+}
+
+.nivel-badge {
+    background: rgba(135, 103, 235, 0.2);
+    color: var(--lavanda);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    width: fit-content;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.nivel-card h3 {
+    margin: 0 0 1rem 0;
+    font-size: 1.5rem;
+    color: var(--menta);
+}
+
+.nivel-card p {
+    color: #a0a0a0;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+.nivel-footer {
+    margin-top: auto;
+    color: var(--azul);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.nivel-footer::after {
+    content: "→";
+    margin-left: 8px;
+}

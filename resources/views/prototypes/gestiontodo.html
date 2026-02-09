@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaCore - Gestión Integral</title>
+    <style>
+        :root {
+            --negro: #000000;
+            --azul: #2746FF;
+            --morado: #680EBC;
+            --lavanda: #8767EB;
+            --menta: #59DEA0;
+            --fondo-soft: rgba(20, 20, 20, 0.9);
+        }
+
+        body {
+            background-color: var(--negro);
+            background-image: linear-gradient(135deg, #000 0%, #0a0a1a 100%);
+            color: #e0e0e0;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar de navegación interna */
+        aside {
+            width: 260px;
+            background: rgba(104, 14, 188, 0.05);
+            border-right: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(10px);
+        }
+
+        .side-logo {
+            margin-bottom: 3rem;
+            text-decoration: none;
+            color: var(--menta);
+            font-weight: 800;
+            font-size: 1.5rem;
+        }
+
+        .nav-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .nav-item {
+            color: rgba(255, 255, 255, 0.6);
+            text-decoration: none;
+            padding: 12px 15px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: rgba(135, 103, 235, 0.1);
+            color: var(--lavanda);
+        }
+
+        /* Área de Contenido */
+        main {
+            flex-grow: 1;
+            padding: 3rem;
+            overflow-y: auto;
+        }
+
+        .header-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .header-main h2 {
+            margin: 0;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .btn-add {
+            background: var(--menta);
+            color: var(--negro);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .btn-add:hover { transform: scale(1.05); }
+
+        /* Tabla de Datos Admin */
+        .data-table-container {
+            background: var(--fondo-soft);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 1.5rem;
+            color: var(--lavanda);
+            font-weight: 600;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        td {
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            font-size: 0.9rem;
+        }
+
+        tr:hover {
+            background: rgba(39, 70, 255, 0.03);
+        }
+
+        .action-btns {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-edit { color: var(--azul); text-decoration: none; }
+        .btn-delete { color: #ff4d4d; text-decoration: none; }
+
+        .btn-back-home {
+            margin-top: auto;
+            text-align: center;
+            color: var(--lavanda);
+            text-decoration: none;
+            font-size: 0.8rem;
+            padding-top: 2rem;
+            opacity: 0.6;
+        }
+        .btn-back-home:hover { opacity: 1; }
+
+    </style>
+</head>
+<body>
+
+    <aside>
+        <a href="inicio.html" class="side-logo">NovaCore Admin</a>
+        
+        <div class="nav-group">
+            <a href="#" class="nav-item active">Gestión Usuarios</a>
+            <a href="#" class="nav-item">Gestión Eventos</a>
+            <a href="#" class="nav-item">Gestión Fenómenos</a>
+            <a href="#" class="nav-item">Gestión Recompensas</a>
+            <a href="#" class="nav-item">Gestión Niveles</a>
+        </div>
+
+        <a href="inicio.html" class="btn-back-home">← Volver al Inicio</a>
+    </aside>
+
+    <main>
+        <div class="header-main">
+            <h2>Panel de Datos</h2>
+            <button class="btn-add">+ Añadir Nuevo Registro</button>
+        </div>
+
+        <div class="data-table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre / Título</th>
+                        <th>Estado</th>
+                        <th>Última Modificación</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#001</td>
+                        <td>Nebulosa Croma-9</td>
+                        <td><span style="color: var(--menta);">Visible</span></td>
+                        <td>Hoy, 10:45</td>
+                        <td class="action-btns">
+                            <a href="#" class="btn-edit">Editar</a>
+                            <a href="#" class="btn-delete">Eliminar</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#002</td>
+                        <td>Juan Pérez (Usuario)</td>
+                        <td><span style="color: var(--azul);">Activo</span></td>
+                        <td>Ayer, 18:20</td>
+                        <td class="action-btns">
+                            <a href="#" class="btn-edit">Editar</a>
+                            <a href="#" class="btn-delete">Eliminar</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>#003</td>
+                        <td>Evento: Eclipse Menta</td>
+                        <td><span style="color: var(--lavanda);">Programado</span></td>
+                        <td>05/12/2023</td>
+                        <td class="action-btns">
+                            <a href="#" class="btn-edit">Editar</a>
+                            <a href="#" class="btn-delete">Eliminar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+</body>
+</html>

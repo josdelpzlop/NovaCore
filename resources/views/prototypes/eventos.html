@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaCore - Eventos Galácticos</title>
+    <style>
+        :root {
+            --negro: #000000;
+            --azul: #2746FF;
+            --morado: #680EBC;
+            --lavanda: #8767EB;
+            --menta: #59DEA0;
+            --fondo-soft: rgba(20, 20, 20, 0.8);
+        }
+
+        body {
+            background-color: var(--negro);
+            background-image: radial-gradient(circle at bottom right, #1a1a2e, #000);
+            color: #e0e0e0;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+
+        /* Cabecera Estándar NovaCore */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 5%;
+            background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+        }
+
+        .logo-area h1 a {
+            color: var(--menta);
+            font-size: 2rem;
+            margin: 0;
+            font-weight: 800;
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--menta);
+        }
+
+        .btn-login {
+            background: linear-gradient(45deg, var(--morado), var(--azul));
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: 2rem;
+        }
+
+        /* Contenido de Eventos */
+        .eventos-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 5%;
+        }
+
+        .intro-eventos {
+            margin-bottom: 3rem;
+            max-width: 700px;
+        }
+
+        .intro-eventos h2 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        /* Estructura del Calendario */
+        .calendario-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 15px;
+            background: var(--fondo-soft);
+            padding: 2rem;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .dia-semana {
+            text-align: center;
+            font-weight: bold;
+            color: var(--lavanda);
+            padding-bottom: 10px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+        }
+
+        .dia {
+            aspect-ratio: 1 / 1;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 10px;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .dia .numero {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* Estilo para días con evento */
+        .dia.con-evento {
+            background: rgba(39, 70, 255, 0.1);
+            border: 1px solid var(--azul);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .dia.con-evento:hover {
+            transform: translateY(-5px);
+            background: rgba(39, 70, 255, 0.2);
+            box-shadow: 0 10px 20px rgba(39, 70, 255, 0.2);
+        }
+
+        .dia.con-evento .numero {
+            color: var(--menta);
+            font-weight: bold;
+        }
+
+        .evento-tag {
+            font-size: 0.7rem;
+            color: white;
+            margin-top: 5px;
+            line-height: 1.2;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        /* Footer sutil */
+        footer {
+            padding: 4rem 5%;
+            display: flex;
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--morado);
+            background: rgba(104, 14, 188, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <h1><a href="inicio.html">NovaCore</a></h1>
+        </div>
+        <nav>
+            <a href="aprende.html">Aprende</a>
+            <a href="fenomenos.html">Fenómenos</a>
+            <a href="recompensas.html">Recompensas</a>
+            <a href="iniciosesion.html" class="btn-login">Iniciar Sesión</a>
+        </nav>
+    </header>
+
+    <main class="eventos-container">
+        <section class="intro-eventos">
+            <h2>Próximas Citas Estelares</h2>
+            <p>No te pierdas las conferencias en vivo, misiones colaborativas y avistamientos astronómicos programados por nuestra comunidad. Haz clic en un evento para ver los detalles.</p>
+        </section>
+
+        <div class="calendario-grid">
+            <div class="dia-semana">Lun</div>
+            <div class="dia-semana">Mar</div>
+            <div class="dia-semana">Mié</div>
+            <div class="dia-semana">Jue</div>
+            <div class="dia-semana">Vie</div>
+            <div class="dia-semana">Sáb</div>
+            <div class="dia-semana">Dom</div>
+
+            <div class="dia"><span class="numero">01</span></div>
+            <div class="dia"><span class="numero">02</span></div>
+            
+            <a href="eventoespecifico.html" class="dia con-evento">
+                <span class="numero">03</span>
+                <span class="evento-tag">Eclipse de Menta-4</span>
+            </a>
+
+            <div class="dia"><span class="numero">04</span></div>
+            <div class="dia"><span class="numero">05</span></div>
+            <div class="dia"><span class="numero">06</span></div>
+            
+            <a href="eventoespecifico.html" class="dia con-evento">
+                <span class="numero">07</span>
+                <span class="evento-tag">Charla: Agujeros Musicales</span>
+            </a>
+
+            <div class="dia"><span class="numero">08</span></div>
+            <div class="dia"><span class="numero">09</span></div>
+            <div class="dia"><span class="numero">10</span></div>
+            <div class="dia"><span class="numero">11</span></div>
+            <div class="dia"><span class="numero">12</span></div>
+            <div class="dia"><span class="numero">13</span></div>
+            <div class="dia"><span class="numero">14</span></div>
+        </div>
+    </main>
+
+    <footer>
+        <a href="sugerencias.html" class="btn-outline">Sugerencias</a>
+        <a href="info.html" class="btn-outline">Información General</a>
+    </footer>
+
+</body>
+</html>

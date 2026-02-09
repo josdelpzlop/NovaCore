@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaCore - Detalle de Recompensa</title>
+    <style>
+        :root {
+            --negro: #000000;
+            --azul: #2746FF;
+            --morado: #680EBC;
+            --lavanda: #8767EB;
+            --menta: #59DEA0;
+            --fondo-soft: rgba(20, 20, 20, 0.8);
+        }
+
+        body {
+            background-color: var(--negro);
+            background-image: radial-gradient(circle at center, #1a1a2e 0%, #000 100%);
+            color: #e0e0e0;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        /* Tarjeta de Medalla */
+        .medal-card {
+            background: var(--fondo-soft);
+            backdrop-filter: blur(20px);
+            padding: 4rem;
+            border-radius: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            max-width: 500px;
+            width: 100%;
+            box-shadow: 0 0 50px rgba(104, 14, 188, 0.3);
+        }
+
+        /* Efecto de Iluminación de la Medalla */
+        .medal-visual {
+            width: 180px;
+            height: 180px;
+            background: radial-gradient(circle, var(--morado) 0%, transparent 70%);
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            position: relative;
+        }
+
+        .medal-visual::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 2px dashed var(--lavanda);
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .medal-card h1 {
+            color: var(--menta);
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .medal-card h2 {
+            font-size: 1rem;
+            color: var(--lavanda);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 2rem;
+        }
+
+        .medal-description {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 2.5rem;
+        }
+
+        /* Botones de Navegación */
+        .nav-links {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 12px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-profile {
+            background: rgba(135, 103, 235, 0.1);
+            border: 1px solid var(--lavanda);
+            color: var(--lavanda);
+        }
+
+        .btn-profile:hover {
+            background: var(--lavanda);
+            color: var(--negro);
+        }
+
+        .btn-home {
+            background: rgba(39, 70, 255, 0.1);
+            border: 1px solid var(--azul);
+            color: var(--azul);
+        }
+
+        .btn-home:hover {
+            background: var(--azul);
+            color: white;
+            box-shadow: 0 0 15px var(--azul);
+        }
+
+    </style>
+</head>
+<body>
+
+    <main class="medal-card">
+        <div class="medal-visual">
+            🌑
+        </div>
+
+        <h2>Mención de Honor</h2>
+        <h1>Pionero Lunar</h1>
+        
+        <p class="medal-description">
+            Otorgada por completar satisfactoriamente el primer módulo de exploración del Sistema Solar. 
+            Has demostrado conocimientos avanzados sobre la geología de nuestro satélite natural.
+        </p>
+
+        <div class="nav-links">
+            <a href="perfil.html" class="btn btn-profile">Volver al Perfil</a>
+            <a href="inicio.html" class="btn btn-home">Ir al Inicio</a>
+        </div>
+    </main>
+
+</body>
+</html>

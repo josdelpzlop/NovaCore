@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaCore - Fenómenos Espaciales</title>
+    <style>
+        :root {
+            --negro: #000000;
+            --azul: #2746FF;
+            --morado: #680EBC;
+            --lavanda: #8767EB;
+            --menta: #59DEA0;
+            --fondo-soft: rgba(20, 20, 20, 0.8);
+        }
+
+        body {
+            background-color: var(--negro);
+            background-image: radial-gradient(circle at bottom left, #1a1a2e, #000);
+            color: #e0e0e0;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+
+        /* Cabecera Coherente */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 5%;
+            background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+        }
+
+        .logo-area h1 a {
+            color: var(--menta);
+            font-size: 2rem;
+            margin: 0;
+            font-weight: 800;
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--lavanda);
+        }
+
+        .btn-login {
+            background: linear-gradient(45deg, var(--morado), var(--azul));
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: 2rem;
+        }
+
+        /* Contenido de Fenómenos */
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Simulación de estrellas/nebulosa */
+        .image-placeholder::after {
+            content: "";
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background-image: radial-gradient(white, transparent 1px);
+            background-size: 50px 50px;
+            opacity: 0.2;
+        }
+
+        .phenomena-info h2 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .phenomena-info p {
+            color: #b0b0b0;
+            margin-bottom: 2rem;
+        }
+
+        /* Lista de Fenómenos Específicos */
+        .phenomena-list {
+            background: var(--fondo-soft);
+            border-radius: 20px;
+            padding: 1rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .phenomena-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            text-decoration: none;
+            color: white;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .phenomena-item:hover {
+            background: rgba(135, 103, 235, 0.15);
+            transform: scale(1.02);
+            border-left: 4px solid var(--menta);
+        }
+
+        .phenomena-item span {
+            color: var(--menta);
+            font-weight: bold;
+        }
+
+        /* Footer sutil */
+        footer {
+            padding: 4rem 5%;
+            display: flex;
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--azul);
+            background: rgba(39, 70, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <h1><a href="inicio.html">NovaCore</a></h1>
+        </div>
+        <nav>
+            <a href="aprende.html">Aprende</a>
+            <a href="eventos.html">Eventos</a>
+            <a href="recompensas.html">Recompensas</a>
+            <a href="iniciosesion.html" class="btn-login">Iniciar Sesión</a>
+        </nav>
+    </header>
+
+    <main class="content-wrapper">
+        <section>
+            <div class="image-placeholder">
+                </div>
+        </section>
+
+        <section class="phenomena-info">
+            <h2>Fenómenos Cósmicos</h2>
+            <p>Explora las anomalías más fascinantes detectadas en el espacio conocido. Haz clic en cada uno para analizar sus datos específicos.</p>
+            
+            <div class="phenomena-list">
+                <a href="fenomenoespecifico.html" class="phenomena-item">
+                    Nebulosa Croma-9 <span>Ver ficha</span>
+                </a>
+                <a href="fenomenoespecifico.html" class="phenomena-item">
+                    Vórtice de Sigma <span>Ver ficha</span>
+                </a>
+                <a href="fenomenoespecifico.html" class="phenomena-item">
+                    Lluvia de Diamantes <span>Ver ficha</span>
+                </a>
+                <a href="fenomenoespecifico.html" class="phenomena-item">
+                    Púlsar Fugaz <span>Ver ficha</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <a href="sugerencias.html" class="btn-outline">Sugerencias</a>
+        <a href="info.html" class="btn-outline">Información General</a>
+    </footer>
+
+</body>
+</html>

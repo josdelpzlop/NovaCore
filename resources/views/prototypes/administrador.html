@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaCore - Panel de Administración</title>
+    <style>
+        :root {
+            --negro: #000000;
+            --azul: #2746FF;
+            --morado: #680EBC;
+            --lavanda: #8767EB;
+            --menta: #59DEA0;
+            --fondo-soft: rgba(20, 20, 20, 0.8);
+        }
+
+        body {
+            background-color: var(--negro);
+            background-image: radial-gradient(circle at bottom center, #1a1a2e, #000);
+            color: #e0e0e0;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Cabecera Minimalista para el Admin */
+        header {
+            text-align: center;
+            padding: 3rem 0;
+        }
+
+        .logo-area h1 a {
+            color: var(--menta);
+            font-size: 2.5rem;
+            text-decoration: none;
+            font-weight: 800;
+            letter-spacing: 2px;
+            transition: opacity 0.3s;
+        }
+
+        .logo-area h1 a:hover {
+            opacity: 0.8;
+        }
+
+        /* Contenedor del Panel */
+        .admin-panel {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 5% 5rem 5%;
+            text-align: center;
+        }
+
+        .admin-panel h2 {
+            color: var(--lavanda);
+            margin-bottom: 3rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        /* Grid de Gestión */
+        .gestion-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .btn-gestion {
+            background: var(--fondo-soft);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2.5rem 1.5rem;
+            border-radius: 20px;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-gestion:hover {
+            border-color: var(--azul);
+            background: rgba(39, 70, 255, 0.1);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(39, 70, 255, 0.2);
+        }
+
+        /* Iconos simulados */
+        .icon-box {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--menta);
+        }
+
+        .btn-gestion span {
+            font-size: 1.1rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        /* Indicador de estado */
+        .status-footer {
+            margin-top: auto;
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.3);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <h1><a href="inicio.html">NovaCore</a></h1>
+        </div>
+    </header>
+
+    <main class="admin-panel">
+        <h2>Centro de Control de Datos</h2>
+
+        <div class="gestion-grid">
+            <a href="gestiontodo.html" class="btn-gestion">
+                <div class="icon-box">👥</div>
+                <span>Gestionar Usuarios</span>
+            </a>
+
+            <a href="gestiontodo.html" class="btn-gestion">
+                <div class="icon-box">📅</div>
+                <span>Gestionar Eventos</span>
+            </a>
+
+            <a href="gestiontodo.html" class="btn-gestion">
+                <div class="icon-box">🌠</div>
+                <span>Gestionar Fenómenos</span>
+            </a>
+
+            <a href="gestiontodo.html" class="btn-gestion">
+                <div class="icon-box">🏆</div>
+                <span>Gestionar Recompensas</span>
+            </a>
+
+            <a href="gestiontodo.html" class="btn-gestion">
+                <div class="icon-box">🧬</div>
+                <span>Gestionar Niveles</span>
+            </a>
+        </div>
+    </main>
+
+    <div class="status-footer">
+        Modo Administrador Activo • Conexión Segura NovaCore Encrypted
+    </div>
+
+</body>
+</html>

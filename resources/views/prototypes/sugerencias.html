@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaCore - Bitácora de Sugerencias</title>
+    <style>
+        :root {
+            --negro: #000000;
+            --azul: #2746FF;
+            --morado: #680EBC;
+            --lavanda: #8767EB;
+            --menta: #59DEA0;
+            --fondo-soft: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            background-color: var(--negro);
+            background-image: radial-gradient(circle at bottom right, #1a1a2e 0%, #000 100%);
+            color: white;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .sugerencias-box {
+            background: var(--fondo-soft);
+            backdrop-filter: blur(20px);
+            padding: 3rem;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            width: 100%;
+            max-width: 550px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+        }
+
+        .sugerencias-box h2 {
+            margin: 0 0 1rem 0;
+            color: var(--menta);
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .sugerencias-box p {
+            text-align: center;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 2rem;
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            color: var(--lavanda);
+            font-size: 0.8rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            margin-left: 5px;
+        }
+
+        .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            color: white;
+            font-family: inherit;
+            outline: none;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+
+        .form-group textarea {
+            resize: none;
+            height: 150px;
+        }
+
+        .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--azul);
+            box-shadow: 0 0 15px rgba(39, 70, 255, 0.2);
+        }
+
+        .btn-send {
+            width: 100%;
+            background: linear-gradient(45deg, var(--azul), var(--morado));
+            color: white;
+            padding: 16px;
+            border-radius: 15px;
+            font-weight: 800;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-send:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(104, 14, 188, 0.4);
+        }
+
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 1.5rem;
+            color: rgba(255, 255, 255, 0.3);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: 0.3s;
+        }
+
+        .back-link:hover {
+            color: var(--lavanda);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sugerencias-box">
+        <h2>Transmisión de Ideas</h2>
+        <p>¿Tienes alguna propuesta para mejorar NovaCore? Envíanos tu bitácora de sugerencias.</p>
+
+        <form action="inicio.html">
+            <div class="form-group">
+                <label>Categoría de la Propuesta</label>
+                <select>
+                    <option>Mejora de Interfaz</option>
+                    <option>Nuevos Fenómenos</option>
+                    <option>Sugerencia de Eventos</option>
+                    <option>Reporte de Errores</option>
+                    <option>Otros</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Detalles del Mensaje</label>
+                <textarea placeholder="Escribe aquí tu mensaje para el centro de control..."></textarea>
+            </div>
+
+            <button type="submit" class="btn-send">Enviar a la Estación</button>
+        </form>
+
+        <a href="inicio.html" class="back-link">← Abandonar Transmisión y Volver</a>
+    </div>
+
+</body>
+</html>

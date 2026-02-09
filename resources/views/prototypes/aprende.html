@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NovaCore - Academia Espacial</title>
+    <style>
+        :root {
+            --negro: #000000;
+            --azul: #2746FF;
+            --morado: #680EBC;
+            --lavanda: #8767EB;
+            --menta: #59DEA0;
+            --fondo-soft: rgba(20, 20, 20, 0.8);
+        }
+
+        body {
+            background-color: var(--negro);
+            background-image: radial-gradient(circle at top left, #1a1a2e, #000);
+            color: #e0e0e0;
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            line-height: 1.8;
+            min-height: 100vh;
+        }
+
+        /* Header Consistente */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 5%;
+            background: linear-gradient(180deg, rgba(0,0,0,0.8) 0%, transparent 100%);
+        }
+
+        .logo-area h1 a {
+            color: var(--menta);
+            font-size: 2rem;
+            margin: 0;
+            font-weight: 800;
+            text-decoration: none;
+            letter-spacing: -1px;
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--lavanda);
+        }
+
+        .btn-login {
+            background: linear-gradient(45deg, var(--morado), var(--azul));
+            color: white;
+            padding: 10px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-left: 2rem;
+        }
+
+        /* Contenido Aprende */
+        .aprende-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 5%;
+        }
+
+        .intro-aprende {
+            margin-bottom: 4rem;
+        }
+
+        .intro-aprende h2 {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .intro-aprende p {
+            max-width: 650px;
+            color: #b0b0b0;
+            font-size: 1.1rem;
+        }
+
+        /* Grid de Niveles */
+        .niveles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .nivel-card {
+            background: var(--fondo-soft);
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            text-decoration: none;
+            color: white;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(10px);
+        }
+
+        .nivel-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--menta);
+            box-shadow: 0 15px 30px rgba(89, 222, 160, 0.1);
+        }
+
+        .nivel-badge {
+            background: rgba(135, 103, 235, 0.2);
+            color: var(--lavanda);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            width: fit-content;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+
+        .nivel-card h3 {
+            margin: 0 0 1rem 0;
+            font-size: 1.5rem;
+            color: var(--menta);
+        }
+
+        .nivel-card p {
+            color: #a0a0a0;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .nivel-footer {
+            margin-top: auto;
+            color: var(--azul);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+
+        .nivel-footer::after {
+            content: "→";
+            margin-left: 8px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 5%;
+            display: flex;
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--azul);
+            background: rgba(39, 70, 255, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <h1><a href="inicio.html">NovaCore</a></h1>
+        </div>
+        <nav>
+            <a href="eventos.html">Eventos</a>
+            <a href="fenomenos.html">Fenómenos</a>
+            <a href="recompensas.html">Recompensas</a>
+            <a href="iniciosesion.html" class="btn-login">Iniciar Sesión</a>
+        </nav>
+    </header>
+
+    <main class="aprende-container">
+        <section class="intro-aprende">
+            <h2>Academia NovaCore</h2>
+            <p>
+                Domina los fundamentos de la astrofísica y la exploración espacial a través de nuestros módulos interactivos. 
+                Elige tu nivel de dificultad y comienza a desbloquear conocimientos cósmicos.
+            </p>
+        </section>
+
+        <section class="niveles-grid">
+            <a href="nivelespecifico.html" class="nivel-card">
+                <div class="nivel-badge">Iniciado</div>
+                <h3>Sistema Solar</h3>
+                <p>Aprende las mecánicas básicas de nuestros planetas vecinos y el cinturón de asteroides.</p>
+                <div class="nivel-footer">Comenzar módulo</div>
+            </a>
+
+            <a href="nivelespecifico.html" class="nivel-card">
+                <div class="nivel-badge">Intermedio</div>
+                <h3>Vida de las Estrellas</h3>
+                <p>Desde protoestrellas hasta supernovas. Entiende el ciclo de vida del hidrógeno.</p>
+                <div class="nivel-footer">Comenzar módulo</div>
+            </a>
+
+            <a href="nivelespecifico.html" class="nivel-card">
+                <div class="nivel-badge">Avanzado</div>
+                <h3>Relatividad y Tiempo</h3>
+                <p>Explora cómo la gravedad dobla la realidad cerca de los agujeros negros.</p>
+                <div class="nivel-footer">Comenzar módulo</div>
+            </a>
+        </section>
+    </main>
+
+    <footer>
+        <a href="sugerencias.html" class="btn-outline">Sugerencias</a>
+        <a href="info.html" class="btn-outline">Información General</a>
+    </footer>
+
+</body>
+</html>
