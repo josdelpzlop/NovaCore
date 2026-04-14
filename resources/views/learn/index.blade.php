@@ -15,7 +15,7 @@
 
         <section class="niveles-grid">
             @foreach ($levels as $level)
-                <a href="{{ $level->url }}" class="nivel-card">
+                <a href="{{ route('levels.show', $level) }}" class="nivel-card">
                     <div class="nivel-badge">{{ $level->badge }}</div>
                     <h3>{{ $level->title }}</h3>
                     <p>{{ $level->description }}</p>

@@ -17,4 +17,13 @@ class LevelController extends Controller
         $levels = Level::all();
         return view('learn.index', compact('levels'));
     }
+
+    public function show(Level $level)
+    {
+        $lessons = $level->lessons()->orderBy('order', 'asc')->get();
+        // Cargar IDs de lecciones completadas por el usuario actual para verificar el estatus
+        $completedLessonIds = auth()->user()->completedLessons()->pluck('lessons.id')->toArray();
+        
+        return view('learn.show', compact('level', 'lessons', 'completedLessonIds'));
+    }
 }
