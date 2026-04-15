@@ -16,10 +16,13 @@
         </div>
         <nav>
             <a href="{{ route('aprende') }}">Aprende</a>
-            <a href="#">Eventos</a>
+            <a href="{{ route('events.index') }}">Eventos</a>
             <a href="#">Recompensas</a>
             @auth
-                <a href="{{ url('/dashboard') }}">Dashboard</a>
+                @if(Auth::user()->isAdmin())
+                    <a href="{{ route('admin.dashboard') }}" style="margin-right: 15px; color: #ffeb3b;">Panel Admin</a>
+                @endif
+                <a href="{{ url('/dashboard') }}" class="btn-login" style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3);">{{ Auth::user()->name }}</a>
             @else
                 <a href="{{ route('login') }}" class="btn-login">Iniciar Sesión</a>
                 <a href="{{ route('register') }}" style="margin-left: 10px;">Registrarse</a>
@@ -27,12 +30,16 @@
         </nav>
     </header>
 
-    @yield('content')
+    <main>
+        @yield('content')
+    </main>
 
-    <footer>
-        <a href="#" class="btn-outline">Sugerencias</a>
-        <a href="#" class="btn-outline">Información General</a>
-    </footer>
+    @unless(request()->routeIs('sugerencias') || request()->routeIs('informacion'))
+        <footer>
+            <a href="{{ route('sugerencias') }}" class="btn-outline">Sugerencias</a>
+            <a href="{{ route('informacion') }}" class="btn-outline">Información General</a>
+        </footer>
+    @endunless
 
 </body>
 

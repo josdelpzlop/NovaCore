@@ -15,6 +15,15 @@ body {
     margin: 0;
     line-height: 1.8;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 /* Cabecera Natural */
@@ -135,11 +144,15 @@ nav a:hover {
 
 /* Footer sutil */
 footer {
-    padding: 4rem 5%;
+    padding: 3rem 5%;
     display: flex;
+    justify-content: center;
     gap: 1.5rem;
-    max-width: 1200px;
-    margin: 0 auto;
+    width: 100%;
+    box-sizing: border-box;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    background: rgba(0, 0, 0, 0.4);
+    margin-top: auto;
 }
 
 .btn-outline {

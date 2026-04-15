@@ -320,6 +320,11 @@
                     Lecciones
                 </a>
             </li>
+            <li>
+                <a href="{{ route('admin.events.index') }}" class="{{ request()->routeIs('admin.events.*') ? 'active' : '' }}">
+                    Eventos
+                </a>
+            </li>
         </ul>
 
         <div class="sidebar-footer">

@@ -15,10 +15,24 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\EventController;
 
 Route::get('/', function () {
     return view('pages.inicio');
 })->name('inicio');
+
+// Rutas estáticas de contenido
+Route::get('/fenomenos/{slug}', function ($slug) {
+    return view('pages.fenomenos', ['slug' => $slug]);
+})->name('fenomenos.show');
+
+Route::get('/sugerencias', function () {
+    return view('pages.sugerencias');
+})->name('sugerencias');
+
+Route::get('/informacion', function () {
+    return view('pages.informacion');
+})->name('informacion');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
@@ -30,7 +44,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/aprende/{level}', [LevelController::class, 'show'])->name('levels.show');
     Route::get('/aprende/{level}/{lesson}', [\App\Http\Controllers\LessonController::class, 'show'])->name('lessons.show');
     Route::post('/lecciones/{lesson}/completar', [\App\Http\Controllers\LessonController::class, 'complete'])->name('lessons.complete');
+    
+    // Rutas de eventos que requieren autenticación para asistir
+    Route::post('/eventos/{event}/asistir', [EventController::class, 'attend'])->name('events.attend');
 });
+
+// Rutas públicas de eventos (ver lista y detalles sin estar logueado)
+Route::get('/eventos', [EventController::class, 'index'])->name('events.index');
+Route::get('/eventos/{event:slug}', [EventController::class, 'show'])->name('events.show');
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
@@ -38,6 +59,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     // Rutas protegidas del CRUD
     Route::resource('admin/levels', App\Http\Controllers\Admin\LevelController::class)->names('admin.levels');
     Route::resource('admin/lessons', App\Http\Controllers\Admin\LessonController::class)->names('admin.lessons');
+    Route::resource('admin/events', App\Http\Controllers\Admin\EventController::class)->names('admin.events');
 });
 
 require __DIR__ . '/auth.php';
