@@ -16,15 +16,14 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LevelController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\FenomenoController;
 
 Route::get('/', function () {
     return view('pages.inicio');
 })->name('inicio');
 
-// Rutas estáticas de contenido
-Route::get('/fenomenos/{slug}', function ($slug) {
-    return view('pages.fenomenos', ['slug' => $slug]);
-})->name('fenomenos.show');
+// Rutas de componentes dinámicos
+Route::get('/fenomenos', [FenomenoController::class, 'index'])->name('fenomenos.index');
 
 Route::get('/sugerencias', function () {
     return view('pages.sugerencias');
@@ -33,6 +32,10 @@ Route::get('/sugerencias', function () {
 Route::get('/informacion', function () {
     return view('pages.informacion');
 })->name('informacion');
+
+Route::get('/recompensas', function () {
+    return view('pages.recompensas');
+})->name('recompensas');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {

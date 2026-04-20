@@ -145,3 +145,22 @@ Se desarrolló un CRUD (Create, Read, Update, Delete) completo sin recurrir a pa
 La base funcional de la Academia y la experiencia del usuario.
 - **Estructura de Datos Pivot (`belongsToMany`)**: Se implementó una tabla intermedia `lesson_user` usando el ORM *Eloquent*. Esto permite generar una relación de "muchos a muchos", registrando de forma inmutable qué lección específica ha completado cada usuario, junto con su timestamp (`created_at`).
 - **Navegación Lógica (Routing Pipeline)**: El `LessonController` público no solo renderiza el material, sino que en la vía de finalización (`POST`), registra el avance y mediante un algoritmo lógico (*where order > actual\_order*) detecta la siguiente lección cronológica, encauzando al estudiante hacia ella de manera automática para maximizar la retención.
+
+## 6. Ecosistema de Conectividad REST (Arquitectura de 3 APIs)
+
+Para dotar al proyecto de interacción del mundo real, se han implementado tres APIs externas distintas, abordadas cada una con una estrategia técnica diferente para demostrar dominio del paradigma *Full-Stack*:
+
+### 6.1. Consumo Backend y Mutación de Respuesta (NASA APOD + Traductor Google)
+En lugar de una simple petición, se desarrolló un sistema donde el backend de Laravel intercepta la foto astronómica diaria (APOD) de la NASA.
+- **Lógica Secundaría Compartida (`Traits`)**: Puesto que las APIs aeroespaciales operan estadísticamente en inglés, se programó el Trait `TranslatesText` que intercepta las respuestas JSON originales y las reenvía dinámicamente de forma interna a una API no documentada de Google Translate, devolviéndolas parseadas en español en tiempo real.
+- **Optimización por Caché**: Para evitar el agotamiento de cuotas gratuitas, la petición HTTP en PHP está envuelta en la fachada `Cache::remember()`, persistiendo el objeto resultante en memoria durante 12 horas.
+
+### 6.2. Agregación de Orígenes de Datos (BBDD Propia + TheSpaceDevs API)
+En la lógica del controlador `EventController`, se elaboró un patrón de "Data Aggregation".
+- La vista de Eventos consume datos de la relación local MySQL (clases y tutoriales de NovaCore) y datos de la API global TheSpaceDevs (Próximo lanzamiento del mundo real) simultáneamente.
+- **Troubleshooting**: Se identificó y resolvió proactivamente el problema de mantenimiento asociado a la API *v5 antigua de SpaceX*, derivando el *Endpoint* hacia un servicio robusto como *The Space Devs* para garantizar la fiabilidad del dato espacial sin sacrificar la interfaz de usuario.
+
+### 6.3. Asincronismo Frontend Píxel a Píxel (ISS Tracker JS)
+Se reconoció que el paradigma de PHP y el renderizado estático de Blade es insuficiente para recursos de alta velocidad como las coordenadas de rotación orbital de la ISS (cambian constantemente por milisegundos).
+- Para solucionar esto sin bloquear el hilo principal de Laravel, se montó el Widget "ISS Terminal" en la vista raíz.
+- Usa la **API Fetch de JavaScript** de manera asíncrona mediante un bucle `setInterval()` iterando cada 2 segundos. Con ello, el Document Object Model (DOM) es manipulado y la información parpadea sin requerir la intervención del servidor Apache/Nginx principal.

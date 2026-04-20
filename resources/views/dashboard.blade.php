@@ -87,6 +87,8 @@
             </div>
         </div>
 
+
+
         <div class="quick-actions" style="text-align: center;">
             <p style="color: #94a3b8; margin-bottom: 15px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;">Navegación del Sistema</p>
             <div style="margin-top: 15px;">

@@ -17,7 +17,8 @@
         <nav>
             <a href="{{ route('aprende') }}">Aprende</a>
             <a href="{{ route('events.index') }}">Eventos</a>
-            <a href="#">Recompensas</a>
+            <a href="{{ route('fenomenos.index') }}">Fenómenos</a>
+            <a href="{{ route('recompensas') }}">Recompensas</a>
             @auth
                 @if(Auth::user()->isAdmin())
                     <a href="{{ route('admin.dashboard') }}" style="margin-right: 15px; color: #ffeb3b;">Panel Admin</a>
