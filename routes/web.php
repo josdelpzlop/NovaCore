@@ -33,9 +33,7 @@ Route::get('/informacion', function () {
     return view('pages.informacion');
 })->name('informacion');
 
-Route::get('/recompensas', function () {
-    return view('pages.recompensas');
-})->name('recompensas');
+// La ruta /recompensas se ha movido al grupo auth
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
@@ -50,6 +48,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
     
     // Rutas de eventos que requieren autenticación para asistir
     Route::post('/eventos/{event}/asistir', [EventController::class, 'attend'])->name('events.attend');
+
+    // Recompensas
+    Route::get('/recompensas', [\App\Http\Controllers\RewardController::class, 'index'])->name('recompensas');
+    Route::post('/recompensas/equipar/{achievement}', [\App\Http\Controllers\RewardController::class, 'equip'])->name('recompensas.equip');
 });
 
 // Rutas públicas de eventos (ver lista y detalles sin estar logueado)

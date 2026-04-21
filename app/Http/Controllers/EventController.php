@@ -72,6 +72,7 @@ class EventController extends Controller
         }
 
         $user->attendedEvents()->attach($event->id);
+        $user->addXP($event->xp_reward ?? 0);
 
         return redirect()->back()->with('success', '¡Te has inscrito al evento exitosamente!');
     }

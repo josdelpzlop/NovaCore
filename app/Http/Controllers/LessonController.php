@@ -29,6 +29,7 @@ class LessonController extends Controller
         // Evitar duplicar el registro si ya la superó
         if (!$user->completedLessons()->where('lesson_id', $lesson->id)->exists()) {
             $user->completedLessons()->attach($lesson->id);
+            $user->addXP(50); // Otorga 50 XP por lección completada
         }
 
         // Buscar siguiente lección

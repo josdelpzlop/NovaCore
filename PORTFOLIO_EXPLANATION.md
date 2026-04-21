@@ -164,3 +164,22 @@ En la lógica del controlador `EventController`, se elaboró un patrón de "Data
 Se reconoció que el paradigma de PHP y el renderizado estático de Blade es insuficiente para recursos de alta velocidad como las coordenadas de rotación orbital de la ISS (cambian constantemente por milisegundos).
 - Para solucionar esto sin bloquear el hilo principal de Laravel, se montó el Widget "ISS Terminal" en la vista raíz.
 - Usa la **API Fetch de JavaScript** de manera asíncrona mediante un bucle `setInterval()` iterando cada 2 segundos. Con ello, el Document Object Model (DOM) es manipulado y la información parpadea sin requerir la intervención del servidor Apache/Nginx principal.
+
+## 7. Gamificación Avanzada: Experiencia (XP) y Sistema de Títulos Equipables
+
+Para maximizar la retención de usuarios e incentivar el aprendizaje continuo, se ha implementado un sistema completo de gamificación y economía de experiencia.
+
+### 7.1. Motor de Experiencia y Rangos (Lógica de Modelo)
+Se ha extendido el modelo `User` para albergar la lógica de progresión sin necesidad de crear tablas adicionales complejas.
+- **Atributos de Progresión (`Accessors`)**: Mediante métodos mágicos (Accessors) como `getUserLevelAttribute()` y `getXpProgressAttribute()`, el sistema calcula dinámicamente el nivel del usuario (de 0 a MAX) y el porcentaje exacto de progreso hacia el siguiente nivel basándose en su XP actual.
+- **Identidad Visual Centralizada**: Cada rango cuenta con su propia identidad visual y de color. Esta paleta de colores y la iconografía vectorial (SVG) se gestionan de forma centralizada en un diccionario estático en el modelo `User` (`$achievementData`), permitiendo coherencia de diseño en toda la aplicación.
+
+### 7.2. Evaluación de Logros en Tiempo Real
+El controlador `RewardController` se encarga de auditar el progreso del usuario.
+- En lugar de procesos pesados en base de datos (Cron Jobs), el sistema evalúa las métricas de rendimiento (ej. lecciones completadas, eventos asistidos mediante la tabla pivote `event_user`) *al vuelo* cuando el usuario accede a su panel de recompensas.
+- Si se cumplen las condiciones, el front-end desbloquea automáticamente las tarjetas usando clases CSS condicionales y habilitando nuevas interacciones.
+
+### 7.3. Equipamiento de Títulos Transversal (UI/UX Dinámica)
+Se ha desarrollado una funcionalidad "Equipable", permitiendo al usuario exhibir su progreso como marca de estatus en toda la web.
+- **Persistencia**: Se ha añadido el campo `current_title` a la tabla `users`. Al hacer clic en "Equipar" en la vista, una ruta POST actualiza este valor en el modelo.
+- **Propagación en la Interfaz**: Dado que la entidad autenticada (`Auth::user()`) está disponible globalmente, el título equipado y su correspondiente insignia se inyectan dinámicamente en el Layout Principal (`master.blade.php`) y en el panel de control. Esto modifica reactivamente el color del nombre del usuario y le otorga "badges" exclusivos dependiendo de sus hazañas espaciales.
