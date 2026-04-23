@@ -183,3 +183,23 @@ El controlador `RewardController` se encarga de auditar el progreso del usuario.
 Se ha desarrollado una funcionalidad "Equipable", permitiendo al usuario exhibir su progreso como marca de estatus en toda la web.
 - **Persistencia**: Se ha añadido el campo `current_title` a la tabla `users`. Al hacer clic en "Equipar" en la vista, una ruta POST actualiza este valor en el modelo.
 - **Propagación en la Interfaz**: Dado que la entidad autenticada (`Auth::user()`) está disponible globalmente, el título equipado y su correspondiente insignia se inyectan dinámicamente en el Layout Principal (`master.blade.php`) y en el panel de control. Esto modifica reactivamente el color del nombre del usuario y le otorga "badges" exclusivos dependiendo de sus hazañas espaciales.
+
+## 8. Identidad Visual Dinámica y "Cosmic HUD" (Fase de Pulido UI)
+
+La última fase del desarrollo se centró en unificar la experiencia visual utilizando CSS puro avanzado y lógicas de enrutamiento en el motor Blade, dotando a NovaCore de una estética inmersiva de "Interfaz de Nave Espacial" (HUD).
+
+### 8.1. Arquitectura "Bento Grid" y Responsive Avanzado
+Se abandonaron las estructuras clásicas centradas de "tarjeta única" (formularios típicos) en favor del patrón de diseño moderno **Bento Grid** (Mosaicos Fluidos).
+- **Distribución Espacial:** Tanto el Panel de Mando (`Dashboard`) como la sala de Recompensas utilizan CSS Grid nativo (`grid-template-columns`) y Flexbox (`flex: 1 1 Xpx`) para crear ecosistemas de datos panorámicos (hasta 1400px de ancho) que aprovechan el 100% de la pantalla.
+- **Micro-interacciones:** Las tarjetas de estadística incluyen interacciones de `transform: translateY` combinadas con luces `box-shadow` al hacer `hover`. En el módulo en vivo del *ISS Tracker*, se forzó un renderizado de grilla matemática estricta (`repeat(4, 1fr)`) mitigando comportamientos erráticos del DOM en resoluciones altas (1080p+).
+
+### 8.2. Enrutamiento Temático Dinámico (Blade State Logic)
+Para aumentar la inmersión, la paleta cromática de la plataforma muta activamente dependiendo de la ruta en la que se navegue, demostrando dominio en el ciclo de vida de peticiones MVC.
+- En el Layout principal (`master.blade.php`), se programó un controlador de estado visual in-line evaluando el *Facade* `request()->routeIs()`.
+- Este sistema intercepta la petición y define una variable `$themeColor` adaptada a la ruta (ej. Rojo Carmesí para Fenómenos, Dorado para Recompensas, Magenta para Eventos).
+- Esta única variable se inyecta por todo el árbol DOM, propagando el color hacia el logotipo con máscaras CSS (`-webkit-background-clip: text`), cambiando el tinte de los bordes del pie de página y manipulando los selectores `hover` de navegación. Todo renderizado desde el servidor (SSR), sin coste de rendimiento en JS del lado del cliente.
+
+### 8.3. Tintado de Entorno Vinculado a Base de Datos
+El Dashboard se convirtió en una proyección visual interactiva del nivel del jugador.
+- Se implementaron fondos fijos con orbes de luz pulsante (`radial-gradient` y `@keyframes pulseGlow`) cuyo color base no está predefinido en CSS, sino que se extrae en vivo del atributo del modelo del usuario (`$user->user_level_color`).
+- Esto significa que la atmósfera visual completa del panel de control mutará si el Administrador rebaja los XP del usuario en base de datos, o si este sube de rango por sus propios medios, demostrando una conexión total entre la base de datos de backend y la capa de estilización frontend (CSS in JS/Blade).

@@ -3,55 +3,102 @@
 @section('title', 'NASA APOD - Fenómeno Cósmico')
 
 @section('content')
-<div style="padding: 100px 5%; max-width: 1200px; margin: 0 auto; min-height: 70vh;">
+    <!-- Elementos decorativos de fondo (Fixed) - Observatorio (Rojo Carmesí) -->
+    <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; overflow: hidden; pointer-events: none; z-index: -1;">
+        <div style="position: absolute; top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #e11d48 0%, transparent 70%); filter: blur(100px); opacity: 0.15; animation: pulseGlow 8s infinite alternate;"></div>
+        <div style="position: absolute; top: 30%; right: -15%; width: 60vw; height: 60vw; background: radial-gradient(circle, #9f1239 0%, transparent 70%); filter: blur(120px); opacity: 0.15; animation: pulseGlow 10s infinite alternate-reverse;"></div>
+        <div style="position: absolute; bottom: -20%; left: 10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #ef4444 0%, transparent 70%); filter: blur(100px); opacity: 0.1; animation: pulseGlow 12s infinite alternate;"></div>
+        
+        <div style="position: absolute; top: 0; left: 4%; width: 1px; height: 100%; background: linear-gradient(to bottom, transparent, rgba(225,29,72,0.15), transparent);"></div>
+        <div style="position: absolute; top: 0; right: 4%; width: 1px; height: 100%; background: linear-gradient(to bottom, transparent, rgba(239,68,68,0.15), transparent);"></div>
+    </div>
+
+<div style="padding: 100px 5%; max-width: 1300px; margin: 0 auto; min-height: 70vh;">
     
+    <!-- Texto de Introducción Estilizado -->
+    <section style="text-align: center; margin-bottom: 4rem;">
+        <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(225, 29, 72, 0.1); border: 1px solid rgba(225, 29, 72, 0.3); color: #fb7185; padding: 6px 18px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 2px;">
+            <svg style="width: 1rem; height: 1rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+            Centro de Observación
+        </div>
+        <h2 style="font-size: 3.5rem; margin-top: 0; margin-bottom: 20px; font-weight: 800; background: -webkit-linear-gradient(135deg, #fff, #e11d48); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 30px rgba(225, 29, 72, 0.3);">
+            Observatorio de Fenómenos
+        </h2>
+        <div style="background: rgba(16, 26, 43, 0.6); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.05); padding: 30px 40px; border-radius: 20px; max-width: 750px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            <p style="font-size: 1.15rem; color: #cbd5e1; line-height: 1.8; margin: 0;">
+                Accede a la red de telescopios y sondas de espacio profundo. Descubre cada día una nueva anomalía, estrella o galaxia capturada y analizada por los instrumentos ópticos de la NASA.
+            </p>
+        </div>
+    </section>
+
+    <!-- Cambiado align-items: stretch a flex-start para que las columnas respeten su altura natural -->
     <div style="display: flex; gap: 40px; flex-wrap: wrap; align-items: flex-start;">
         
         <!-- Columna Izquierda: Información Principal -->
-        <div class="info-column" style="flex: 2; min-width: 300px;">
-            <div class="cosmic-card" style="background: rgba(16, 26, 43, 0.7); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.5);">
-                <div style="display: inline-block; background: rgba(89,222,160,0.1); border: 1px solid rgba(89,222,160,0.3); color: var(--menta); padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; text-transform: uppercase; margin-bottom: 20px;">
+        <div class="info-column" style="flex: 1; min-width: 400px; display: flex; flex-direction: column;">
+            <div class="cosmic-card" style="background: rgba(16, 26, 43, 0.8); backdrop-filter: blur(15px); border: 1px solid rgba(225, 29, 72, 0.2); border-radius: 24px; padding: 50px; box-shadow: 0 15px 50px rgba(0,0,0,0.6), inset 0 0 20px rgba(225, 29, 72, 0.05); position: relative; overflow: hidden;">
+                
+                <!-- Brillo superior rojo carmesí -->
+                <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, transparent, #e11d48, transparent); opacity: 0.8;"></div>
+
+                <div style="display: inline-flex; align-items: center; gap: 8px; background: rgba(225, 29, 72, 0.1); border: 1px solid rgba(225, 29, 72, 0.3); color: #fb7185; padding: 6px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; text-transform: uppercase; margin-bottom: 25px; letter-spacing: 1px;">
+                    <svg style="width: 1.2rem; height: 1.2rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
                     Transmisión Diaria NASA
                 </div>
 
-                <h1 style="color: white; margin-top: 0; font-size: 2.5rem; margin-bottom: 10px; background: -webkit-linear-gradient(#fff, #1cc88a); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                <h1 style="color: white; margin-top: 0; font-size: 3.2rem; font-weight: 900; margin-bottom: 15px; background: -webkit-linear-gradient(135deg, #fff, #e11d48); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                     {{ $apod['title'] ?? 'Fenómeno Desconocido' }}
                 </h1>
                 
-                <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 25px;">
-                    Fecha de Captura Estelar: {{ $apod['date'] ?? now()->toDateString() }}
-                </p>
+                <div style="display: flex; align-items: center; gap: 10px; color: #94a3b8; font-size: 0.95rem; margin-bottom: 30px; font-family: monospace; background: rgba(255,255,255,0.05); padding: 8px 15px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.1); display: inline-flex;">
+                    <svg style="width: 1.2rem; height: 1.2rem; color: #fb7185;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    Fecha de Captura: <span style="color: white; font-weight: bold;">{{ $apod['date'] ?? now()->toDateString() }}</span>
+                </div>
                 
-                <p style="color: #cbd5e1; font-size: 1.1rem; line-height: 1.9; margin-bottom: 25px;">
+                <p style="color: #cbd5e1; font-size: 1.15rem; line-height: 1.9; margin-bottom: 40px; text-align: justify;">
                     {{ $apod['explanation'] ?? 'Buscando datos en la matriz principal...' }}
                 </p>
 
-                <div style="margin-top: 40px;">
-                    <a href="{{ route('inicio') }}" class="btn-login" style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); margin-left: 0; transition: all 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.1)'" onmouseout="this.style.background='rgba(255,255,255,0.05)'">
-                        ← Retornar al puente de mando
+                <div style="margin-top: auto;">
+                    <a href="{{ route('inicio') }}" class="btn-login" style="display: inline-flex; align-items: center; gap: 10px; background: rgba(225, 29, 72, 0.1); border: 1px solid rgba(225, 29, 72, 0.3); color: #fb7185; padding: 12px 25px; border-radius: 12px; text-decoration: none; font-weight: bold; transition: all 0.3s;" onmouseover="this.style.background='rgba(225, 29, 72, 0.2)'; this.style.transform='translateX(-5px)';" onmouseout="this.style.background='rgba(225, 29, 72, 0.1)'; this.style.transform='translateX(0)';">
+                        &larr; Retornar al puente de mando
                     </a>
                 </div>
             </div>
         </div>
 
         <!-- Columna Derecha: Multimedia APOD -->
-        <div class="telemetry-column" style="flex: 2; min-width: 300px;">
-            <div class="cosmic-card" style="background: rgba(10, 15, 25, 0.8); border: 1px solid rgba(78, 115, 223, 0.3); border-radius: 20px; overflow: hidden; box-shadow: inset 0 0 30px rgba(78,115,223,0.1); text-align: center;">
+        <div class="telemetry-column" style="flex: 1; min-width: 400px; display: flex; flex-direction: column;">
+            <!-- Eliminamos el flex-grow para que la tarjeta abrace a la imagen sin forzar la altura -->
+            <div class="cosmic-card" style="background: rgba(10, 15, 25, 0.9); border: 1px solid rgba(225, 29, 72, 0.3); border-radius: 24px; overflow: hidden; box-shadow: 0 15px 50px rgba(0,0,0,0.6), inset 0 0 30px rgba(225, 29, 72, 0.1); text-align: center; display: flex; flex-direction: column;">
                 
-                @if(isset($apod['media_type']) && $apod['media_type'] === 'video')
-                    <iframe src="{{ $apod['url'] }}" frameborder="0" allowfullscreen style="width: 100%; height: 350px; border-bottom: 1px solid rgba(78, 115, 223, 0.3);"></iframe>
-                @else
-                    <a href="{{ $apod['hdurl'] ?? ($apod['url'] ?? '#') }}" target="_blank">
-                        <!-- Mantenemos la imagen estática de respaldo en el asset default si la API falla -->
-                        <img src="{{ $apod['url'] ?? 'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=2000&auto=format&fit=crop' }}" alt="{{ $apod['title'] ?? 'Nasa APOD' }}" style="width: 100%; height: auto; object-fit: cover; border-bottom: 1px solid rgba(78, 115, 223, 0.3); transition: transform 0.5s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
-                    </a>
-                @endif
+                <div style="background: rgba(225, 29, 72, 0.1); border-bottom: 1px solid rgba(225, 29, 72, 0.3); padding: 12px 20px; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="color: #fda4af; font-family: monospace; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px; display: flex; align-items: center; gap: 8px;">
+                        <svg style="width: 1rem; height: 1rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                        VISOR ÓPTICO PRINCIPAL
+                    </span>
+                    <span style="display: inline-block; width: 10px; height: 10px; background: #e11d48; border-radius: 50%; box-shadow: 0 0 10px #e11d48; animation: blink 1.5s infinite;"></span>
+                </div>
+
+                <!-- Fondo negro para letterboxing. object-fit: contain muestra la imagen entera sin recortar -->
+                <div style="display: flex; align-items: center; justify-content: center; background: #000; position: relative;">
+                    @if(isset($apod['media_type']) && $apod['media_type'] === 'video')
+                        <iframe src="{{ $apod['url'] }}" frameborder="0" allowfullscreen style="width: 100%; aspect-ratio: 16/9; border: none;"></iframe>
+                    @else
+                        <a href="{{ $apod['hdurl'] ?? ($apod['url'] ?? '#') }}" target="_blank" style="display: block; width: 100%;">
+                            <!-- Usamos object-fit: contain para NO recortar. max-height limita lo alto que puede ser -->
+                            <img src="{{ $apod['url'] ?? 'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=2000&auto=format&fit=crop' }}" alt="{{ $apod['title'] ?? 'Nasa APOD' }}" style="width: 100%; height: auto; max-height: 600px; object-fit: contain; transition: filter 0.3s ease;" onmouseover="this.style.filter='brightness(1.1)'" onmouseout="this.style.filter='brightness(1)'">
+                        </a>
+                    @endif
+                </div>
                 
-                <div style="padding: 15px; background: rgba(0,0,0,0.5); text-align: left;">
-                    <div style="color: #f6c23e; font-family: monospace; font-size: 0.9rem; margin-bottom: 8px;">> INICIANDO SECUENCIA VISUAL_</div>
-                    <div style="color: #94a3b8; font-family: monospace; font-size: 0.85rem;">> Fuente de telemetría: API Pública de la NASA.</div>
-                    <div style="color: #94a3b8; font-family: monospace; font-size: 0.85rem;">> Resolución HD Disponible al hacer click.</div>
-                    <i style="color: #4e73df; display: inline-block; margin-top: 5px; animation: blink 1s infinite;">_</i>
+                <div style="padding: 20px; background: rgba(0,0,0,0.8); text-align: left; border-top: 1px solid rgba(225, 29, 72, 0.3);">
+                    <div style="color: #fda4af; font-family: monospace; font-size: 0.95rem; margin-bottom: 8px;">> INICIANDO_SECUENCIA_VISUAL... [OK]</div>
+                    <div style="color: #94a3b8; font-family: monospace; font-size: 0.85rem; margin-bottom: 5px;">> FUENTE_TELEMETRÍA: API PÚBLICA NASA</div>
+                    @if(isset($apod['media_type']) && $apod['media_type'] !== 'video')
+                        <div style="color: #f87171; font-family: monospace; font-size: 0.85rem;">> ESTADO: RESOLUCIÓN HD DISPONIBLE (CLICK EN LA IMAGEN)</div>
+                    @endif
+                    <i style="color: #e11d48; display: inline-block; margin-top: 5px; font-weight: bold; animation: blink 1s infinite;">_</i>
                 </div>
                 
             </div>

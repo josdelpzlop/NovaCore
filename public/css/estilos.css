@@ -44,18 +44,41 @@ header {
     text-decoration: none;
 }
 
-/* Navegación Suave */
+/* Navegación Suave y Premium */
 nav a {
     color: rgba(255, 255, 255, 0.7);
     text-decoration: none;
     margin-left: 2rem;
-    font-size: 0.95rem;
-    font-weight: 500;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
     transition: all 0.3s ease;
 }
 
 nav a:hover {
-    color: var(--menta);
+    color: white;
+}
+
+/* Colores Temáticos para Navegación */
+nav a.nav-link-aprende:hover, nav a.active-aprende {
+    color: #3b82f6; /* Azul Academia */
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+nav a.nav-link-eventos:hover, nav a.active-eventos {
+    color: #a78bfa; /* Morado Eventos */
+    text-shadow: 0 0 10px rgba(167, 139, 250, 0.5);
+}
+
+nav a.nav-link-fenomenos:hover, nav a.active-fenomenos {
+    color: #fb7185; /* Rojo Carmesí Observatorio */
+    text-shadow: 0 0 10px rgba(251, 113, 133, 0.5);
+}
+
+nav a.nav-link-recompensas:hover, nav a.active-recompensas {
+    color: #fbbf24; /* Dorado Recompensas */
+    text-shadow: 0 0 10px rgba(251, 191, 36, 0.5);
 }
 
 .btn-login {
@@ -254,4 +277,11 @@ footer {
 .nivel-footer::after {
     content: "→";
     margin-left: 8px;
+}
+
+/* Animación global para nebulosas */
+@keyframes pulseGlow {
+    0% { transform: scale(1) translate(0, 0); opacity: 0.1; }
+    50% { transform: scale(1.05) translate(20px, -20px); opacity: 0.2; }
+    100% { transform: scale(1) translate(-20px, 20px); opacity: 0.1; }
 }

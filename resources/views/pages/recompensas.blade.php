@@ -3,29 +3,51 @@
 @section('title', 'Recompensas - NovaCore')
 
 @section('content')
-<div class="recompensas-container" style="max-width: 1100px; margin: 3rem auto; padding: 0 5%; min-height: 70vh;">
-    <section class="hero-recompensas" style="margin-bottom: 3rem;">
-        <h1 style="font-size: 3rem; color: var(--menta); margin-bottom: 1rem; text-shadow: 0 0 20px rgba(89, 222, 160, 0.2);">Logros del Comandante</h1>
-        <p style="font-size: 1.15rem; color: #e2e8f0; line-height: 1.8;">Tu colección personal de honores espaciales y descubrimientos validados. Gana puntos de experiencia (XP) para subir de nivel completando lecciones y asistiendo a eventos.</p>
+    <!-- Elementos decorativos de fondo (Fixed) - Recompensas (Oro/Amarillo/Ámbar) -->
+    <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; overflow: hidden; pointer-events: none; z-index: -1;">
+        <div style="position: absolute; top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #eab308 0%, transparent 70%); filter: blur(100px); opacity: 0.15; animation: pulseGlow 8s infinite alternate;"></div>
+        <div style="position: absolute; top: 30%; right: -15%; width: 60vw; height: 60vw; background: radial-gradient(circle, #f59e0b 0%, transparent 70%); filter: blur(120px); opacity: 0.15; animation: pulseGlow 10s infinite alternate-reverse;"></div>
+        <div style="position: absolute; bottom: -20%; left: 10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #d97706 0%, transparent 70%); filter: blur(100px); opacity: 0.1; animation: pulseGlow 12s infinite alternate;"></div>
+        
+        <div style="position: absolute; top: 0; left: 4%; width: 1px; height: 100%; background: linear-gradient(to bottom, transparent, rgba(234,179,8,0.1), transparent);"></div>
+        <div style="position: absolute; top: 0; right: 4%; width: 1px; height: 100%; background: linear-gradient(to bottom, transparent, rgba(245,158,11,0.1), transparent);"></div>
+    </div>
+
+<div class="recompensas-container" style="max-width: 1400px; margin: 3rem auto; padding: 100px 5% 50px; min-height: 70vh;">
+    
+    <!-- Texto de Introducción Estilizado -->
+    <section style="text-align: center; margin-bottom: 4rem;">
+        <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); color: #fbbf24; padding: 6px 18px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 2px;">
+            <svg style="width: 1.2rem; height: 1.2rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+            Sala de Trofeos
+        </div>
+        <h2 style="font-size: 3.5rem; margin-top: 0; margin-bottom: 20px; font-weight: 800; background: -webkit-linear-gradient(135deg, #fff, #f59e0b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 30px rgba(245, 158, 11, 0.3);">
+            Logros del Comandante
+        </h2>
+        <div style="background: rgba(16, 26, 43, 0.6); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.05); padding: 30px 40px; border-radius: 20px; max-width: 750px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            <p style="font-size: 1.15rem; color: #cbd5e1; line-height: 1.8; margin: 0;">
+                Tu colección personal de honores espaciales y descubrimientos validados. Gana puntos de experiencia (XP) para subir de nivel completando lecciones y asistiendo a misiones en vivo.
+            </p>
+        </div>
     </section>
 
     @if(session('success'))
-        <div style="background: rgba(40, 167, 69, 0.2); border: 1px solid #28a745; padding: 15px; border-radius: 8px; margin-bottom: 20px; color: #a3ffb8;">
+        <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); color: #fbbf24; padding: 15px; border-radius: 12px; margin-bottom: 30px; text-align: center; font-weight: bold; box-shadow: 0 0 20px rgba(245, 158, 11, 0.1);">
             {{ session('success') }}
         </div>
     @endif
     @if($errors->any())
-        <div style="background: rgba(220, 53, 69, 0.2); border: 1px solid #dc3545; padding: 15px; border-radius: 8px; margin-bottom: 20px; color: #ffa3a3;">
+        <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #f87171; padding: 15px; border-radius: 12px; margin-bottom: 30px; text-align: center; font-weight: bold; box-shadow: 0 0 20px rgba(239, 68, 68, 0.1);">
             {{ $errors->first() }}
         </div>
     @endif
 
     <!-- Barra de Progreso Dinámica -->
-    <section class="progreso-global" style="background: rgba(255,255,255,0.05); border-radius: 20px; padding: 2rem; border: 1px solid {{ $user->user_level_color }}50; margin-bottom: 3rem; display: flex; align-items: center; gap: 2rem;">
+    <section class="progreso-global" style="background: linear-gradient(135deg, rgba(255,255,255,0.02), {{ $user->user_level_color }}15); border-radius: 24px; padding: 2rem; border: 1px solid {{ $user->user_level_color }}40; margin-bottom: 4rem; display: flex; align-items: center; gap: 2rem; backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(0,0,0,0.3), inset 0 0 20px {{ $user->user_level_color }}10;">
         
         <div style="text-align: center; min-width: 150px;">
             <div style="font-size: 3rem; font-weight: bold; color: {{ $user->user_level_color }}; text-shadow: 0 0 15px {{ $user->user_level_color }}80;">LVL {{ $user->user_level_number }}</div>
-            <div style="font-size: 0.9rem; color: white; text-transform: uppercase; letter-spacing: 1px;">{{ $user->user_level }}</div>
+            <div style="font-size: 0.9rem; color: white; text-transform: uppercase; letter-spacing: 1px; margin-top: 5px;">{{ $user->user_level }}</div>
         </div>
 
         <div class="bar-container" style="flex-grow: 1; height: 12px; background: rgba(0,0,0,0.5); border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);">
@@ -38,123 +60,115 @@
         </div>
     </section>
 
-    <div class="bento-grid trofeos-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 2rem;">
+    <!-- Grid Expandido -->
+    <div class="bento-grid trofeos-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2.5rem;">
         
-        <!-- Recompensa 1 -->
-        <div class="bento-card trofeo-card {{ $achievements['pionero_lunar'] ? '' : 'locked' }}" style="background: {{ $achievements['pionero_lunar'] ? 'linear-gradient(135deg, rgba(39, 70, 255, 0.1), rgba(104, 14, 188, 0.1))' : 'rgba(16, 26, 43, 0.5)' }}; border: 1px solid {{ $user->current_title === 'pionero_lunar' ? '#94a3b8' : 'rgba(255,255,255,0.1)' }}; border-radius: 24px; padding: 2rem; text-align: center; backdrop-filter: blur(10px); transition: all 0.3s ease; {{ $achievements['pionero_lunar'] ? '' : 'filter: grayscale(1) opacity(0.6);' }} {{ $user->current_title === 'pionero_lunar' ? 'box-shadow: 0 0 20px rgba(148, 163, 184, 0.5);' : '' }}">
-            <svg class="trofeo-icon" style="width: 3.5rem; height: 3.5rem; margin: 0 auto 1rem; display: block; filter: drop-shadow(0 0 10px rgba(135, 103, 235, 0.5)); color: currentColor;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
-            <h3 style="font-size: 1.1rem; color: {{ $achievements['pionero_lunar'] ? 'var(--lavanda)' : '#94a3b8' }}; margin-top: 0;">Pionero Lunar</h3>
-            <p style="font-size: 0.85rem; color: {{ $achievements['pionero_lunar'] ? '#cbd5e1' : '#94a3b8' }}; margin-bottom: 15px;">Completar tu primera lección en la academia.</p>
-            @if($achievements['pionero_lunar'])
-                @if($user->current_title === 'pionero_lunar')
-                    <div style="margin-top: 15px; padding: 5px; background: rgba(148, 163, 184, 0.2); border: 1px solid #94a3b8; border-radius: 20px; color: #94a3b8; font-size: 0.8rem; text-transform: uppercase;">✔ Equipado</div>
-                @else
-                    <form action="{{ route('recompensas.equip', 'pionero_lunar') }}" method="POST" style="margin-top: 15px;">
-                        @csrf
-                        <button type="submit" style="padding: 5px 15px; font-size: 0.8rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: white; border-radius: 20px; cursor: pointer; transition: 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">Equipar Título</button>
-                    </form>
-                @endif
-            @else
-                <span style="font-size: 0.8rem; color: #64748b; text-transform: uppercase; display: block; margin-top: 15px;">🔒 Bloqueado</span>
-            @endif
-        </div>
+        @php
+            $descriptions = [
+                'pionero_lunar' => 'Completar tu primera lección en la academia.',
+                'cazador_estelar' => 'Asistir a 5 eventos astronómicos registrados.',
+                'rey_anillos' => 'Completa un total de 5 lecciones de la academia.',
+                'vuelo_inaugural' => 'Asistir a tu primer evento astronómico.',
+                'leyenda_nova' => 'Alcanzar el nivel máximo: Ente Espacial (Nivel MAX).'
+            ];
+            
+            $keys = ['pionero_lunar', 'vuelo_inaugural', 'cazador_estelar', 'rey_anillos', 'leyenda_nova'];
+        @endphp
 
-        <!-- Recompensa 2 -->
-        <div class="bento-card trofeo-card {{ $achievements['cazador_estelar'] ? '' : 'locked' }}" style="background: {{ $achievements['cazador_estelar'] ? 'linear-gradient(135deg, rgba(39, 70, 255, 0.1), rgba(104, 14, 188, 0.1))' : 'rgba(16, 26, 43, 0.5)' }}; border: 1px solid {{ $user->current_title === 'cazador_estelar' ? '#06b6d4' : 'rgba(255,255,255,0.1)' }}; border-radius: 24px; padding: 2rem; text-align: center; backdrop-filter: blur(10px); transition: all 0.3s ease; {{ $achievements['cazador_estelar'] ? '' : 'filter: grayscale(1) opacity(0.6);' }} {{ $user->current_title === 'cazador_estelar' ? 'box-shadow: 0 0 20px rgba(6, 182, 212, 0.5);' : '' }}">
-            <svg class="trofeo-icon" style="width: 3.5rem; height: 3.5rem; margin: 0 auto 1rem; display: block; filter: drop-shadow(0 0 10px rgba(135, 103, 235, 0.5)); color: currentColor;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-            <h3 style="font-size: 1.1rem; color: {{ $achievements['cazador_estelar'] ? 'var(--lavanda)' : '#94a3b8' }}; margin-top: 0;">Cazador Estelar</h3>
-            <p style="font-size: 0.85rem; color: {{ $achievements['cazador_estelar'] ? '#cbd5e1' : '#94a3b8' }}; margin-bottom: 15px;">Asistir a 5 eventos astronómicos registrados.</p>
-            @if($achievements['cazador_estelar'])
-                @if($user->current_title === 'cazador_estelar')
-                    <div style="margin-top: 15px; padding: 5px; background: rgba(6, 182, 212, 0.2); border: 1px solid #06b6d4; border-radius: 20px; color: #06b6d4; font-size: 0.8rem; text-transform: uppercase;">✔ Equipado</div>
+        @foreach($keys as $key)
+            @php
+                $data = \App\Models\User::$achievementData[$key];
+                $isUnlocked = $achievements[$key];
+                $isEquipped = $user->current_title === $key;
+                
+                // Extraer el color base para aplicarlo a gradientes y sombras
+                $hexColor = $data['color'];
+                $rgbColor = sscanf($hexColor, "#%02x%02x%02x");
+                $rgbaColor = "rgba({$rgbColor[0]}, {$rgbColor[1]}, {$rgbColor[2]}, ";
+            @endphp
+            
+            <div class="bento-card trofeo-card {{ $isUnlocked ? '' : 'locked' }}" 
+                 style="background: {{ $isUnlocked ? 'linear-gradient(135deg, '.$rgbaColor.'0.1), rgba(16, 26, 43, 0.8))' : 'rgba(16, 26, 43, 0.5)' }}; 
+                        border: 1px solid {{ $isEquipped ? $hexColor : 'rgba(255,255,255,0.1)' }}; 
+                        border-radius: 24px; padding: 2.5rem 2rem; text-align: center; backdrop-filter: blur(10px); 
+                        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+                        {{ $isUnlocked ? '' : 'filter: grayscale(1) opacity(0.6);' }} 
+                        {{ $isEquipped ? 'box-shadow: 0 0 25px '.$rgbaColor.'0.4); transform: scale(1.02);' : '' }}">
+                
+                <div class="icon-container" style="color: {{ $isUnlocked ? $data['text_color'] : '#94a3b8' }}; width: 4.5rem; height: 4.5rem; margin: 0 auto 1.5rem; display: block; filter: drop-shadow(0 0 15px {{ $isUnlocked ? $rgbaColor.'0.5)' : 'transparent' }});">
+                    {!! $data['icon'] !!}
+                </div>
+                
+                <h3 style="font-size: 1.4rem; color: {{ $isUnlocked ? $data['text_color'] : '#94a3b8' }}; margin-top: 0; font-weight: 800; letter-spacing: 0.5px;">{{ $data['name'] }}</h3>
+                <p style="font-size: 0.95rem; color: {{ $isUnlocked ? '#cbd5e1' : '#64748b' }}; margin-bottom: 25px; line-height: 1.6; min-height: 45px;">{{ $descriptions[$key] }}</p>
+                
+                @if($isUnlocked)
+                    @if($isEquipped)
+                        <div style="margin-top: auto; padding: 8px 15px; background: {{ $rgbaColor }}0.2); border: 1px solid {{ $hexColor }}; border-radius: 20px; color: {{ $data['text_color'] }}; font-size: 0.85rem; text-transform: uppercase; font-weight: bold; display: inline-block;">
+                            ✔ Título Equipado
+                        </div>
+                    @else
+                        <form action="{{ route('recompensas.equip', $key) }}" method="POST" style="margin-top: auto;">
+                            @csrf
+                            <button type="submit" class="equip-btn" data-color="{{ $rgbaColor }}" style="padding: 10px 25px; font-size: 0.9rem; font-weight: bold; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); color: white; border-radius: 20px; cursor: pointer; transition: all 0.3s ease; width: 100%;">
+                                Equipar Título
+                            </button>
+                        </form>
+                    @endif
                 @else
-                    <form action="{{ route('recompensas.equip', 'cazador_estelar') }}" method="POST" style="margin-top: 15px;">
-                        @csrf
-                        <button type="submit" style="padding: 5px 15px; font-size: 0.8rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: white; border-radius: 20px; cursor: pointer; transition: 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">Equipar Título</button>
-                    </form>
+                    <div style="margin-top: auto; padding: 8px 15px; background: rgba(0,0,0,0.3); border: 1px dashed rgba(255,255,255,0.2); border-radius: 20px; color: #64748b; font-size: 0.8rem; text-transform: uppercase; display: inline-block; font-weight: bold; letter-spacing: 1px;">
+                        🔒 Misión Bloqueada
+                    </div>
                 @endif
-            @else
-                <span style="font-size: 0.8rem; color: #64748b; text-transform: uppercase; display: block; margin-top: 15px;">🔒 Bloqueado</span>
-            @endif
-        </div>
-
-        <!-- Recompensa 3 -->
-        <div class="bento-card trofeo-card {{ $achievements['rey_anillos'] ? '' : 'locked' }}" style="background: {{ $achievements['rey_anillos'] ? 'linear-gradient(135deg, rgba(39, 70, 255, 0.1), rgba(104, 14, 188, 0.1))' : 'rgba(16, 26, 43, 0.5)' }}; border: 1px solid {{ $user->current_title === 'rey_anillos' ? '#fb923c' : 'rgba(255,255,255,0.1)' }}; border-radius: 24px; padding: 2rem; text-align: center; backdrop-filter: blur(10px); transition: all 0.3s ease; {{ $achievements['rey_anillos'] ? '' : 'filter: grayscale(1) opacity(0.6);' }} {{ $user->current_title === 'rey_anillos' ? 'box-shadow: 0 0 20px rgba(251, 146, 60, 0.5);' : '' }}">
-            <svg class="trofeo-icon" style="width: 3.5rem; height: 3.5rem; margin: 0 auto 1rem; display: block; filter: drop-shadow(0 0 10px rgba(135, 103, 235, 0.5)); color: currentColor;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
-            <h3 style="font-size: 1.1rem; color: {{ $achievements['rey_anillos'] ? 'var(--lavanda)' : '#94a3b8' }}; margin-top: 0;">Rey de los Anillos</h3>
-            <p style="font-size: 0.85rem; color: {{ $achievements['rey_anillos'] ? '#cbd5e1' : '#94a3b8' }}; margin-bottom: 15px;">Completa un total de 5 lecciones de la academia.</p>
-            @if($achievements['rey_anillos'])
-                @if($user->current_title === 'rey_anillos')
-                    <div style="margin-top: 15px; padding: 5px; background: rgba(251, 146, 60, 0.2); border: 1px solid #fb923c; border-radius: 20px; color: #fb923c; font-size: 0.8rem; text-transform: uppercase;">✔ Equipado</div>
-                @else
-                    <form action="{{ route('recompensas.equip', 'rey_anillos') }}" method="POST" style="margin-top: 15px;">
-                        @csrf
-                        <button type="submit" style="padding: 5px 15px; font-size: 0.8rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: white; border-radius: 20px; cursor: pointer; transition: 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">Equipar Título</button>
-                    </form>
-                @endif
-            @else
-                <span style="font-size: 0.8rem; color: #64748b; text-transform: uppercase; display: block; margin-top: 15px;">🔒 Bloqueado</span>
-            @endif
-        </div>
-
-        <!-- Recompensa 4 -->
-        <div class="bento-card trofeo-card {{ $achievements['vuelo_inaugural'] ? '' : 'locked' }}" style="background: {{ $achievements['vuelo_inaugural'] ? 'linear-gradient(135deg, rgba(39, 70, 255, 0.1), rgba(104, 14, 188, 0.1))' : 'rgba(16, 26, 43, 0.5)' }}; border: 1px solid {{ $user->current_title === 'vuelo_inaugural' ? '#ef4444' : 'rgba(255,255,255,0.1)' }}; border-radius: 24px; padding: 2rem; text-align: center; backdrop-filter: blur(10px); transition: all 0.3s ease; {{ $achievements['vuelo_inaugural'] ? '' : 'filter: grayscale(1) opacity(0.6);' }} {{ $user->current_title === 'vuelo_inaugural' ? 'box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);' : '' }}">
-            <svg class="trofeo-icon" style="width: 3.5rem; height: 3.5rem; margin: 0 auto 1rem; display: block; filter: drop-shadow(0 0 10px rgba(135, 103, 235, 0.5)); color: currentColor;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
-            <h3 style="font-size: 1.1rem; color: {{ $achievements['vuelo_inaugural'] ? 'var(--lavanda)' : '#94a3b8' }}; margin-top: 0;">Vuelo Inaugural</h3>
-            <p style="font-size: 0.85rem; color: {{ $achievements['vuelo_inaugural'] ? '#cbd5e1' : '#94a3b8' }}; margin-bottom: 15px;">Asistir a tu primer evento astronómico.</p>
-            @if($achievements['vuelo_inaugural'])
-                @if($user->current_title === 'vuelo_inaugural')
-                    <div style="margin-top: 15px; padding: 5px; background: rgba(239, 68, 68, 0.2); border: 1px solid #ef4444; border-radius: 20px; color: #ef4444; font-size: 0.8rem; text-transform: uppercase;">✔ Equipado</div>
-                @else
-                    <form action="{{ route('recompensas.equip', 'vuelo_inaugural') }}" method="POST" style="margin-top: 15px;">
-                        @csrf
-                        <button type="submit" style="padding: 5px 15px; font-size: 0.8rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: white; border-radius: 20px; cursor: pointer; transition: 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">Equipar Título</button>
-                    </form>
-                @endif
-            @else
-                <span style="font-size: 0.8rem; color: #64748b; text-transform: uppercase; display: block; margin-top: 15px;">🔒 Bloqueado</span>
-            @endif
-        </div>
-        
-         <!-- Recompensa 5 -->
-        <div class="bento-card trofeo-card {{ $achievements['leyenda_nova'] ? '' : 'locked' }}" style="background: {{ $achievements['leyenda_nova'] ? 'linear-gradient(135deg, rgba(39, 70, 255, 0.1), rgba(104, 14, 188, 0.1))' : 'rgba(16, 26, 43, 0.5)' }}; border: 1px solid {{ $user->current_title === 'leyenda_nova' ? '#fbbf24' : 'rgba(255,255,255,0.1)' }}; border-radius: 24px; padding: 2rem; text-align: center; backdrop-filter: blur(10px); transition: all 0.3s ease; {{ $achievements['leyenda_nova'] ? '' : 'filter: grayscale(1) opacity(0.6);' }} {{ $user->current_title === 'leyenda_nova' ? 'box-shadow: 0 0 20px rgba(251, 191, 36, 0.5);' : '' }}">
-            <svg class="trofeo-icon" style="width: 3.5rem; height: 3.5rem; margin: 0 auto 1rem; display: block; filter: drop-shadow(0 0 10px rgba(135, 103, 235, 0.5)); color: currentColor;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
-            <h3 style="font-size: 1.1rem; color: {{ $achievements['leyenda_nova'] ? 'var(--lavanda)' : '#94a3b8' }}; margin-top: 0;">Leyenda Nova</h3>
-            <p style="font-size: 0.85rem; color: {{ $achievements['leyenda_nova'] ? '#cbd5e1' : '#94a3b8' }}; margin-bottom: 15px;">Alcanzar el nivel máximo: Ente Espacial (Nivel MAX).</p>
-            @if($achievements['leyenda_nova'])
-                @if($user->current_title === 'leyenda_nova')
-                    <div style="margin-top: 15px; padding: 5px; background: rgba(251, 191, 36, 0.2); border: 1px solid #fbbf24; border-radius: 20px; color: #fbbf24; font-size: 0.8rem; text-transform: uppercase;">✔ Equipado</div>
-                @else
-                    <form action="{{ route('recompensas.equip', 'leyenda_nova') }}" method="POST" style="margin-top: 15px;">
-                        @csrf
-                        <button type="submit" style="padding: 5px 15px; font-size: 0.8rem; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); color: white; border-radius: 20px; cursor: pointer; transition: 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.2)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">Equipar Título</button>
-                    </form>
-                @endif
-            @else
-                <span style="font-size: 0.8rem; color: #64748b; text-transform: uppercase; display: block; margin-top: 15px;">🔒 Bloqueado</span>
-            @endif
-        </div>
+            </div>
+        @endforeach
 
     </div>
 </div>
 
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const buttons = document.querySelectorAll('.equip-btn');
+        buttons.forEach(btn => {
+            const rgba = btn.getAttribute('data-color');
+            btn.addEventListener('mouseover', function() {
+                this.style.background = rgba + '0.2)';
+                this.style.borderColor = rgba + '0.8)';
+            });
+            btn.addEventListener('mouseout', function() {
+                this.style.background = 'rgba(255,255,255,0.05)';
+                this.style.borderColor = 'rgba(255,255,255,0.2)';
+            });
+        });
+        
+        const cards = document.querySelectorAll('.trofeo-card:not(.locked)');
+        cards.forEach(card => {
+            // Eliminar hover si está equipado porque ya tiene scale
+            if(!card.innerHTML.includes('Título Equipado')) {
+                card.addEventListener('mouseover', function() {
+                    this.style.transform = 'translateY(-10px)';
+                });
+                card.addEventListener('mouseout', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            }
+        });
+    });
+</script>
+
 <style>
-    .trofeo-card:hover:not(.locked) {
-        transform: translateY(-8px);
-        background: rgba(39, 70, 255, 0.15) !important;
-        box-shadow: 0 15px 30px rgba(0,0,0,0.4), inset 0 0 15px rgba(39, 70, 255, 0.1);
-    }
     @media (max-width: 768px) {
         .progreso-global {
             flex-direction: column;
-            gap: 1rem;
-            align-items: flex-start;
+            gap: 1.5rem;
+            align-items: center;
+            text-align: center;
         }
         .bar-container {
             width: 100%;
         }
         .stats-text {
-            text-align: left !important;
+            text-align: center !important;
         }
     }
 </style>
