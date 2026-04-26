@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'NovaCore - Inicio')
+@section('title', 'Inicio | NovaCore')
 
 @section('content')
     <!-- Elementos decorativos de fondo (Fixed) -->

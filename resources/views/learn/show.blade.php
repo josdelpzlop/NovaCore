@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Nivel: ' . $level->title)
+@section('title', 'Nivel: ' . $level->title . ' | NovaCore')
 
 @section('content')
     <!-- Fondo Cósmico Azul para mantener la consistencia con la Academia -->

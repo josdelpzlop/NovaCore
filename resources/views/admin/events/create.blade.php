@@ -16,7 +16,7 @@
         </div>
     @endif
 
-    <form action="{{ route('admin.events.store') }}" method="POST">
+    <form action="{{ route('admin.events.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="form-group" style="margin-bottom: 15px;">
@@ -37,6 +37,11 @@
         <div class="form-group" style="margin-bottom: 15px;">
             <label for="location" style="display: block; margin-bottom: 5px; color: var(--lavanda);">Ubicación o Enlace (Opcional)</label>
             <input type="text" name="location" id="location" value="{{ old('location') }}" class="cosmic-input" style="width: 100%; padding: 10px; border-radius: 8px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); color: white;">
+        </div>
+
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label for="image" style="display: block; margin-bottom: 5px; color: var(--lavanda);">Imagen del Evento (Opcional)</label>
+            <input type="file" name="image" id="image" accept="image/*" class="cosmic-input" style="width: 100%; padding: 10px; border-radius: 8px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); color: white;">
         </div>
 
         <div class="form-group" style="margin-bottom: 15px;">

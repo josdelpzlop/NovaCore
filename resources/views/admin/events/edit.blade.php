@@ -16,7 +16,7 @@
         </div>
     @endif
 
-    <form action="{{ route('admin.events.update', $event) }}" method="POST">
+    <form action="{{ route('admin.events.update', $event) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
 
@@ -39,6 +39,16 @@
         <div class="form-group" style="margin-bottom: 15px;">
             <label for="location" style="display: block; margin-bottom: 5px; color: var(--lavanda);">Ubicación o Enlace (Opcional)</label>
             <input type="text" name="location" id="location" value="{{ old('location', $event->location) }}" class="cosmic-input" style="width: 100%; padding: 10px; border-radius: 8px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); color: white;">
+        </div>
+
+        <div class="form-group" style="margin-bottom: 15px;">
+            <label for="image" style="display: block; margin-bottom: 5px; color: var(--lavanda);">Imagen del Evento (Dejar en blanco para mantener actual)</label>
+            @if($event->image_path)
+                <div style="margin-bottom: 10px;">
+                    <img src="{{ asset('storage/' . $event->image_path) }}" alt="Imagen actual" style="max-width: 200px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2);">
+                </div>
+            @endif
+            <input type="file" name="image" id="image" accept="image/*" class="cosmic-input" style="width: 100%; padding: 10px; border-radius: 8px; background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.2); color: white;">
         </div>
 
         <div class="form-group" style="margin-bottom: 15px;">

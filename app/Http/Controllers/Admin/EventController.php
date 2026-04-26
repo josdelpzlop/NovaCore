@@ -29,10 +29,15 @@ class EventController extends Controller
             'location' => 'nullable|string|max:255',
             'status' => 'required|in:upcoming,ongoing,completed',
             'xp_reward' => 'required|integer|min:0',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $data = $request->all();
         $data['slug'] = Str::slug($request->title) . '-' . uniqid();
+
+        if ($request->hasFile('image')) {
+            $data['image_path'] = $request->file('image')->store('events', 'public');
+        }
 
         Event::create($data);
 
@@ -60,12 +65,17 @@ class EventController extends Controller
             'location' => 'nullable|string|max:255',
             'status' => 'required|in:upcoming,ongoing,completed',
             'xp_reward' => 'required|integer|min:0',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $data = $request->all();
         // optionally update slug
         if ($request->title !== $event->title) {
             $data['slug'] = Str::slug($request->title) . '-' . uniqid();
+        }
+
+        if ($request->hasFile('image')) {
+            $data['image_path'] = $request->file('image')->store('events', 'public');
         }
 
         $event->update($data);

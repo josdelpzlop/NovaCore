@@ -42,6 +42,8 @@ class FenomenoController extends Controller
             }
         }
 
-        return view('pages.fenomenos', compact('apod'));
+        $fenomenosLocales = \App\Models\Fenomeno::orderBy('date', 'desc')->get();
+
+        return view('pages.fenomenos', compact('apod', 'fenomenosLocales'));
     }
 }

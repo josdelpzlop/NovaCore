@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Eventos - NovaCore')
+@section('title', 'Eventos | NovaCore')
 
 @section('content')
     <!-- Elementos decorativos de fondo (Fixed) - Eventos (Morado/Magenta) -->

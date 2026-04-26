@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Recompensas - NovaCore')
+@section('title', 'Recompensas | NovaCore')
 
 @section('content')
     <!-- Elementos decorativos de fondo (Fixed) - Recompensas (Oro/Amarillo/Ámbar) -->
@@ -55,34 +55,21 @@
         </div>
         
         <div class="stats-text" style="text-align: right; min-width: 100px;">
-            <span style="color: {{ $user->user_level_color }}; font-weight: bold; font-size: 1.2rem;">{{ $user->xp }} / {{ $user->next_level_xp }}</span> 
+            <span style="color: {{ $user->user_level_color }}; font-weight: bold; font-size: 1.2rem;">{{ $user->xp }} / {{ $user->user_level_number === 'MAX' ? '∞' : $user->next_level_xp }}</span> 
             <span style="font-size: 0.8rem; color: rgba(255,255,255,0.5); display: block;">Puntos XP</span>
         </div>
     </section>
 
-    <!-- Grid Expandido -->
+    <!-- Grid Dinámico de Recompensas -->
     <div class="bento-grid trofeos-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2.5rem;">
         
-        @php
-            $descriptions = [
-                'pionero_lunar' => 'Completar tu primera lección en la academia.',
-                'cazador_estelar' => 'Asistir a 5 eventos astronómicos registrados.',
-                'rey_anillos' => 'Completa un total de 5 lecciones de la academia.',
-                'vuelo_inaugural' => 'Asistir a tu primer evento astronómico.',
-                'leyenda_nova' => 'Alcanzar el nivel máximo: Ente Espacial (Nivel MAX).'
-            ];
-            
-            $keys = ['pionero_lunar', 'vuelo_inaugural', 'cazador_estelar', 'rey_anillos', 'leyenda_nova'];
-        @endphp
-
-        @foreach($keys as $key)
+        @foreach($rewards as $reward)
             @php
-                $data = \App\Models\User::$achievementData[$key];
-                $isUnlocked = $achievements[$key];
-                $isEquipped = $user->current_title === $key;
+                $isUnlocked = $unlockedRewards[$reward->slug] ?? false;
+                $isEquipped = $user->current_title === $reward->slug;
                 
                 // Extraer el color base para aplicarlo a gradientes y sombras
-                $hexColor = $data['color'];
+                $hexColor = $reward->color;
                 $rgbColor = sscanf($hexColor, "#%02x%02x%02x");
                 $rgbaColor = "rgba({$rgbColor[0]}, {$rgbColor[1]}, {$rgbColor[2]}, ";
             @endphp
@@ -95,20 +82,20 @@
                         {{ $isUnlocked ? '' : 'filter: grayscale(1) opacity(0.6);' }} 
                         {{ $isEquipped ? 'box-shadow: 0 0 25px '.$rgbaColor.'0.4); transform: scale(1.02);' : '' }}">
                 
-                <div class="icon-container" style="color: {{ $isUnlocked ? $data['text_color'] : '#94a3b8' }}; width: 4.5rem; height: 4.5rem; margin: 0 auto 1.5rem; display: block; filter: drop-shadow(0 0 15px {{ $isUnlocked ? $rgbaColor.'0.5)' : 'transparent' }});">
-                    {!! $data['icon'] !!}
+                <div class="icon-container" style="color: {{ $isUnlocked ? $reward->text_color : '#94a3b8' }}; width: 4.5rem; height: 4.5rem; margin: 0 auto 1.5rem; display: block; filter: drop-shadow(0 0 15px {{ $isUnlocked ? $rgbaColor.'0.5)' : 'transparent' }});">
+                    {!! $reward->icon !!}
                 </div>
                 
-                <h3 style="font-size: 1.4rem; color: {{ $isUnlocked ? $data['text_color'] : '#94a3b8' }}; margin-top: 0; font-weight: 800; letter-spacing: 0.5px;">{{ $data['name'] }}</h3>
-                <p style="font-size: 0.95rem; color: {{ $isUnlocked ? '#cbd5e1' : '#64748b' }}; margin-bottom: 25px; line-height: 1.6; min-height: 45px;">{{ $descriptions[$key] }}</p>
+                <h3 style="font-size: 1.4rem; color: {{ $isUnlocked ? $reward->text_color : '#94a3b8' }}; margin-top: 0; font-weight: 800; letter-spacing: 0.5px;">{{ $reward->name }}</h3>
+                <p style="font-size: 0.95rem; color: {{ $isUnlocked ? '#cbd5e1' : '#64748b' }}; margin-bottom: 25px; line-height: 1.6; min-height: 45px;">{{ $reward->description }}</p>
                 
                 @if($isUnlocked)
                     @if($isEquipped)
-                        <div style="margin-top: auto; padding: 8px 15px; background: {{ $rgbaColor }}0.2); border: 1px solid {{ $hexColor }}; border-radius: 20px; color: {{ $data['text_color'] }}; font-size: 0.85rem; text-transform: uppercase; font-weight: bold; display: inline-block;">
+                        <div style="margin-top: auto; padding: 8px 15px; background: {{ $rgbaColor }}0.2); border: 1px solid {{ $hexColor }}; border-radius: 20px; color: {{ $reward->text_color }}; font-size: 0.85rem; text-transform: uppercase; font-weight: bold; display: inline-block;">
                             ✔ Título Equipado
                         </div>
                     @else
-                        <form action="{{ route('recompensas.equip', $key) }}" method="POST" style="margin-top: auto;">
+                        <form action="{{ route('recompensas.equip', $reward->slug) }}" method="POST" style="margin-top: auto;">
                             @csrf
                             <button type="submit" class="equip-btn" data-color="{{ $rgbaColor }}" style="padding: 10px 25px; font-size: 0.9rem; font-weight: bold; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.2); color: white; border-radius: 20px; cursor: pointer; transition: all 0.3s ease; width: 100%;">
                                 Equipar Título

@@ -28,6 +28,7 @@ Route::get('/fenomenos', [FenomenoController::class, 'index'])->name('fenomenos.
 Route::get('/sugerencias', function () {
     return view('pages.sugerencias');
 })->name('sugerencias');
+Route::post('/sugerencias', [\App\Http\Controllers\SuggestionController::class, 'store'])->name('sugerencias.store');
 
 Route::get('/informacion', function () {
     return view('pages.informacion');
@@ -65,6 +66,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('admin/levels', App\Http\Controllers\Admin\LevelController::class)->names('admin.levels');
     Route::resource('admin/lessons', App\Http\Controllers\Admin\LessonController::class)->names('admin.lessons');
     Route::resource('admin/events', App\Http\Controllers\Admin\EventController::class)->names('admin.events');
+    Route::resource('admin/fenomenos', App\Http\Controllers\Admin\FenomenoController::class)->names('admin.fenomenos');
+    Route::resource('admin/rewards', App\Http\Controllers\Admin\RewardController::class)->names('admin.rewards');
+    Route::resource('admin/users', App\Http\Controllers\Admin\UserController::class)->names('admin.users');
+    Route::resource('admin/suggestions', App\Http\Controllers\Admin\SuggestionController::class)->names('admin.suggestions');
+    Route::resource('admin/ranks', App\Http\Controllers\Admin\RankController::class)->names('admin.ranks');
 });
 
 require __DIR__ . '/auth.php';

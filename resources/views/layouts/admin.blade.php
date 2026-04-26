@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NovaCore - Admin Panel</title>
+    <title>Panel Admin | NovaCore</title>
+    <link rel="icon" href="{{ asset('images/logoplano.png') }}" type="image/png">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
     <style>
@@ -238,12 +239,14 @@
             font-weight: bold;
         }
 
-        .action-links a.delete {
-            color: var(--error);
+        .action-links a.delete, .delete-btn, .delete {
+            color: var(--error) !important;
+            transition: opacity 0.2s;
         }
 
-        .action-links a:hover {
+        .action-links a:hover, .delete-btn:hover, .delete:hover {
             text-decoration: underline;
+            opacity: 0.8;
         }
 
         /* Standard Forms */
@@ -301,7 +304,10 @@
     <!-- Sidebar -->
     <aside class="sidebar">
         <div class="sidebar-brand">
-            <a href="{{ route('admin.dashboard') }}">NovaCore</a>
+            <a href="{{ route('admin.dashboard') }}" style="display: flex; flex-direction: column; align-items: center; gap: 10px;">
+                <img src="{{ asset('images/logoplano.png') }}" alt="NovaCore Icon" style="height: 50px; width: auto;">
+                NovaCore
+            </a>
         </div>
         
         <ul class="sidebar-nav">
@@ -323,6 +329,31 @@
             <li>
                 <a href="{{ route('admin.events.index') }}" class="{{ request()->routeIs('admin.events.*') ? 'active' : '' }}">
                     Eventos
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.fenomenos.index') }}" class="{{ request()->routeIs('admin.fenomenos.*') ? 'active' : '' }}">
+                    Fenómenos
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.rewards.index') }}" class="{{ request()->routeIs('admin.rewards.*') ? 'active' : '' }}">
+                    Recompensas
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.users.index') }}" class="{{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
+                    Usuarios
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.suggestions.index') }}" class="{{ request()->routeIs('admin.suggestions.*') ? 'active' : '' }}">
+                    Sugerencias
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.ranks.index') }}" class="{{ request()->routeIs('admin.ranks.*') ? 'active' : '' }}">
+                    Rangos
                 </a>
             </li>
         </ul>

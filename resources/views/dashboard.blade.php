@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Centro de Mando - NovaCore')
+@section('title', 'Centro de Mando | NovaCore')
 
 @section('content')
 <div class="dashboard-wrapper" style="max-width: 1400px; margin: 0 auto; padding: 100px 5% 50px; min-height: 80vh;">
@@ -49,17 +49,14 @@
                 </div>
 
                 <!-- Título Equipado -->
-                @if(Auth::user()->current_title && array_key_exists(Auth::user()->current_title, App\Models\User::$achievementData))
-                    @php 
-                        $titleData = App\Models\User::$achievementData[Auth::user()->current_title]; 
-                    @endphp
-                    <div style="margin-top: auto; background: rgba(0,0,0,0.4); border: 1px solid {{ $titleData['color'] }}50; border-radius: 20px; padding: 20px 15px; position: relative; overflow: hidden;">
-                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at top right, {{ $titleData['color'] }}20 0%, transparent 70%); pointer-events: none;"></div>
+                @if(Auth::user()->currentReward)
+                    <div style="margin-top: auto; background: rgba(0,0,0,0.4); border: 1px solid {{ Auth::user()->currentReward->color }}50; border-radius: 20px; padding: 20px 15px; position: relative; overflow: hidden;">
+                        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at top right, {{ Auth::user()->currentReward->color }}20 0%, transparent 70%); pointer-events: none;"></div>
                         <p style="color: #64748b; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; margin: 0 0 10px;">Título Equipado</p>
-                        <div style="color: {{ $titleData['color'] }}; width: 3.5rem; height: 3.5rem; margin: 0 auto 10px; display: block; filter: drop-shadow(0 0 10px {{ $titleData['color'] }}80);">
-                            {!! $titleData['icon'] !!}
+                        <div style="color: {{ Auth::user()->currentReward->color }}; width: 3.5rem; height: 3.5rem; margin: 0 auto 10px; display: block; filter: drop-shadow(0 0 10px {{ Auth::user()->currentReward->color }}80);">
+                            {!! Auth::user()->currentReward->icon !!}
                         </div>
-                        <h3 style="color: {{ $titleData['text_color'] }}; margin: 0; font-size: 1.2rem; text-transform: uppercase; font-weight: 800; letter-spacing: 1px;">{{ $titleData['name'] }}</h3>
+                        <h3 style="color: {{ Auth::user()->currentReward->text_color }}; margin: 0; font-size: 1.2rem; text-transform: uppercase; font-weight: 800; letter-spacing: 1px;">{{ Auth::user()->currentReward->name }}</h3>
                     </div>
                 @else
                     <div style="margin-top: auto; background: rgba(0,0,0,0.3); border: 1px dashed rgba(255,255,255,0.2); border-radius: 20px; padding: 20px 15px;">
@@ -109,7 +106,7 @@
                                 LVL {{ Auth::user()->user_level_number }}
                             </div>
                             <div style="color: #94a3b8; font-size: 1.1rem; font-weight: bold; margin-top: 5px; letter-spacing: 1px;">
-                                {{ Auth::user()->xp }} / {{ Auth::user()->next_level_xp }} XP
+                                {{ Auth::user()->xp }} / {{ Auth::user()->user_level_number === 'MAX' ? '∞' : Auth::user()->next_level_xp }} XP
                             </div>
                         </div>
                     </div>
@@ -132,7 +129,7 @@
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
                 
                 <!-- Stat: Lecciones -->
-                <div class="stat-card" style="background: rgba(59, 130, 246, 0.05); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 20px; padding: 25px; display: flex; align-items: center; gap: 20px; transition: all 0.3s ease;">
+                <div class="stat-card" onclick="openDashboardModal('lessonsModal')" style="cursor: pointer; background: rgba(59, 130, 246, 0.05); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 20px; padding: 25px; display: flex; align-items: center; gap: 20px; transition: all 0.3s ease;" title="Ver Lecciones Completadas">
                     <div style="background: rgba(59, 130, 246, 0.1); padding: 15px; border-radius: 15px; border: 1px solid rgba(59, 130, 246, 0.3);">
                         <svg style="width: 2.5rem; height: 2.5rem; color: #60a5fa; filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.5));" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
                     </div>
@@ -143,7 +140,7 @@
                 </div>
 
                 <!-- Stat: Eventos -->
-                <div class="stat-card" style="background: rgba(167, 139, 250, 0.05); border: 1px solid rgba(167, 139, 250, 0.2); border-radius: 20px; padding: 25px; display: flex; align-items: center; gap: 20px; transition: all 0.3s ease;">
+                <div class="stat-card" onclick="openDashboardModal('eventsModal')" style="cursor: pointer; background: rgba(167, 139, 250, 0.05); border: 1px solid rgba(167, 139, 250, 0.2); border-radius: 20px; padding: 25px; display: flex; align-items: center; gap: 20px; transition: all 0.3s ease;" title="Ver Eventos Asistidos">
                     <div style="background: rgba(167, 139, 250, 0.1); padding: 15px; border-radius: 15px; border: 1px solid rgba(167, 139, 250, 0.3);">
                         <svg style="width: 2.5rem; height: 2.5rem; color: #c4b5fd; filter: drop-shadow(0 0 10px rgba(167, 139, 250, 0.5));" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
                     </div>
@@ -179,9 +176,90 @@
         </div>
 
     </div>
+    <!-- Modals -->
+    <div id="lessonsModal" class="dashboard-modal-backdrop" onclick="closeDashboardModal(event, 'lessonsModal')">
+        <div class="dashboard-modal-content" style="border: 1px solid rgba(59, 130, 246, 0.3); box-shadow: 0 10px 40px rgba(0,0,0,0.8), inset 0 0 20px rgba(59, 130, 246, 0.1);">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; margin-bottom: 20px;">
+                <h3 style="margin: 0; color: white; font-size: 1.5rem; display: flex; align-items: center; gap: 10px;">
+                    <svg style="width: 1.5rem; height: 1.5rem; color: #60a5fa;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    Lecciones Completadas
+                </h3>
+                <button type="button" onclick="document.getElementById('lessonsModal').style.display='none'; document.body.style.overflow='auto';" style="background: transparent; border: none; color: #94a3b8; font-size: 1.5rem; cursor: pointer;">&times;</button>
+            </div>
+            
+            @if(Auth::user()->completedLessons->count() > 0)
+                <ul style="list-style: none; padding: 0; margin: 0; max-height: 400px; overflow-y: auto; padding-right: 10px;" class="custom-scrollbar">
+                    @foreach(Auth::user()->completedLessons as $lesson)
+                        <li style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 15px; margin-bottom: 10px; display: flex; flex-direction: column; gap: 5px;">
+                            <div style="color: #60a5fa; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">{{ $lesson->level->title ?? 'Nivel Desconocido' }}</div>
+                            <div style="color: white; font-weight: bold; font-size: 1.1rem;">{{ $lesson->title }}</div>
+                        </li>
+                    @endforeach
+                </ul>
+            @else
+                <p style="color: #94a3b8; text-align: center; padding: 20px 0;">No has completado ninguna lección todavía.</p>
+            @endif
+        </div>
+    </div>
+
+    <div id="eventsModal" class="dashboard-modal-backdrop" onclick="closeDashboardModal(event, 'eventsModal')">
+        <div class="dashboard-modal-content" style="border: 1px solid rgba(167, 139, 250, 0.3); box-shadow: 0 10px 40px rgba(0,0,0,0.8), inset 0 0 20px rgba(167, 139, 250, 0.1);">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; margin-bottom: 20px;">
+                <h3 style="margin: 0; color: white; font-size: 1.5rem; display: flex; align-items: center; gap: 10px;">
+                    <svg style="width: 1.5rem; height: 1.5rem; color: #c4b5fd;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                    Eventos Asistidos
+                </h3>
+                <button type="button" onclick="document.getElementById('eventsModal').style.display='none'; document.body.style.overflow='auto';" style="background: transparent; border: none; color: #94a3b8; font-size: 1.5rem; cursor: pointer;">&times;</button>
+            </div>
+            
+            @if(Auth::user()->attendedEvents->count() > 0)
+                <ul style="list-style: none; padding: 0; margin: 0; max-height: 400px; overflow-y: auto; padding-right: 10px;" class="custom-scrollbar">
+                    @foreach(Auth::user()->attendedEvents as $event)
+                        <li style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; padding: 15px; margin-bottom: 10px; display: flex; flex-direction: column; gap: 5px;">
+                            <div style="color: #c4b5fd; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">{{ $event->event_date ? $event->event_date->format('d/m/Y') : 'Fecha Desconocida' }}</div>
+                            <div style="color: white; font-weight: bold; font-size: 1.1rem;">{{ $event->title }}</div>
+                        </li>
+                    @endforeach
+                </ul>
+            @else
+                <p style="color: #94a3b8; text-align: center; padding: 20px 0;">No has asistido a ningún evento todavía.</p>
+            @endif
+        </div>
+    </div>
 </div>
 
+<script>
+    function openDashboardModal(modalId) {
+        document.getElementById(modalId).style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+    function closeDashboardModal(event, modalId) {
+        if (event.target.id === modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    }
+</script>
+
 <style>
+    .dashboard-modal-backdrop {
+        position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+        background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(10px); z-index: 1000;
+        display: none; justify-content: center; align-items: center; padding: 20px;
+    }
+    .dashboard-modal-content {
+        background: linear-gradient(135deg, #101a2b, #0f172a);
+        border-radius: 24px; padding: 30px; width: 100%; max-width: 600px;
+        position: relative; animation: modalFadeIn 0.3s ease-out forwards;
+    }
+    @keyframes modalFadeIn {
+        from { opacity: 0; transform: translateY(20px) scale(0.95); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 10px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.3); }
     /* Efectos hover para las tarjetas de estadísticas */
     .stat-card:hover {
         transform: translateY(-5px);

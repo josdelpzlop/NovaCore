@@ -1,11 +1,11 @@
 @extends('layouts.master')
 
-@section('title', 'Información General - NovaCore')
+@section('title', 'Información | NovaCore')
 
 @section('content')
 <div style="padding: 100px 5%; max-width: 1200px; margin: 0 auto; min-height: 70vh;">
-    <h1 style="color: var(--menta); text-align: center; margin-top: 0; font-size: 3rem; margin-bottom: 40px; text-shadow: 0 0 20px rgba(89, 222, 160, 0.2);">
-        Base de Datos: Información General
+    <h1 style="text-align: center; margin-top: 0; font-size: 3.5rem; margin-bottom: 40px; font-weight: 800; background: -webkit-linear-gradient(135deg, #fff, var(--menta)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; filter: drop-shadow(0 0 20px rgba(89, 222, 160, 0.3));">
+        Información General
     </h1>
 
     <div class="bento-grid" style="

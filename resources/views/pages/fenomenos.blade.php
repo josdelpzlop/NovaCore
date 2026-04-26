@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'NASA APOD - Fenómeno Cósmico')
+@section('title', 'Observatorio | NovaCore')
 
 @section('content')
     <!-- Elementos decorativos de fondo (Fixed) - Observatorio (Rojo Carmesí) -->
@@ -105,7 +105,138 @@
         </div>
 
     </div>
+
+    <!-- Galería de Fenómenos Documentados (Manuales) -->
+    @if(isset($fenomenosLocales) && $fenomenosLocales->count() > 0)
+    <section style="margin-top: 5rem;">
+        <div style="display: inline-flex; align-items: center; gap: 6px; background: rgba(225, 29, 72, 0.1); border: 1px solid rgba(225, 29, 72, 0.3); color: #fb7185; padding: 6px 18px; border-radius: 20px; font-size: 0.85rem; font-weight: bold; text-transform: uppercase; margin-bottom: 20px; letter-spacing: 2px;">
+            <svg style="width: 1rem; height: 1rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+            Archivos Clasificados
+        </div>
+        <h2 style="font-size: 2.5rem; margin-top: 0; margin-bottom: 30px; font-weight: 800; color: white;">
+            Galería de Fenómenos Documentados
+        </h2>
+
+        <div class="bento-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px;">
+            @foreach($fenomenosLocales as $fenomeno)
+            <div class="cosmic-card fenomeno-card" style="background: rgba(16, 26, 43, 0.8); backdrop-filter: blur(15px); border: 1px solid rgba(225, 29, 72, 0.2); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column;" onclick="toggleExpand(this)">
+                
+                @if($fenomeno->image_path)
+                <div style="width: 100%; height: 220px; overflow: hidden; background: #050510; display: flex; align-items: center; justify-content: center; transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);" class="fenomeno-img-container">
+                    <img src="{{ asset('storage/' . $fenomeno->image_path) }}" alt="{{ $fenomeno->title }}" style="width: 100%; height: 100%; object-fit: cover; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);" class="fenomeno-img">
+                </div>
+                @else
+                <div style="width: 100%; height: 220px; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; color: #64748b; font-family: monospace; transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);" class="fenomeno-img-container">
+                    [ IMAGEN NO DISPONIBLE ]
+                </div>
+                @endif
+                
+                <div style="padding: 25px; flex-grow: 1; display: flex; flex-direction: column;">
+                    <div style="color: #fb7185; font-family: monospace; font-size: 0.8rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+                        <span style="display: inline-block; width: 6px; height: 6px; background: #e11d48; border-radius: 50%;"></span>
+                        REGISTRO: {{ $fenomeno->date ? $fenomeno->date->format('d/m/Y') : 'DESCONOCIDO' }}
+                    </div>
+                    <h3 style="margin-top: 0; font-size: 1.5rem; font-weight: 800; line-height: 1.3; background: -webkit-linear-gradient(135deg, #fff, #fda4af); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px;">{{ $fenomeno->title }}</h3>
+                    <div class="fenomeno-desc-wrapper" style="position: relative; max-height: 4.8em; overflow: hidden; transition: max-height 1s cubic-bezier(0.25, 1, 0.5, 1);">
+                        <p class="fenomeno-desc" style="color: #94a3b8; font-size: 0.95rem; line-height: 1.6; margin-bottom: 0;">
+                            {{ $fenomeno->description }}
+                        </p>
+                        <div class="desc-fade" style="position: absolute; bottom: 0; left: 0; width: 100%; height: 35px; background: linear-gradient(to bottom, transparent, rgba(16, 26, 43, 0.9)); transition: opacity 0.8s ease;"></div>
+                    </div>
+                    <div class="expand-hint" style="color: #e11d48; font-size: 0.85rem; font-weight: bold; margin-top: 15px; display: flex; align-items: center; gap: 5px;">
+                        <span>Ver registro completo</span> <svg style="width: 16px; height: 16px; transition: transform 0.3s ease;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+        </div>
+    </section>
+    @endif
 </div>
+
+<style>
+    .fenomeno-card {
+        transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 1s ease, background 1s ease;
+        cursor: pointer;
+    }
+    .fenomeno-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.6), inset 0 0 20px rgba(225, 29, 72, 0.1);
+    }
+    .fenomeno-card:hover .fenomeno-img {
+        transform: scale(1.05);
+    }
+
+    /* Estilos cuando se expande */
+    .fenomeno-card.expanded {
+        transform: none !important;
+        box-shadow: 0 25px 60px rgba(0,0,0,0.9), inset 0 0 40px rgba(225, 29, 72, 0.2);
+        z-index: 10;
+        background: rgba(15, 20, 35, 0.98) !important;
+        cursor: default;
+    }
+    
+    .fenomeno-card.expanded .fenomeno-img-container {
+        height: 350px; /* Reducido para que no sea inmenso en formato vertical */
+        transition: height 1s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    
+    .fenomeno-card.expanded .fenomeno-img {
+        object-fit: contain;
+        transform: none !important;
+    }
+    
+    .fenomeno-card.expanded .desc-fade {
+        opacity: 0;
+        pointer-events: none;
+    }
+    
+    .fenomeno-card.expanded .fenomeno-desc {
+        color: #cbd5e1 !important; /* Texto un poco más claro al expandir */
+        transition: color 1s ease;
+    }
+    
+    .fenomeno-card.expanded .expand-hint {
+        cursor: pointer;
+    }
+    .fenomeno-card.expanded .expand-hint span {
+        display: none;
+    }
+    .fenomeno-card.expanded .expand-hint::before {
+        content: "Cerrar registro";
+    }
+    .fenomeno-card.expanded .expand-hint svg {
+        transform: rotate(180deg);
+    }
+</style>
+
+<script>
+    function toggleExpand(element) {
+        const isExpanded = element.classList.contains('expanded');
+        
+        // Cerrar todos los demás
+        document.querySelectorAll('.fenomeno-card').forEach(card => {
+            if (card !== element && card.classList.contains('expanded')) {
+                card.classList.remove('expanded');
+                const wrapper = card.querySelector('.fenomeno-desc-wrapper');
+                if(wrapper) wrapper.style.maxHeight = '4.8em';
+            }
+        });
+
+        // Alternar el actual
+        if (!isExpanded) {
+            element.classList.add('expanded');
+            const wrapper = element.querySelector('.fenomeno-desc-wrapper');
+            const desc = element.querySelector('.fenomeno-desc');
+            // Damos margen extra por si el texto cambia de ancho al expandir y ocupa más líneas
+            wrapper.style.maxHeight = (desc.scrollHeight + 80) + 'px';
+        } else {
+            element.classList.remove('expanded');
+            const wrapper = element.querySelector('.fenomeno-desc-wrapper');
+            wrapper.style.maxHeight = '4.8em';
+        }
+    }
+</script>
 
 <style>
     @keyframes blink {

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'NovaCore - Academia Espacial')
+@section('title', 'Academia | NovaCore')
 
 @section('content')
     <!-- Elementos decorativos de fondo (Fixed) - Academia (Azul Cósmico profundo) -->

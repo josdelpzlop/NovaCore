@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', $lesson->title . ' - NovaCore')
+@section('title', $lesson->title . ' | NovaCore')
 
 @section('content')
     <!-- Fondo Cósmico Azul -->

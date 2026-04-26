@@ -14,8 +14,11 @@ class LessonController extends Controller
      */
     public function index()
     {
-        $lessons = \App\Models\Lesson::with('level')->get();
-        return view('admin.lessons.index', compact('lessons'));
+        $levels = \App\Models\Level::with(['lessons' => function($q) {
+            $q->orderBy('order');
+        }])->get();
+        
+        return view('admin.lessons.index', compact('levels'));
     }
 
     public function create()

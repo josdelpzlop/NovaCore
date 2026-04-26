@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'NovaCore')</title>
     <link rel="stylesheet" href="{{ asset('css/estilos.css') }}?v={{ time() }}">
+    <link rel="icon" href="{{ asset('images/logoplano.png') }}" type="image/png">
 </head>
 
 <body>
@@ -38,15 +39,20 @@
                 @if(Auth::user()->isAdmin())
                     <a href="{{ route('admin.dashboard') }}" style="margin-right: 15px; color: #ffeb3b;">Panel Admin</a>
                 @endif
-                <a href="{{ url('/dashboard') }}" class="btn-login" style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3); display: inline-flex; align-items: center; gap: 8px;">
-                    @if(Auth::user()->current_title && array_key_exists(Auth::user()->current_title, App\Models\User::$achievementData))
-                        <span style="color: {{ App\Models\User::$achievementData[Auth::user()->current_title]['color'] }}; width: 18px; height: 18px; display: inline-block;">
-                            {!! App\Models\User::$achievementData[Auth::user()->current_title]['icon'] !!}
-                        </span>
-                        <span style="color: {{ App\Models\User::$achievementData[Auth::user()->current_title]['text_color'] }};">{{ Auth::user()->name }}</span>
-                    @else
-                        {{ Auth::user()->name }}
-                    @endif
+                <a href="{{ url('/dashboard') }}" class="btn-login" style="background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.3); display: inline-flex; flex-direction: column; align-items: center; gap: 4px; padding: 6px 15px;">
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        @if(Auth::user()->currentReward)
+                            <span style="color: {{ Auth::user()->currentReward->color }}; width: 18px; height: 18px; display: inline-block;">
+                                {!! Auth::user()->currentReward->icon !!}
+                            </span>
+                            <span style="color: {{ Auth::user()->currentReward->text_color }};">{{ Auth::user()->name }}</span>
+                        @else
+                            <span>{{ Auth::user()->name }}</span>
+                        @endif
+                    </div>
+                    <div style="width: 100%; height: 4px; background: rgba(0,0,0,0.5); border-radius: 2px; overflow: hidden; margin-top: 2px;">
+                        <div style="height: 100%; width: {{ Auth::user()->xp_progress }}%; background: {{ Auth::user()->user_level_color }}; box-shadow: 0 0 5px {{ Auth::user()->user_level_color }}; transition: width 0.5s;"></div>
+                    </div>
                 </a>
             @else
                 <a href="{{ route('login') }}" class="btn-login">Iniciar Sesión</a>
@@ -65,8 +71,9 @@
                 
                 <!-- Branding -->
                 <div>
-                    <h2 style="margin: 0 0 15px 0; font-size: 1.8rem; background: -webkit-linear-gradient(135deg, #fff, {{ $themeColor }}); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">NovaCore</h2>
-                    <p style="color: #94a3b8; font-size: 0.9rem; line-height: 1.6;">Tu portal interactivo de divulgación astronómica. Aprende, descubre y domina el cosmos desde tu propio centro de mando.</p>
+                    <a href="{{ route('inicio') }}" style="display: inline-block; margin-bottom: 15px; width: 100%; max-width: 220px;">
+                        <img src="{{ asset('images/logotexto.png') }}" alt="NovaCore Logo Completo" style="width: 100%; height: auto; display: block;">
+                    </a>
                 </div>
 
                 <!-- Exploración -->
@@ -85,7 +92,6 @@
                     <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px;">
                         <li><a href="{{ route('informacion') }}" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.3s;" onmouseover="this.style.color='{{ $themeColor }}'" onmouseout="this.style.color='#cbd5e1'">Información General</a></li>
                         <li><a href="{{ route('sugerencias') }}" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.3s;" onmouseover="this.style.color='{{ $themeColor }}'" onmouseout="this.style.color='#cbd5e1'">Sugerencias de Mejora</a></li>
-                        <li><a href="{{ url('/dashboard') }}" style="color: #cbd5e1; text-decoration: none; font-size: 0.95rem; transition: color 0.3s;" onmouseover="this.style.color='{{ $themeColor }}'" onmouseout="this.style.color='#cbd5e1'">Mi Panel de Control</a></li>
                     </ul>
                 </div>
                 
