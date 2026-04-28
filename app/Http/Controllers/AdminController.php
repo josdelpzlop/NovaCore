@@ -21,7 +21,17 @@ class AdminController extends Controller
         ];
 
         $latest_users = User::orderBy('created_at', 'desc')->take(5)->get();
+        
+        $recent_activity = \DB::table('lesson_user')
+            ->join('users', 'lesson_user.user_id', '=', 'users.id')
+            ->join('lessons', 'lesson_user.lesson_id', '=', 'lessons.id')
+            ->select('users.name as user_name', 'lessons.title as lesson_title', 'lesson_user.created_at')
+            ->orderBy('lesson_user.created_at', 'desc')
+            ->take(5)
+            ->get();
 
-        return view('admin.dashboard', compact('stats', 'latest_users'));
+        $recent_suggestions = Suggestion::with('user')->orderBy('created_at', 'desc')->take(5)->get();
+
+        return view('admin.dashboard', compact('stats', 'latest_users', 'recent_activity', 'recent_suggestions'));
     }
 }

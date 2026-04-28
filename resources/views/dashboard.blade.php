@@ -12,12 +12,36 @@
         <div style="position: absolute; bottom: -20%; left: 10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #ffffff 0%, transparent 70%); filter: blur(100px); opacity: 0.05; animation: pulseGlow 12s infinite alternate;"></div>
     </div>
     
+    <!-- Mensajes de Estado -->
+    @if(session('success'))
+        <div style="background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); color: #34d399; padding: 15px; border-radius: 12px; margin-bottom: 20px; font-weight: bold; display: flex; align-items: center; gap: 10px;">
+            <svg style="width: 1.2rem; height: 1.2rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if($errors->any())
+        <div style="background: rgba(239, 68, 68, 0.1); border: 1px solid rgba(239, 68, 68, 0.3); color: #fca5a5; padding: 15px; border-radius: 12px; margin-bottom: 20px;">
+            <ul style="margin: 0; padding-left: 20px;">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    
     <!-- Título de Sección -->
-    <div style="margin-bottom: 2.5rem; display: flex; align-items: center; gap: 15px;">
-        <svg style="width: 2.5rem; height: 2.5rem; color: {{ Auth::user()->user_level_color }}; filter: drop-shadow(0 0 10px {{ Auth::user()->user_level_color }}80);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-        <h1 style="font-size: 2.5rem; margin: 0; font-weight: 800; background: -webkit-linear-gradient(135deg, #fff, {{ Auth::user()->user_level_color }}); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-            Centro de Mando Principal
-        </h1>
+    <div style="margin-bottom: 2.5rem; display: flex; align-items: center; justify-content: space-between;">
+        <div style="display: flex; align-items: center; gap: 15px;">
+            <svg style="width: 2.5rem; height: 2.5rem; color: {{ Auth::user()->user_level_color }}; filter: drop-shadow(0 0 10px {{ Auth::user()->user_level_color }}80);" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+            <h1 style="font-size: 2.5rem; margin: 0; font-weight: 800; background: -webkit-linear-gradient(135deg, #fff, {{ Auth::user()->user_level_color }}); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                Centro de Mando Principal
+            </h1>
+        </div>
+        <button onclick="openProfileModal('all')" class="cosmic-btn-sec" style="font-size: 0.85rem; padding: 10px 20px; display: flex; align-items: center; gap: 10px;">
+            <svg style="width: 1.1rem; height: 1.1rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+            AJUSTES DEL SISTEMA
+        </button>
     </div>
 
     <!-- Bento Grid Structure -->
@@ -31,16 +55,29 @@
             <!-- Tarjeta de Perfil Central -->
             <div style="background: linear-gradient(180deg, rgba(16, 26, 43, 0.9), {{ Auth::user()->user_level_color }}20); border: 1px solid {{ Auth::user()->user_level_color }}40; border-radius: 24px; padding: 40px 20px; text-align: center; backdrop-filter: blur(15px); box-shadow: 0 10px 40px rgba(0,0,0,0.5), inset 0 0 30px {{ Auth::user()->user_level_color }}10; flex-grow: 1; display: flex; flex-direction: column;">
                 
-                <!-- Avatar -->
-                <div class="avatar-container" style="position: relative; width: 120px; height: 120px; margin: 0 auto 25px;">
+                <!-- Avatar Clickable -->
+                <div class="avatar-container clickable-profile" onclick="openProfileModal('avatar')" style="position: relative; width: 120px; height: 120px; margin: 0 auto 25px; cursor: pointer; group;">
                     <div style="position: absolute; top: -10%; left: -10%; width: 120%; height: 120%; background: radial-gradient(circle, {{ Auth::user()->user_level_color }}60 0%, transparent 70%); z-index: 0; animation: pulse 4s infinite alternate; border-radius: 50%;"></div>
-                    <div style="position: relative; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(0,0,0,0.5)); border-radius: 50%; z-index: 1; display: flex; justify-content: center; align-items: center; font-size: 3.5rem; font-weight: bold; color: white; border: 3px solid {{ Auth::user()->user_level_color }}; box-shadow: 0 0 20px {{ Auth::user()->user_level_color }}80, inset 0 0 20px rgba(0,0,0,0.5);">
-                        {{ substr(Auth::user()->name, 0, 1) }}
+                    <div class="avatar-frame" style="position: relative; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(0,0,0,0.5)); border-radius: 50%; z-index: 1; display: flex; justify-content: center; align-items: center; font-size: 3.5rem; font-weight: bold; color: white; border: 3px solid {{ Auth::user()->user_level_color }}; box-shadow: 0 0 20px {{ Auth::user()->user_level_color }}80, inset 0 0 20px rgba(0,0,0,0.5); overflow: hidden; transition: all 0.3s;">
+                        @if(Auth::user()->avatar)
+                            <img src="{{ asset('storage/' . Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}" style="width: 100%; height: 100%; object-fit: cover;">
+                        @else
+                            {{ substr(Auth::user()->name, 0, 1) }}
+                        @endif
+                        <!-- Overlay Editar -->
+                        <div class="edit-overlay" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); display: flex; justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s;">
+                            <svg style="width: 2rem; height: 2rem; color: white;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Info Usuario -->
-                <h2 style="font-size: 1.8rem; margin: 0 0 5px; color: white; font-weight: 800; letter-spacing: 1px;">{{ Auth::user()->name }}</h2>
+                <!-- Info Usuario Clickable -->
+                <div style="display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 5px;">
+                    <h2 onclick="openProfileModal('name')" style="font-size: 1.8rem; margin: 0; color: white; font-weight: 800; letter-spacing: 1px; cursor: pointer; transition: color 0.3s;" onmouseover="this.style.color='{{ Auth::user()->user_level_color }}'" onmouseout="this.style.color='white'">
+                        {{ Auth::user()->name }}
+                    </h2>
+                    <svg onclick="openProfileModal('name')" style="width: 1.2rem; height: 1.2rem; color: rgba(255,255,255,0.3); cursor: pointer; transition: color 0.3s;" onmouseover="this.style.color='{{ Auth::user()->user_level_color }}'" onmouseout="this.style.color='rgba(255,255,255,0.3)'" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+                </div>
                 
                 <!-- Estado En Línea -->
                 <div style="display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 30px;">
@@ -177,6 +214,70 @@
 
     </div>
     <!-- Modals -->
+    <div id="profileModal" class="dashboard-modal-backdrop" onclick="closeDashboardModal(event, 'profileModal')">
+        <div class="dashboard-modal-content" style="background: rgba(16, 26, 43, 0.85); backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 20px 60px rgba(0,0,0,0.9), 0 0 30px {{ Auth::user()->user_level_color }}30; border-radius: 30px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; margin-bottom: 25px;">
+                <h3 id="profile-modal-title" style="margin: 0; color: white; font-size: 1.6rem; display: flex; align-items: center; gap: 12px; font-weight: 800;">
+                    <div style="background: {{ Auth::user()->user_level_color }}; padding: 8px; border-radius: 12px;">
+                        <svg style="width: 1.5rem; height: 1.5rem; color: white;" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg>
+                    </div>
+                    Ajustes de Comandante
+                </h3>
+                <button type="button" onclick="document.getElementById('profileModal').style.display='none'; document.body.style.overflow='auto';" style="background: rgba(255,255,255,0.05); border: none; color: white; width: 35px; height: 35px; border-radius: 50%; cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 1.2rem;">&times;</button>
+            </div>
+            
+            <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 20px;">
+                @csrf
+                <!-- Seccion Avatar -->
+                <div id="section-avatar" style="background: rgba(255,255,255,0.03); padding: 20px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05);">
+                    <label style="color: var(--lavanda); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; font-weight: bold; margin-bottom: 15px; display: block;">Identidad Visual (Avatar)</label>
+                    <div style="display: flex; align-items: center; gap: 20px;">
+                        <div style="width: 70px; height: 70px; border-radius: 50%; overflow: hidden; border: 2px solid {{ Auth::user()->user_level_color }};">
+                            @if(Auth::user()->avatar)
+                                <img src="{{ asset('storage/' . Auth::user()->avatar) }}" style="width: 100%; height: 100%; object-fit: cover;">
+                            @else
+                                <div style="width: 100%; height: 100%; background: #1e293b; display: flex; justify-content: center; align-items: center; font-weight: bold; color: white;">{{ substr(Auth::user()->name, 0, 1) }}</div>
+                            @endif
+                        </div>
+                        <input type="file" name="avatar" style="flex: 1; font-size: 0.85rem; color: #94a3b8;">
+                    </div>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <!-- Seccion Nombre -->
+                    <div id="section-name" style="display: flex; flex-direction: column; gap: 8px;">
+                        <label style="color: var(--lavanda); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; font-weight: bold;">Nombre</label>
+                        <input type="text" name="name" value="{{ Auth::user()->name }}" required style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 14px; border-radius: 15px; font-size: 1rem; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='{{ Auth::user()->user_level_color }}'">
+                    </div>
+                    <!-- Seccion Email -->
+                    <div id="section-email" style="display: flex; flex-direction: column; gap: 8px;">
+                        <label style="color: var(--lavanda); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; font-weight: bold;">Correo</label>
+                        <input type="email" name="email" value="{{ Auth::user()->email }}" required style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 14px; border-radius: 15px; font-size: 1rem; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='{{ Auth::user()->user_level_color }}'">
+                    </div>
+                </div>
+
+                <!-- Seccion Password -->
+                <div id="section-password" style="padding: 20px; border-radius: 20px; background: rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.05);">
+                    <p style="color: #64748b; font-size: 0.8rem; margin: 0 0 15px;">Solo completa estos campos si deseas cambiar tu clave de acceso.</p>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <label style="color: var(--lavanda); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; font-weight: bold;">Nueva contraseña</label>
+                            <input type="password" name="password" style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 14px; border-radius: 15px; font-size: 1rem; outline: none;" placeholder="••••••••">
+                        </div>
+                        <div style="display: flex; flex-direction: column; gap: 8px;">
+                            <label style="color: var(--lavanda); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; font-weight: bold;">Confirmar contraseña</label>
+                            <input type="password" name="password_confirmation" style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); color: white; padding: 14px; border-radius: 15px; font-size: 1rem; outline: none;" placeholder="••••••••">
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" id="btn-submit-profile" style="background: linear-gradient(90deg, {{ Auth::user()->user_level_color }}, #1e40af); border: none; color: white; padding: 18px; border-radius: 20px; font-weight: 800; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: all 0.3s; box-shadow: 0 10px 20px {{ Auth::user()->user_level_color }}30;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 15px 30px {{ Auth::user()->user_level_color }}50';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 10px 20px {{ Auth::user()->user_level_color }}30';">
+                    Actualizar Protocolos
+                </button>
+            </form>
+        </div>
+    </div>
+
     <div id="lessonsModal" class="dashboard-modal-backdrop" onclick="closeDashboardModal(event, 'lessonsModal')">
         <div class="dashboard-modal-content" style="border: 1px solid rgba(59, 130, 246, 0.3); box-shadow: 0 10px 40px rgba(0,0,0,0.8), inset 0 0 20px rgba(59, 130, 246, 0.1);">
             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; margin-bottom: 20px;">
@@ -229,6 +330,40 @@
 </div>
 
 <script>
+    function openProfileModal(mode) {
+        const modal = document.getElementById('profileModal');
+        const title = document.getElementById('profile-modal-title');
+        const btnSubmit = document.getElementById('btn-submit-profile');
+        
+        // Secciones
+        const secAvatar = document.getElementById('section-avatar');
+        const secName = document.getElementById('section-name');
+        const secEmail = document.getElementById('section-email');
+        const secPass = document.getElementById('section-password');
+
+        // Reset display
+        [secAvatar, secName, secEmail, secPass].forEach(s => s.style.display = 'flex');
+        secAvatar.style.display = 'block'; // Avatar es block por contenedor interno
+        secPass.style.display = 'block'; // Password es block por contenedor interno
+
+        if (mode === 'avatar') {
+            title.innerHTML = '<div style="background: {{ Auth::user()->user_level_color }}; padding: 8px; border-radius: 12px;"><svg style="width: 1.5rem; height: 1.5rem; color: white;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path></svg></div> Actualizar Avatar';
+            [secName, secEmail, secPass].forEach(s => s.style.display = 'none');
+            btnSubmit.innerText = 'Guardar Nueva Foto';
+        } else if (mode === 'name') {
+            title.innerHTML = '<div style="background: {{ Auth::user()->user_level_color }}; padding: 8px; border-radius: 12px;"><svg style="width: 1.5rem; height: 1.5rem; color: white;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg></div> Cambiar Nombre';
+            [secAvatar, secEmail, secPass].forEach(s => s.style.display = 'none');
+            secName.style.flex = '1 1 100%';
+            btnSubmit.innerText = 'Confirmar Identidad';
+        } else {
+            title.innerHTML = '<div style="background: {{ Auth::user()->user_level_color }}; padding: 8px; border-radius: 12px;"><svg style="width: 1.5rem; height: 1.5rem; color: white;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path></svg></div> Ajustes del Sistema';
+            btnSubmit.innerText = 'Actualizar Protocolos';
+        }
+
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
     function openDashboardModal(modalId) {
         document.getElementById(modalId).style.display = 'flex';
         document.body.style.overflow = 'hidden';
@@ -305,6 +440,39 @@
         color: white;
     }
 
+    /* Botón Cósmico Secundario (Ajustes) */
+    .cosmic-btn-sec {
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: white;
+        font-weight: 800;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    .cosmic-btn-sec:hover {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: {{ Auth::user()->user_level_color }};
+        box-shadow: 0 0 20px {{ Auth::user()->user_level_color }}60;
+        transform: translateY(-2px) scale(1.02);
+    }
+
+    /* Estilos para inputs del modal */
+    #profileModal input[type="text"], 
+    #profileModal input[type="email"], 
+    #profileModal input[type="password"] {
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    }
+    #profileModal input:focus {
+        border-color: {{ Auth::user()->user_level_color }} !important;
+        box-shadow: 0 0 15px {{ Auth::user()->user_level_color }}40 !important;
+        background: rgba(0, 0, 0, 0.5) !important;
+    }
+
     .nav-card-purple {
         background: rgba(167, 139, 250, 0.1);
         border: 1px solid rgba(167, 139, 250, 0.3);
@@ -336,6 +504,16 @@
         border-color: rgba(239, 68, 68, 0.5) !important;
         color: white !important;
         box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+    }
+
+    .avatar-frame:hover {
+        transform: scale(1.05);
+        border-color: white !important;
+        box-shadow: 0 0 30px {{ Auth::user()->user_level_color }} !important;
+    }
+
+    .avatar-frame:hover .edit-overlay {
+        opacity: 1 !important;
     }
 
     @keyframes pulse { 0%, 100% { opacity: 0.5; transform: scale(1); } 50% { opacity: 1; transform: scale(1.05); } }

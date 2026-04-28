@@ -17,6 +17,7 @@ use App\Http\Controllers\LevelController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\FenomenoController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('pages.inicio');
@@ -40,6 +41,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    // Perfil
+    Route::post('/perfil/actualizar', [ProfileController::class, 'update'])->name('profile.update');
 
     // Rutas dinámicas de aprendizaje (requieren estar logueado para ver el contenido y guardar progreso)
     Route::get('/aprende', [LevelController::class, 'index'])->name('aprende');
