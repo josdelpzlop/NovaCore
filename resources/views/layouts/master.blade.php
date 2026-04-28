@@ -5,14 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'NovaCore')</title>
-    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}?v={{ time() }}">
+    <link rel="stylesheet" href="{{ asset('css/estilos.css') }}?v=1.0">
     <link rel="icon" href="{{ asset('images/logoplano.png') }}" type="image/png">
+    @stack('styles')
 </head>
 
 <body>
     @php
         $themeColor = '#1cc88a'; // Menta (Inicio)
-        if (request()->routeIs('aprende*') || request()->routeIs('lessons*')) {
+        if (request()->routeIs('aprende*') || request()->routeIs('lessons*') || request()->routeIs('levels.*')) {
             $themeColor = '#3b82f6'; // Azul
         } elseif (request()->routeIs('events*')) {
             $themeColor = '#a78bfa'; // Morado

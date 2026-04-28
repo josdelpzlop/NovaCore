@@ -165,3 +165,57 @@ Se implementó una carga ambiciosa (*Eager Loading*) de niveles para presentar l
 ### 10.3. Estandarización de Interfaz Crítica
 - **Acciones Destructivas:** Centralización del estilo de botones `.delete` en color rojo de advertencia.
 - **Identidad de Emisor:** Integración de "Avatares Generativos" basados en iniciales para el sistema de feedback.
+
+## 11. Optimización, Refactorización CSS y Depuración de Auth (28 Abr 2026)
+
+Esta fase se centró en tres pilares fundamentales: simplificar el flujo de autenticación, extraer los estilos inline a archivos CSS externos y eliminar código muerto del proyecto.
+
+### 11.1. Simplificación del Flujo de Autenticación
+
+Se evaluó la funcionalidad de recuperación de contraseña y se determinó que, al no disponer de un servidor SMTP configurado en el entorno local de Laragon, la funcionalidad quedaba inoperativa. Se tomó la decisión de eliminarla completamente para evitar puntos de fallo:
+- **Vistas eliminadas**: `forgot-password.blade.php` y `reset-password.blade.php`.
+- **Rutas eliminadas**: Se purgaron las 4 rutas de reset (`password.request`, `password.email`, `password.reset`, `password.update`) del archivo `routes/auth.php`.
+- **Imports muertos**: Se eliminaron los `use` de `NewPasswordController` y `PasswordResetLinkController` que quedaron huérfanos tras la eliminación de rutas.
+- **UI**: Se retiró el enlace "¿Olvidaste tu contraseña?" de la vista de login.
+
+### 11.2. Refactorización de Estilos: De Inline a CSS Externo
+
+El problema principal de rendimiento era que los estilos se encontraban duplicados e incrustados directamente en el HTML (`style="..."`) de cada vista Blade, lo que provocaba:
+1.  HTML pesado y difícil de mantener.
+2.  Imposibilidad de que el navegador cachee los estilos (se re-parseaban en cada carga).
+
+**Solución aplicada — Separación en archivos CSS dedicados:**
+
+```
+public/css/
+├── estilos.css      → Global (header, nav, footer, páginas públicas)
+├── auth.css         → Login + Registro (estilos compartidos)
+└── dashboard.css    → Dashboard del usuario (Centro de Mando)
+```
+
+- **`auth.css`**: Se unificaron los bloques `<style>` duplicados de `login.blade.php` y `register.blade.php` en un solo archivo compartido. Ambas vistas ahora referencian este CSS y usan clases como `.auth-box`, `.auth-btn--login`, `.auth-form-group`, etc.
+- **`dashboard.css`**: Se extrajo el bloque `<style>` embebido (~150 líneas) del dashboard. Los estilos que dependían de variables dinámicas de Blade (`{{ Auth::user()->user_level_color }}`) se resolvieron mediante **CSS Custom Properties** (`--user-color`) inyectadas en un mini bloque `<style>` de ~30 líneas usando `@push('styles')`.
+- **`@stack('styles')`**: Se añadió esta directiva de Blade al `<head>` del layout `master.blade.php`, permitiendo que cada vista hija inyecte sus propios archivos CSS solo cuando es necesario (carga condicional).
+
+### 11.3. Optimización de Rendimiento (Cache-Busting)
+
+Se identificó que la directiva `?v={{ time() }}` en la carga del CSS principal forzaba al navegador a re-descargar el archivo en **cada petición HTTP**, anulando completamente la caché del navegador.
+- **Corrección**: Se sustituyó por un valor fijo `?v=1.0`. El navegador ahora cachea el CSS correctamente y solo lo vuelve a descargar cuando se incrementa manualmente la versión.
+
+### 11.4. Eliminación de Código Muerto (Dead Code)
+
+Se realizó una auditoría del proyecto para identificar y eliminar archivos que no se utilizaban:
+- **Layouts Breeze**: `guest.blade.php`, `app.blade.php` y `navigation.blade.php` eran restos del scaffolding inicial de Laravel Breeze que nunca se usaron (el proyecto usa `master.blade.php` y `admin.blade.php`).
+- **`app.css`** (33KB): CSS por defecto de Laravel que ninguna vista referenciaba.
+
+### 11.5. Documentación y Legibilidad del Código
+
+Para facilitar la comprensión y defensa del proyecto:
+- **`routes/web.php`**: Reescrito con imports organizados en la cabecera, eliminación de referencias inline (`\App\Http\Controllers\...`), y documentación en 3 bloques claros: Rutas Públicas, Rutas Protegidas y Rutas de Administración.
+- **`routes/auth.php`**: Cabecera descriptiva explicando el propósito del archivo.
+- **Archivos CSS**: Cada archivo incluye un bloque de comentarios inicial describiendo su contenido y ámbito de aplicación.
+
+### 11.6. Corrección de Tintado Temático en Rutas de Detalle
+
+Se detectó que las páginas de detalle de nivel (`/aprende/{level}`) no aplicaban el color azul temático al logo y footer porque la ruta se llama `levels.show`, que no coincidía con el patrón `routeIs('aprende*')`.
+- **Corrección**: Se añadió `routeIs('levels.*')` a la condición del `$themeColor` en `master.blade.php`.

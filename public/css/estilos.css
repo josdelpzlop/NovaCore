@@ -1,3 +1,15 @@
+/* ============================================
+   ESTILOS.CSS — Estilos globales de NovaCore
+   ============================================
+   Este archivo contiene los estilos compartidos
+   por TODAS las páginas públicas del sitio:
+   - Variables de color (paleta Cosmic)
+   - Header y navegación
+   - Footer
+   - Páginas: Inicio, Aprende, etc.
+   ============================================ */
+
+/* Paleta de colores del proyecto */
 :root {
     --negro: #000000;
     --azul: #2746FF;
