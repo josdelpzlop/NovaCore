@@ -60,7 +60,7 @@
                 </p>
 
                 <div style="margin-top: auto;">
-                    <a href="{{ route('inicio') }}" class="btn-login" style="display: inline-flex; align-items: center; gap: 10px; background: rgba(225, 29, 72, 0.1); border: 1px solid rgba(225, 29, 72, 0.3); color: #fb7185; padding: 12px 25px; border-radius: 12px; text-decoration: none; font-weight: bold; transition: all 0.3s;" onmouseover="this.style.background='rgba(225, 29, 72, 0.2)'; this.style.transform='translateX(-5px)';" onmouseout="this.style.background='rgba(225, 29, 72, 0.1)'; this.style.transform='translateX(0)';">
+                    <a href="{{ route('inicio') }}" style="display: inline-flex; align-items: center; gap: 10px; background: rgba(225, 29, 72, 0.1); border: 1px solid rgba(225, 29, 72, 0.3); color: #fb7185; padding: 12px 25px; border-radius: 12px; text-decoration: none; font-weight: bold; transition: all 0.3s; box-shadow: none;" onmouseover="this.style.background='rgba(225, 29, 72, 0.2)'; this.style.transform='translateX(-5px)'; this.style.boxShadow='0 0 20px rgba(225, 29, 72, 0.2)';" onmouseout="this.style.background='rgba(225, 29, 72, 0.1)'; this.style.transform='translateX(0)'; this.style.boxShadow='none';">
                         &larr; Retornar al puente de mando
                     </a>
                 </div>
@@ -83,7 +83,14 @@
                 <!-- Fondo negro para letterboxing. object-fit: contain muestra la imagen entera sin recortar -->
                 <div style="display: flex; align-items: center; justify-content: center; background: #000; position: relative;">
                     @if(isset($apod['media_type']) && $apod['media_type'] === 'video')
-                        <iframe src="{{ $apod['url'] }}" frameborder="0" allowfullscreen style="width: 100%; aspect-ratio: 16/9; border: none;"></iframe>
+                        @if(str_contains($apod['url'] ?? '', '.mp4') || str_contains($apod['url'] ?? '', '.webm') || str_contains($apod['url'] ?? '', '.ogg'))
+                            <video controls autoplay muted loop playsinline style="width: 100%; max-height: 600px; object-fit: contain; background: #000;">
+                                <source src="{{ $apod['url'] }}" type="video/mp4">
+                                Tu navegador no soporta la reproducción de vídeo.
+                            </video>
+                        @else
+                            <iframe src="{{ $apod['url'] }}" frameborder="0" allowfullscreen style="width: 100%; aspect-ratio: 16/9; border: none;"></iframe>
+                        @endif
                     @else
                         <a href="{{ $apod['hdurl'] ?? ($apod['url'] ?? '#') }}" target="_blank" style="display: block; width: 100%;">
                             <!-- Usamos object-fit: contain para NO recortar. max-height limita lo alto que puede ser -->
@@ -95,7 +102,9 @@
                 <div style="padding: 20px; background: rgba(0,0,0,0.8); text-align: left; border-top: 1px solid rgba(225, 29, 72, 0.3);">
                     <div style="color: #fda4af; font-family: monospace; font-size: 0.95rem; margin-bottom: 8px;">> INICIANDO_SECUENCIA_VISUAL... [OK]</div>
                     <div style="color: #94a3b8; font-family: monospace; font-size: 0.85rem; margin-bottom: 5px;">> FUENTE_TELEMETRÍA: API PÚBLICA NASA</div>
-                    @if(isset($apod['media_type']) && $apod['media_type'] !== 'video')
+                    @if(isset($apod['media_type']) && $apod['media_type'] === 'video')
+                        <div style="color: #f87171; font-family: monospace; font-size: 0.85rem;">> ESTADO: TRANSMISIÓN DE VÍDEO EN DIRECTO [ACTIVA]</div>
+                    @elseif(isset($apod['media_type']) && $apod['media_type'] !== 'video')
                         <div style="color: #f87171; font-family: monospace; font-size: 0.85rem;">> ESTADO: RESOLUCIÓN HD DISPONIBLE (CLICK EN LA IMAGEN)</div>
                     @endif
                     <i style="color: #e11d48; display: inline-block; margin-top: 5px; font-weight: bold; animation: blink 1s infinite;">_</i>
@@ -113,7 +122,7 @@
             <svg style="width: 1rem; height: 1rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
             Archivos Clasificados
         </div>
-        <h2 style="font-size: 2.5rem; margin-top: 0; margin-bottom: 30px; font-weight: 800; color: white;">
+        <h2 style="font-size: 2.5rem; margin-top: 0; margin-bottom: 30px; font-weight: 800; background: -webkit-linear-gradient(135deg, #fff, #e11d48); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 30px rgba(225, 29, 72, 0.3);">
             Galería de Fenómenos Documentados
         </h2>
 
