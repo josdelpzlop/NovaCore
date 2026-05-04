@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Http;
 trait TranslatesText
 {
     /**
-     * Traductor Dinámico sin dependencias externas usando Google Translate Libre.
+     * Traduce un texto al español usando Google Translate.
      */
     protected function translateToSpanish($text)
     {

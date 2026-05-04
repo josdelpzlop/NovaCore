@@ -23,7 +23,7 @@ class FenomenoController extends Controller
             if ($response->successful()) {
                 $data = $response->json();
                 
-                // Traducir dinámicamente usando el trait libre (Magia para tu Portfolio)
+                // Traducir título y descripción al español
                 $data['title'] = $this->translateToSpanish($data['title']);
                 $data['explanation'] = $this->translateToSpanish($data['explanation']);
                 

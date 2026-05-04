@@ -13,3 +13,17 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+
+# Editor/IDE config
+.antigravityignore
+.gemini/
+.cursor/
+.copilot/
+.aider*
+.codeium/
+.continue/
+.tabnine*
+.windsurf/
+.augment/
+.cody/
+.sourcegraph/
