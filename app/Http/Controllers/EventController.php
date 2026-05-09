@@ -20,24 +20,29 @@ class EventController extends Controller
     {
         // Caché del próximo lanzamiento espacial (usamos TheSpaceDevs API que está siempre al día)
         $spacex = Cache::remember('space_next_es_v2', 7200, function () {
-            // Nota: SpaceX v5 está deprecated, usamos lldev.thespacedevs para lanzamientos globales 100% actualizados
-            $response = Http::get('https://lldev.thespacedevs.com/2.2.0/launch/upcoming/?limit=1');
-            if ($response->successful()) {
-                $payload = $response->json();
-                if (isset($payload['results'][0])) {
-                    $data = $payload['results'][0];
-                    
-                    // Extraemos detalles o ponemos uno por defecto
-                    $details = $data['mission']['description'] ?? 'La agencia espacial aún no ha revelado detalles operacionales sobre esta misión estelar.';
-                    $data['details_es'] = $this->translateToSpanish($details);
-                    
-                    // Formateamos fecha
-                    if (isset($data['net'])) {
-                        $data['formatted_date'] = \Carbon\Carbon::parse($data['net'])->format('d/m/Y - H:i') . ' UTC';
+            try {
+                // Usamos la API de producción (ll) con timeout para evitar bloqueos si el servidor no responde
+                $response = Http::timeout(5)->get('https://ll.thespacedevs.com/2.2.0/launch/upcoming/?limit=1');
+                if ($response->successful()) {
+                    $payload = $response->json();
+                    if (isset($payload['results'][0])) {
+                        $data = $payload['results'][0];
+                        
+                        // Extraemos detalles o ponemos uno por defecto
+                        $details = $data['mission']['description'] ?? 'La agencia espacial aún no ha revelado detalles operacionales sobre esta misión estelar.';
+                        $data['details_es'] = $this->translateToSpanish($details);
+                        
+                        // Formateamos fecha
+                        if (isset($data['net'])) {
+                            $data['formatted_date'] = \Carbon\Carbon::parse($data['net'])->format('d/m/Y - H:i') . ' UTC';
+                        }
+                        
+                        return $data;
                     }
-                    
-                    return $data;
                 }
+            } catch (\Exception $e) {
+                // Si la API externa falla (timeout, conexión, etc.), seguimos sin bloquear la página
+                \Illuminate\Support\Facades\Log::warning('SpaceDevs API no disponible: ' . $e->getMessage());
             }
             return null;
         });
