@@ -3,14 +3,11 @@
 @section('title', $event->title . ' | NovaCore')
 
 @section('content')
-    <!-- Elementos decorativos de fondo (Fixed) - Eventos (Morado/Magenta) -->
+    <!-- Fondo decorativo estático - Eventos (Morado/Magenta) -->
     <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; overflow: hidden; pointer-events: none; z-index: -1;">
-        <div style="position: absolute; top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #8b5cf6 0%, transparent 70%); filter: blur(100px); opacity: 0.15; animation: pulseGlow 8s infinite alternate;"></div>
-        <div style="position: absolute; top: 30%; right: -15%; width: 60vw; height: 60vw; background: radial-gradient(circle, #d946ef 0%, transparent 70%); filter: blur(120px); opacity: 0.15; animation: pulseGlow 10s infinite alternate-reverse;"></div>
-        <div style="position: absolute; bottom: -20%; left: 10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #a78bfa 0%, transparent 70%); filter: blur(100px); opacity: 0.1; animation: pulseGlow 12s infinite alternate;"></div>
-        
-        <div style="position: absolute; top: 0; left: 4%; width: 1px; height: 100%; background: linear-gradient(to bottom, transparent, rgba(139,92,246,0.15), transparent);"></div>
-        <div style="position: absolute; top: 0; right: 4%; width: 1px; height: 100%; background: linear-gradient(to bottom, transparent, rgba(217,70,239,0.15), transparent);"></div>
+        <div style="position: absolute; top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #8b5cf6 0%, transparent 70%); filter: blur(100px); opacity: 0.1;"></div>
+        <div style="position: absolute; top: 30%; right: -15%; width: 60vw; height: 60vw; background: radial-gradient(circle, #d946ef 0%, transparent 70%); filter: blur(120px); opacity: 0.08;"></div>
+        <div style="position: absolute; bottom: -20%; left: 10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #a78bfa 0%, transparent 70%); filter: blur(100px); opacity: 0.06;"></div>
     </div>
 
 <section class="lesson-section" style="padding: 100px 20px 50px; min-height: 80vh; display: flex; flex-direction: column; align-items: center;">
@@ -22,8 +19,7 @@
     </div>
 
     <div class="lesson-container" style="
-        background: rgba(16, 26, 43, 0.6);
-        backdrop-filter: blur(15px);
+        background: rgba(16, 26, 43, 0.8);
         border: 1px solid rgba(139, 92, 246, 0.2);
         border-radius: 24px;
         width: 100%;

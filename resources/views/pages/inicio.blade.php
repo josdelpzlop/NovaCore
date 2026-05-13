@@ -3,40 +3,11 @@
 @section('title', 'Inicio | NovaCore')
 
 @section('content')
-    <!-- Elementos decorativos de fondo (Fixed) -->
-    <div
-        style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; overflow: hidden; pointer-events: none; z-index: -1;">
-        <!-- Nebulosas de colores -->
-        <div
-            style="position: absolute; top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #4e73df 0%, transparent 70%); filter: blur(100px); opacity: 0.2; animation: pulseGlow 8s infinite alternate;">
-        </div>
-        <div
-            style="position: absolute; top: 30%; right: -15%; width: 60vw; height: 60vw; background: radial-gradient(circle, #1cc88a 0%, transparent 70%); filter: blur(120px); opacity: 0.15; animation: pulseGlow 10s infinite alternate-reverse;">
-        </div>
-        <div
-            style="position: absolute; bottom: -20%; left: 10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #8767eb 0%, transparent 70%); filter: blur(100px); opacity: 0.15; animation: pulseGlow 12s infinite alternate;">
-        </div>
-
-        <!-- Líneas HUD Laterales (Mallas Tecnológicas) -->
-        <div
-            style="position: absolute; top: 0; left: 4%; width: 1px; height: 100%; background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.1), transparent);">
-        </div>
-        <div
-            style="position: absolute; top: 20vh; left: calc(4% - 4px); width: 9px; height: 1px; background: rgba(255,255,255,0.3);">
-        </div>
-        <div
-            style="position: absolute; top: 60vh; left: calc(4% - 4px); width: 9px; height: 1px; background: rgba(255,255,255,0.3);">
-        </div>
-
-        <div
-            style="position: absolute; top: 0; right: 4%; width: 1px; height: 100%; background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.1), transparent);">
-        </div>
-        <div
-            style="position: absolute; top: 30vh; right: calc(4% - 4px); width: 9px; height: 1px; background: rgba(255,255,255,0.3);">
-        </div>
-        <div
-            style="position: absolute; top: 70vh; right: calc(4% - 4px); width: 9px; height: 1px; background: rgba(255,255,255,0.3);">
-        </div>
+    <!-- Fondo decorativo estático -->
+    <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; overflow: hidden; pointer-events: none; z-index: -1;">
+        <div style="position: absolute; top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #4e73df 0%, transparent 70%); filter: blur(100px); opacity: 0.12;"></div>
+        <div style="position: absolute; top: 30%; right: -15%; width: 60vw; height: 60vw; background: radial-gradient(circle, #1cc88a 0%, transparent 70%); filter: blur(120px); opacity: 0.08;"></div>
+        <div style="position: absolute; bottom: -20%; left: 10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #8767eb 0%, transparent 70%); filter: blur(100px); opacity: 0.08;"></div>
     </div>
 
     <div class="hero">
@@ -52,7 +23,7 @@
         </section>
 
         <section class="fenomenos-box"
-            style="animation: fadeUp 1s ease-out 0.3s backwards; background: rgba(16, 26, 43, 0.6); backdrop-filter: blur(10px); border: 1px solid rgba(135, 103, 235, 0.3); border-radius: 20px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            style="animation: fadeUp 1s ease-out 0.3s backwards; background: rgba(16, 26, 43, 0.8); border: 1px solid rgba(135, 103, 235, 0.3); border-radius: 20px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
             <h3
                 style="margin-top: 0; margin-bottom: 5px; color: white; display: flex; align-items: center; gap: 10px; font-size: 1.4rem;">
                 <svg style="width: 1.5rem; height: 1.5rem; color: var(--lavanda);" fill="none" stroke="currentColor"
@@ -301,19 +272,39 @@
     </section>
 
     <script>
+        let issErrorCount = 0;
+        let issInterval = null;
+
         function fetchISSData() {
             fetch('https://api.wheretheiss.at/v1/satellites/25544')
-                .then(response => response.json())
+                .then(response => {
+                    if (!response.ok) throw new Error('Respuesta no válida');
+                    return response.json();
+                })
                 .then(data => {
                     document.getElementById('iss-lat').innerText = data.latitude.toFixed(4);
                     document.getElementById('iss-lon').innerText = data.longitude.toFixed(4);
                     document.getElementById('iss-alt').innerText = data.altitude.toFixed(2);
                     document.getElementById('iss-vel').innerText = data.velocity.toFixed(0);
-                }).catch(error => console.error('Enlace de comunicación perdido con la ISS:', error));
+                    issErrorCount = 0; // Reset de errores si va bien
+                })
+                .catch(error => {
+                    console.error('Enlace de comunicación perdido con la ISS:', error);
+                    issErrorCount++;
+                    // Mostramos datos de referencia estáticos si no hay conexión
+                    document.getElementById('iss-lat').innerText = '~51.64';
+                    document.getElementById('iss-lon').innerText = '~-12.38';
+                    document.getElementById('iss-alt').innerText = '~408.00';
+                    document.getElementById('iss-vel').innerText = '~27580';
+                    // Si falla 3 veces seguidas, dejamos de intentar para no saturar
+                    if (issErrorCount >= 3 && issInterval) {
+                        clearInterval(issInterval);
+                    }
+                });
         }
         document.addEventListener('DOMContentLoaded', function () {
             fetchISSData();
-            setInterval(fetchISSData, 2000);
+            issInterval = setInterval(fetchISSData, 10000);
         });
     </script>
     <!-- Animaciones Base CSS -->

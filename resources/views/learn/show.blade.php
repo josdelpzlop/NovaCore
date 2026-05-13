@@ -3,14 +3,11 @@
 @section('title', 'Nivel: ' . $level->title . ' | NovaCore')
 
 @section('content')
-    <!-- Fondo Cósmico Azul para mantener la consistencia con la Academia -->
+    <!-- Fondo decorativo estático - Academia (Azul) -->
     <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; overflow: hidden; pointer-events: none; z-index: -1;">
-        <div style="position: absolute; top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #1e3a8a 0%, transparent 70%); filter: blur(100px); opacity: 0.3; animation: pulseGlow 8s infinite alternate;"></div>
-        <div style="position: absolute; top: 30%; right: -15%; width: 60vw; height: 60vw; background: radial-gradient(circle, #0284c7 0%, transparent 70%); filter: blur(120px); opacity: 0.2; animation: pulseGlow 10s infinite alternate-reverse;"></div>
-        <div style="position: absolute; bottom: -20%; left: 10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #3b82f6 0%, transparent 70%); filter: blur(100px); opacity: 0.2; animation: pulseGlow 12s infinite alternate;"></div>
-        
-        <div style="position: absolute; top: 0; left: 4%; width: 1px; height: 100%; background: linear-gradient(to bottom, transparent, rgba(59,130,246,0.15), transparent);"></div>
-        <div style="position: absolute; top: 0; right: 4%; width: 1px; height: 100%; background: linear-gradient(to bottom, transparent, rgba(59,130,246,0.15), transparent);"></div>
+        <div style="position: absolute; top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #1e3a8a 0%, transparent 70%); filter: blur(100px); opacity: 0.15;"></div>
+        <div style="position: absolute; top: 30%; right: -15%; width: 60vw; height: 60vw; background: radial-gradient(circle, #0284c7 0%, transparent 70%); filter: blur(120px); opacity: 0.1;"></div>
+        <div style="position: absolute; bottom: -20%; left: 10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #3b82f6 0%, transparent 70%); filter: blur(100px); opacity: 0.1;"></div>
     </div>
 
 <main style="padding: 100px 5% 50px; max-width: 1000px; margin: auto; min-height: 80vh;">
@@ -27,7 +24,7 @@
         </div>
     @endif
 
-    <div style="background: rgba(16, 26, 43, 0.6); backdrop-filter: blur(15px); padding: 3rem; border-radius: 24px; text-align: center; border: 1px solid rgba(59, 130, 246, 0.2); box-shadow: 0 10px 40px rgba(0,0,0,0.5);">
+    <div style="background: rgba(16, 26, 43, 0.8); padding: 3rem; border-radius: 24px; text-align: center; border: 1px solid rgba(59, 130, 246, 0.2); box-shadow: 0 10px 40px rgba(0,0,0,0.5);">
         <span style="background: rgba(59, 130, 246, 0.15); color: #60a5fa; padding: 6px 16px; border-radius: 8px; font-weight: bold; font-size: 0.9rem; text-transform: uppercase; border: 1px solid rgba(59, 130, 246, 0.3);">
             {{ $level->badge }}
         </span>

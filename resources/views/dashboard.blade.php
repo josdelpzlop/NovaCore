@@ -214,7 +214,7 @@
     </div>
     <!-- Modals -->
     <div id="profileModal" class="dashboard-modal-backdrop" onclick="closeDashboardModal(event, 'profileModal')">
-        <div class="dashboard-modal-content" style="background: rgba(16, 26, 43, 0.85); backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 20px 60px rgba(0,0,0,0.9), 0 0 30px {{ Auth::user()->user_level_color }}30; border-radius: 30px;">
+        <div class="dashboard-modal-content" style="background: rgba(16, 26, 43, 0.95); border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 20px 60px rgba(0,0,0,0.9), 0 0 30px {{ Auth::user()->user_level_color }}30; border-radius: 30px;">
             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px; margin-bottom: 25px;">
                 <h3 id="profile-modal-title" style="margin: 0; color: white; font-size: 1.6rem; display: flex; align-items: center; gap: 12px; font-weight: 800;">
                     <div style="background: {{ Auth::user()->user_level_color }}; padding: 8px; border-radius: 12px;">

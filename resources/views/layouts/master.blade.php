@@ -101,7 +101,7 @@
                     <h3 style="color: white; font-size: 1.1rem; margin-top: 0; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px;">Estado de Red</h3>
                     <div style="background: rgba(0,0,0,0.5); padding: 15px; border-radius: 10px; border: 1px solid {{ $themeColor }}4d;">
                         <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-                            <span style="width: 8px; height: 8px; background: {{ $themeColor }}; border-radius: 50%; box-shadow: 0 0 10px {{ $themeColor }}; animation: pulse-dot 2s infinite;"></span>
+                            <span style="width: 8px; height: 8px; background: {{ $themeColor }}; border-radius: 50%; box-shadow: 0 0 10px {{ $themeColor }};"></span>
                             <span style="color: {{ $themeColor }}; font-size: 0.85rem; font-weight: bold; letter-spacing: 1px;">SISTEMA EN LÍNEA</span>
                         </div>
                         <div style="color: #64748b; font-size: 0.8rem; font-family: monospace;">VER: 1.0.0-NOVA</div>
@@ -114,9 +114,7 @@
                 &copy; {{ date('Y') }} NovaCore. Todos los derechos reservados. Misión de exploración espacial educativa.
             </div>
         </footer>
-        <style>
-            @keyframes pulse-dot { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-        </style>
+
     @endunless
 
 </body>

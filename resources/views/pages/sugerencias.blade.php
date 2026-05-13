@@ -4,7 +4,7 @@
 
 @section('content')
 <div style="padding: 100px 20px; max-width: 800px; margin: 0 auto; min-height: 70vh;">
-    <div class="cosmic-card" style="background: rgba(16, 26, 43, 0.7); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 40px;">
+    <div class="cosmic-card" style="background: rgba(16, 26, 43, 0.85); border: 1px solid rgba(255,255,255,0.1); border-radius: 20px; padding: 40px;">
         <h1 style="color: var(--menta); margin-top: 0; font-size: 2.5rem;">Sugerencias y Reportes</h1>
         
         @if(session('success'))

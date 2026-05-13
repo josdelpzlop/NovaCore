@@ -3,14 +3,11 @@
 @section('title', 'Recompensas | NovaCore')
 
 @section('content')
-    <!-- Elementos decorativos de fondo (Fixed) - Recompensas (Oro/Amarillo/Ámbar) -->
+    <!-- Fondo decorativo estático - Recompensas (Oro/Amarillo/Ámbar) -->
     <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; overflow: hidden; pointer-events: none; z-index: -1;">
-        <div style="position: absolute; top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #eab308 0%, transparent 70%); filter: blur(100px); opacity: 0.15; animation: pulseGlow 8s infinite alternate;"></div>
-        <div style="position: absolute; top: 30%; right: -15%; width: 60vw; height: 60vw; background: radial-gradient(circle, #f59e0b 0%, transparent 70%); filter: blur(120px); opacity: 0.15; animation: pulseGlow 10s infinite alternate-reverse;"></div>
-        <div style="position: absolute; bottom: -20%; left: 10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #d97706 0%, transparent 70%); filter: blur(100px); opacity: 0.1; animation: pulseGlow 12s infinite alternate;"></div>
-        
-        <div style="position: absolute; top: 0; left: 4%; width: 1px; height: 100%; background: linear-gradient(to bottom, transparent, rgba(234,179,8,0.1), transparent);"></div>
-        <div style="position: absolute; top: 0; right: 4%; width: 1px; height: 100%; background: linear-gradient(to bottom, transparent, rgba(245,158,11,0.1), transparent);"></div>
+        <div style="position: absolute; top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #eab308 0%, transparent 70%); filter: blur(100px); opacity: 0.1;"></div>
+        <div style="position: absolute; top: 30%; right: -15%; width: 60vw; height: 60vw; background: radial-gradient(circle, #f59e0b 0%, transparent 70%); filter: blur(120px); opacity: 0.08;"></div>
+        <div style="position: absolute; bottom: -20%; left: 10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #d97706 0%, transparent 70%); filter: blur(100px); opacity: 0.06;"></div>
     </div>
 
 <div class="recompensas-container" style="max-width: 1400px; margin: 3rem auto; padding: 100px 5% 50px; min-height: 70vh;">
@@ -24,7 +21,7 @@
         <h2 style="font-size: 3.5rem; margin-top: 0; margin-bottom: 20px; font-weight: 800; background: -webkit-linear-gradient(135deg, #fff, #f59e0b); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 30px rgba(245, 158, 11, 0.3);">
             Logros del Comandante
         </h2>
-        <div style="background: rgba(16, 26, 43, 0.6); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.05); padding: 30px 40px; border-radius: 20px; max-width: 750px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+        <div style="background: rgba(16, 26, 43, 0.8); border: 1px solid rgba(255,255,255,0.05); padding: 30px 40px; border-radius: 20px; max-width: 750px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
             <p style="font-size: 1.15rem; color: #cbd5e1; line-height: 1.8; margin: 0;">
                 Tu colección personal de honores espaciales y descubrimientos validados. Gana puntos de experiencia (XP) para subir de nivel completando lecciones y asistiendo a misiones en vivo.
             </p>
@@ -43,7 +40,7 @@
     @endif
 
     <!-- Barra de Progreso Dinámica -->
-    <section class="progreso-global" style="background: linear-gradient(135deg, rgba(255,255,255,0.02), {{ $user->user_level_color }}15); border-radius: 24px; padding: 2rem; border: 1px solid {{ $user->user_level_color }}40; margin-bottom: 4rem; display: flex; align-items: center; gap: 2rem; backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(0,0,0,0.3), inset 0 0 20px {{ $user->user_level_color }}10;">
+    <section class="progreso-global" style="background: linear-gradient(135deg, rgba(255,255,255,0.02), {{ $user->user_level_color }}15); border-radius: 24px; padding: 2rem; border: 1px solid {{ $user->user_level_color }}40; margin-bottom: 4rem; display: flex; align-items: center; gap: 2rem; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
         
         <div style="text-align: center; min-width: 150px;">
             <div style="font-size: 3rem; font-weight: bold; color: {{ $user->user_level_color }}; text-shadow: 0 0 15px {{ $user->user_level_color }}80;">LVL {{ $user->user_level_number }}</div>
@@ -77,7 +74,7 @@
             <div class="bento-card trofeo-card {{ $isUnlocked ? '' : 'locked' }}" 
                  style="background: {{ $isUnlocked ? 'linear-gradient(135deg, '.$rgbaColor.'0.1), rgba(16, 26, 43, 0.8))' : 'rgba(16, 26, 43, 0.5)' }}; 
                         border: 1px solid {{ $isEquipped ? $hexColor : 'rgba(255,255,255,0.1)' }}; 
-                        border-radius: 24px; padding: 2.5rem 2rem; text-align: center; backdrop-filter: blur(10px); 
+                        border-radius: 24px; padding: 2.5rem 2rem; text-align: center;
                         transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
                         {{ $isUnlocked ? '' : 'filter: grayscale(1) opacity(0.6);' }} 
                         {{ $isEquipped ? 'box-shadow: 0 0 25px '.$rgbaColor.'0.4); transform: scale(1.02);' : '' }}">

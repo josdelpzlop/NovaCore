@@ -3,14 +3,11 @@
 @section('title', 'Observatorio | NovaCore')
 
 @section('content')
-    <!-- Elementos decorativos de fondo (Fixed) - Observatorio (Rojo Carmesí) -->
+    <!-- Fondo decorativo estático - Observatorio (Rojo Carmesí) -->
     <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; overflow: hidden; pointer-events: none; z-index: -1;">
-        <div style="position: absolute; top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #e11d48 0%, transparent 70%); filter: blur(100px); opacity: 0.15; animation: pulseGlow 8s infinite alternate;"></div>
-        <div style="position: absolute; top: 30%; right: -15%; width: 60vw; height: 60vw; background: radial-gradient(circle, #9f1239 0%, transparent 70%); filter: blur(120px); opacity: 0.15; animation: pulseGlow 10s infinite alternate-reverse;"></div>
-        <div style="position: absolute; bottom: -20%; left: 10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #ef4444 0%, transparent 70%); filter: blur(100px); opacity: 0.1; animation: pulseGlow 12s infinite alternate;"></div>
-        
-        <div style="position: absolute; top: 0; left: 4%; width: 1px; height: 100%; background: linear-gradient(to bottom, transparent, rgba(225,29,72,0.15), transparent);"></div>
-        <div style="position: absolute; top: 0; right: 4%; width: 1px; height: 100%; background: linear-gradient(to bottom, transparent, rgba(239,68,68,0.15), transparent);"></div>
+        <div style="position: absolute; top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #e11d48 0%, transparent 70%); filter: blur(100px); opacity: 0.1;"></div>
+        <div style="position: absolute; top: 30%; right: -15%; width: 60vw; height: 60vw; background: radial-gradient(circle, #9f1239 0%, transparent 70%); filter: blur(120px); opacity: 0.08;"></div>
+        <div style="position: absolute; bottom: -20%; left: 10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #ef4444 0%, transparent 70%); filter: blur(100px); opacity: 0.06;"></div>
     </div>
 
 <div style="padding: 100px 5%; max-width: 1300px; margin: 0 auto; min-height: 70vh;">
@@ -24,7 +21,7 @@
         <h2 style="font-size: 3.5rem; margin-top: 0; margin-bottom: 20px; font-weight: 800; background: -webkit-linear-gradient(135deg, #fff, #e11d48); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 30px rgba(225, 29, 72, 0.3);">
             Observatorio de Fenómenos
         </h2>
-        <div style="background: rgba(16, 26, 43, 0.6); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.05); padding: 30px 40px; border-radius: 20px; max-width: 750px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+        <div style="background: rgba(16, 26, 43, 0.8); border: 1px solid rgba(255,255,255,0.05); padding: 30px 40px; border-radius: 20px; max-width: 750px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
             <p style="font-size: 1.15rem; color: #cbd5e1; line-height: 1.8; margin: 0;">
                 Accede a la red de telescopios y sondas de espacio profundo. Descubre cada día una nueva anomalía, estrella o galaxia capturada y analizada por los instrumentos ópticos de la NASA.
             </p>
@@ -36,7 +33,7 @@
         
         <!-- Columna Izquierda: Información Principal -->
         <div class="info-column" style="flex: 1; min-width: 400px; display: flex; flex-direction: column;">
-            <div class="cosmic-card" style="background: rgba(16, 26, 43, 0.8); backdrop-filter: blur(15px); border: 1px solid rgba(225, 29, 72, 0.2); border-radius: 24px; padding: 50px; box-shadow: 0 15px 50px rgba(0,0,0,0.6), inset 0 0 20px rgba(225, 29, 72, 0.05); position: relative; overflow: hidden;">
+            <div class="cosmic-card" style="background: rgba(16, 26, 43, 0.9); border: 1px solid rgba(225, 29, 72, 0.2); border-radius: 24px; padding: 50px; box-shadow: 0 15px 50px rgba(0,0,0,0.6); position: relative; overflow: hidden;">
                 
                 <!-- Brillo superior rojo carmesí -->
                 <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: linear-gradient(90deg, transparent, #e11d48, transparent); opacity: 0.8;"></div>
@@ -128,7 +125,7 @@
 
         <div class="bento-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px;">
             @foreach($fenomenosLocales as $fenomeno)
-            <div class="cosmic-card fenomeno-card" style="background: rgba(16, 26, 43, 0.8); backdrop-filter: blur(15px); border: 1px solid rgba(225, 29, 72, 0.2); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column;" onclick="toggleExpand(this)">
+            <div class="cosmic-card fenomeno-card" style="background: rgba(16, 26, 43, 0.9); border: 1px solid rgba(225, 29, 72, 0.2); border-radius: 20px; overflow: hidden; display: flex; flex-direction: column;" onclick="toggleExpand(this)">
                 
                 @if($fenomeno->image_path)
                 <div style="width: 100%; height: 220px; overflow: hidden; background: #050510; display: flex; align-items: center; justify-content: center; transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);" class="fenomeno-img-container">

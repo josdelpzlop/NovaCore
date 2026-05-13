@@ -30,21 +30,20 @@ body.auth-page {
     position: relative;
 }
 
-/* Estrellas sutiles */
+/* Fondo sutil */
 body.auth-page::before {
     content: '';
     position: absolute;
     top: 0; left: 0; width: 100%; height: 100%;
     background-image: radial-gradient(white 1px, transparent 1px);
-    background-size: 50px 50px;
-    opacity: 0.1;
+    background-size: 80px 80px;
+    opacity: 0.05;
     z-index: 0;
 }
 
 /* === CONTENEDOR PRINCIPAL (Glass Card) === */
 .auth-box {
-    background: rgba(20, 20, 30, 0.6);
-    backdrop-filter: blur(25px);
+    background: rgba(20, 20, 30, 0.85);
     padding: 3.5rem;
     border-radius: 40px;
     border: 1px solid rgba(255, 255, 255, 0.1);
@@ -80,7 +79,6 @@ body.auth-page::before {
 
 .auth-brand img {
     height: 70px;
-    filter: drop-shadow(0 0 15px var(--menta));
 }
 
 /* === TÍTULOS === */

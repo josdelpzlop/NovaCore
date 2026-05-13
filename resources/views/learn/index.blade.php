@@ -3,14 +3,11 @@
 @section('title', 'Academia | NovaCore')
 
 @section('content')
-    <!-- Elementos decorativos de fondo (Fixed) - Academia (Azul Cósmico profundo) -->
+    <!-- Fondo decorativo estático - Academia (Azul Cósmico) -->
     <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; overflow: hidden; pointer-events: none; z-index: -1;">
-        <div style="position: absolute; top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #1e3a8a 0%, transparent 70%); filter: blur(100px); opacity: 0.3; animation: pulseGlow 8s infinite alternate;"></div>
-        <div style="position: absolute; top: 30%; right: -15%; width: 60vw; height: 60vw; background: radial-gradient(circle, #0284c7 0%, transparent 70%); filter: blur(120px); opacity: 0.2; animation: pulseGlow 10s infinite alternate-reverse;"></div>
-        <div style="position: absolute; bottom: -20%; left: 10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #3b82f6 0%, transparent 70%); filter: blur(100px); opacity: 0.2; animation: pulseGlow 12s infinite alternate;"></div>
-        
-        <div style="position: absolute; top: 0; left: 4%; width: 1px; height: 100%; background: linear-gradient(to bottom, transparent, rgba(59,130,246,0.15), transparent);"></div>
-        <div style="position: absolute; top: 0; right: 4%; width: 1px; height: 100%; background: linear-gradient(to bottom, transparent, rgba(59,130,246,0.15), transparent);"></div>
+        <div style="position: absolute; top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #1e3a8a 0%, transparent 70%); filter: blur(100px); opacity: 0.15;"></div>
+        <div style="position: absolute; top: 30%; right: -15%; width: 60vw; height: 60vw; background: radial-gradient(circle, #0284c7 0%, transparent 70%); filter: blur(120px); opacity: 0.1;"></div>
+        <div style="position: absolute; bottom: -20%; left: 10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #3b82f6 0%, transparent 70%); filter: blur(100px); opacity: 0.1;"></div>
     </div>
 
     <main style="max-width: 1200px; margin: 0 auto; padding: 100px 5% 50px; min-height: 80vh;">
@@ -24,7 +21,7 @@
             <h2 style="font-size: 3.5rem; margin-top: 0; margin-bottom: 20px; font-weight: 800; background: -webkit-linear-gradient(135deg, #fff, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent; text-shadow: 0 0 30px rgba(59, 130, 246, 0.3);">
                 Academia NovaCore
             </h2>
-            <div style="background: rgba(16, 26, 43, 0.6); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.05); padding: 30px 40px; border-radius: 20px; max-width: 750px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+            <div style="background: rgba(16, 26, 43, 0.8); border: 1px solid rgba(255,255,255,0.05); padding: 30px 40px; border-radius: 20px; max-width: 750px; margin: 0 auto; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
                 <p style="font-size: 1.15rem; color: #cbd5e1; line-height: 1.8; margin: 0;">
                     Domina los fundamentos de la astrofísica y la exploración espacial a través de nuestros módulos interactivos. Elige tu nivel de dificultad y comienza a desbloquear conocimientos cósmicos y puntos de experiencia (XP).
                 </p>

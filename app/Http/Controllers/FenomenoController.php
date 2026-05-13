@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Log;
 use App\Traits\TranslatesText;
 
 class FenomenoController extends Controller
@@ -13,33 +14,41 @@ class FenomenoController extends Controller
 
     public function index()
     {
-        // Intentamos obtener de la caché primero
-        $apod = Cache::get('nasa_apod_es');
-
-        if (!$apod) {
-            $apiKey = env('NASA_API_KEY', 'DEMO_KEY');
-            $response = Http::get("https://api.nasa.gov/planetary/apod?api_key={$apiKey}");
-            
-            if ($response->successful()) {
-                $data = $response->json();
+        // Caché de la imagen astronómica del día (12 horas)
+        $apod = Cache::remember('nasa_apod_es', 43200, function () {
+            try {
+                $apiKey = env('NASA_API_KEY', 'DEMO_KEY');
+                $response = Http::timeout(5)->get("https://api.nasa.gov/planetary/apod?api_key={$apiKey}");
                 
-                // Traducir título y descripción al español
-                $data['title'] = $this->translateToSpanish($data['title']);
-                $data['explanation'] = $this->translateToSpanish($data['explanation']);
-                
-                $apod = $data;
-                // Guardamos en Caché hasta 12 horas para evitar consumir el límite solo si hay éxito
-                Cache::put('nasa_apod_es', $apod, 43200);
-            } else {
-                // Fallback (no se guarda en caché, así lo intenta de nuevo en la siguiente recarga)
-                $apod = [
-                    'title' => 'Conexión Perdida: Fenómeno no Clasificado',
-                    'url' => 'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=2000&auto=format&fit=crop',
-                    'explanation' => 'Los sensores de largo alcance de NovaCore no han podido establecer conexión con la base de datos de la NASA. Puede que se haya agotado el límite de peticiones diario. Inténtalo de nuevo más tarde.',
-                    'date' => now()->toDateString(),
-                    'media_type' => 'image',
-                ];
+                if ($response->successful()) {
+                    $data = $response->json();
+                    
+                    // Traducir título y descripción al español
+                    $data['title'] = $this->translateToSpanish($data['title']);
+                    $data['explanation'] = $this->translateToSpanish($data['explanation']);
+                    
+                    return $data;
+                }
+            } catch (\Exception $e) {
+                // Si la API de NASA falla, seguimos sin bloquear la página
+                Log::warning('NASA APOD API no disponible: ' . $e->getMessage());
             }
+
+            // Fallback: datos de emergencia para que la vista no se rompa
+            return null;
+        });
+
+        // Si la caché almacenó null (porque la API falló), mostramos datos de emergencia
+        if (!$apod) {
+            $apod = [
+                'title' => 'Conexión Perdida: Fenómeno no Clasificado',
+                'url' => 'https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=2000&auto=format&fit=crop',
+                'explanation' => 'Actualmente no podemos conectar con los servidores de la NASA para obtener la imagen del día. Esto suele ser temporal, por favor vuelve a intentarlo más tarde.',
+                'date' => now()->toDateString(),
+                'media_type' => 'image',
+            ];
+            // Borramos la caché para que lo reintente en la siguiente visita
+            Cache::forget('nasa_apod_es');
         }
 
         $fenomenosLocales = \App\Models\Fenomeno::orderBy('date', 'desc')->get();

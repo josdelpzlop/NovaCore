@@ -16,8 +16,7 @@
         
         <!-- Tarjeta 1: Acerca de NovaCore (Destacada) -->
         <div class="bento-card" style="
-            background: linear-gradient(135deg, rgba(39, 70, 255, 0.1), rgba(104, 14, 188, 0.2)); 
-            backdrop-filter: blur(15px); 
+            background: linear-gradient(135deg, rgba(39, 70, 255, 0.1), rgba(104, 14, 188, 0.2));
             border: 1px solid rgba(255,255,255,0.1); 
             border-radius: 24px; 
             padding: 40px;
@@ -32,8 +31,7 @@
 
         <!-- Tarjeta 2: Nuestro Objetivo Misión -->
         <div class="bento-card" style="
-            background: rgba(16, 26, 43, 0.7); 
-            backdrop-filter: blur(15px); 
+            background: rgba(16, 26, 43, 0.8); 
             border: 1px solid rgba(255,255,255,0.1); 
             border-radius: 24px; 
             padding: 40px;
@@ -49,8 +47,7 @@
 
         <!-- Tarjeta 3: Licencias y Créditos -->
         <div class="bento-card" style="
-            background: rgba(16, 26, 43, 0.7); 
-            backdrop-filter: blur(15px); 
+            background: rgba(16, 26, 43, 0.8); 
             border: 1px solid rgba(255,255,255,0.1); 
             border-radius: 24px; 
             padding: 40px;

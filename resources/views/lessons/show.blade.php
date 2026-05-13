@@ -3,14 +3,11 @@
 @section('title', $lesson->title . ' | NovaCore')
 
 @section('content')
-    <!-- Fondo Cósmico Azul -->
+    <!-- Fondo decorativo estático - Academia (Azul) -->
     <div style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; overflow: hidden; pointer-events: none; z-index: -1;">
-        <div style="position: absolute; top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #1e3a8a 0%, transparent 70%); filter: blur(100px); opacity: 0.3; animation: pulseGlow 8s infinite alternate;"></div>
-        <div style="position: absolute; top: 30%; right: -15%; width: 60vw; height: 60vw; background: radial-gradient(circle, #0284c7 0%, transparent 70%); filter: blur(120px); opacity: 0.2; animation: pulseGlow 10s infinite alternate-reverse;"></div>
-        <div style="position: absolute; bottom: -20%; left: 10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #3b82f6 0%, transparent 70%); filter: blur(100px); opacity: 0.2; animation: pulseGlow 12s infinite alternate;"></div>
-        
-        <div style="position: absolute; top: 0; left: 4%; width: 1px; height: 100%; background: linear-gradient(to bottom, transparent, rgba(59,130,246,0.15), transparent);"></div>
-        <div style="position: absolute; top: 0; right: 4%; width: 1px; height: 100%; background: linear-gradient(to bottom, transparent, rgba(59,130,246,0.15), transparent);"></div>
+        <div style="position: absolute; top: -10%; left: -10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #1e3a8a 0%, transparent 70%); filter: blur(100px); opacity: 0.15;"></div>
+        <div style="position: absolute; top: 30%; right: -15%; width: 60vw; height: 60vw; background: radial-gradient(circle, #0284c7 0%, transparent 70%); filter: blur(120px); opacity: 0.1;"></div>
+        <div style="position: absolute; bottom: -20%; left: 10%; width: 50vw; height: 50vw; background: radial-gradient(circle, #3b82f6 0%, transparent 70%); filter: blur(100px); opacity: 0.1;"></div>
     </div>
 
 <main style="padding: 100px 5% 50px; max-width: 850px; margin: auto; min-height: 80vh; display: flex; flex-direction: column;">
@@ -37,7 +34,7 @@
     </div>
 
     <!-- Lesson Content Area -->
-    <div style="flex-grow: 1; font-size: 1.15rem; line-height: 1.9; color: #cbd5e1; background: rgba(16, 26, 43, 0.6); backdrop-filter: blur(15px); padding: 40px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 10px 40px rgba(0,0,0,0.3); position: relative;" class="lesson-content">
+    <div style="flex-grow: 1; font-size: 1.15rem; line-height: 1.9; color: #cbd5e1; background: rgba(16, 26, 43, 0.8); padding: 40px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); box-shadow: 0 10px 40px rgba(0,0,0,0.3); position: relative;" class="lesson-content">
         @if($lesson->type == 'video')
             @php
                 $videoData = json_decode($lesson->content, true);

@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 trait TranslatesText
 {
@@ -14,7 +15,7 @@ trait TranslatesText
         if (empty($text)) return '';
         
         try {
-            $response = Http::get("https://translate.googleapis.com/translate_a/single", [
+            $response = Http::timeout(5)->get("https://translate.googleapis.com/translate_a/single", [
                 'client' => 'gtx',
                 'sl' => 'en',
                 'tl' => 'es',
@@ -37,7 +38,8 @@ trait TranslatesText
                 }
             }
         } catch (\Exception $e) {
-            // Si la magia falla, retornamos el texto original en inglés
+            // Si la traducción falla, retornamos el texto original en inglés
+            Log::warning('Google Translate no disponible: ' . $e->getMessage());
         }
         
         return $text;
