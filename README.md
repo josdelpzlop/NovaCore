@@ -81,6 +81,6 @@ Para facilitar la revisión y corrección del proyecto, el seeder genera automá
 ---
 
 ## 👨‍💻 Autor y Licencia
-Desarrollado por **José Manuel** como proyecto académico para la obtención del título de Técnico Superior en Desarrollo de Aplicaciones Web (DAW). 
+Desarrollado por **José Manuel Del Pozo López** como proyecto académico para la obtención del título de Técnico Superior en Desarrollo de Aplicaciones Web (DAW). 
 
 Distribuido bajo la licencia MIT. Eres libre de usar, estudiar y modificar este código.
