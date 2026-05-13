@@ -52,10 +52,10 @@ Route::get('/eventos', [EventController::class, 'index'])->name('events.index');
 Route::get('/eventos/{event:slug}', [EventController::class, 'show'])->name('events.show');
 
 // =========================================================================
-// 2. RUTAS PROTEGIDAS — Requieren autenticación y email verificado
+// 2. RUTAS PROTEGIDAS — Requieren autenticación
 // =========================================================================
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth'])->group(function () {
 
     // Centro de mando (Dashboard del usuario)
     Route::get('/dashboard', function () {

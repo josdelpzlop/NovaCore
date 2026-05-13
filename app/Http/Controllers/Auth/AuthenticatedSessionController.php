@@ -15,8 +15,11 @@ class AuthenticatedSessionController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create(Request $request)
     {
+        if ($request->has('redirect')) {
+            session(['url.intended' => $request->query('redirect')]);
+        }
         return view('auth.login');
     }
 
@@ -31,6 +34,10 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+
+        if ($request->user()->isAdmin()) {
+            return redirect()->intended(route('admin.dashboard'));
+        }
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }
