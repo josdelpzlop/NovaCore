@@ -1,64 +1,86 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# 🌌 NovaCore — Academia Estelar & Plataforma de Gamificación Espacial
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+![NovaCore Banner](https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1200&auto=format&fit=crop)
 
-## About Laravel
+**NovaCore** es una plataforma educativa inmersiva y un sistema de gamificación desarrollado como **Proyecto Final para el ciclo superior de Desarrollo de Aplicaciones Web (2º de DAW)**. 
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+El objetivo principal es acercar la astronomía y la exploración espacial a los usuarios mediante un entorno visualmente espectacular (estética *Cosmic Dark Mode*), lecciones interactivas, telemetría real en vivo y un robusto sistema de progresión y recompensas.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## ✨ Características Principales
 
-## Learning Laravel
+### 📚 1. Academia Estelar (Aprender)
+- **Rutas de Aprendizaje:** Sistema estructurado por niveles (ej. *Sistema Solar*, *Vida de las Estrellas*, *Cosmología*).
+- **Lecciones Enriquecidas:** Integración nativa de lecturas teóricas, vídeos didácticos y cuestionarios de evaluación (*Quizzes*).
+- **Asimilación de Conocimiento:** Seguimiento individualizado de lecciones completadas para cada alumno.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 🛰️ 2. Telemetría y APIs Reales en Vivo
+- **NASA APOD:** Consumo directo de la API de la NASA para la *Fotografía Astronómica del Día*, con histórico cacheado.
+- **Radar SpaceX & Lanzamientos:** Conexión con la API de *TheSpaceDevs* para mostrar el contador (T-Minus) y streamings del próximo lanzamiento mundial.
+- **Rastreador ISS:** Seguimiento óptico y posicional de la Estación Espacial Internacional en tiempo real.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 🎮 3. Sistema de Gamificación
+- **Puntos de Experiencia (XP):** Recompensas por completar misiones, registrarse en eventos y superar evaluaciones.
+- **Rangos Dinámicos:** Escalafón automático desde *Explorador Novato* hasta *Ente Espacial*, con cambio de identidad visual y colores de interfaz.
+- **Recompensas Equipables:** Títulos y medallas cósmicas para personalizar el perfil público.
 
-## Laravel Sponsors
+### 🛡️ 4. Panel de Control de Administración
+- **Gestión Intuitiva:** Creación, edición y borrado (CRUD) de niveles y lecciones.
+- **Editor WYSIWYG Integrado:** Uso de **QuillJS** para redactar el contenido de las lecciones sin necesidad de programar etiquetas HTML.
+- **Mantenimiento Autónomo:** Uso de *Accessors* de Laravel para cerrar de forma desatendida las misiones y eventos cuya fecha ya haya expirado.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+---
 
-### Premium Partners
+## 🛠️ Tecnologías Utilizadas
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+- **Backend:** PHP 8.x, Framework **Laravel 10** (Eloquent ORM, Middlewares, Accessors, Caché, HTTP Client).
+- **Frontend:** HTML5 semántico, **CSS nativo ultra-personalizado** (variables CSS, flexbox/grid, micro-animaciones, diseño adaptable) y JavaScript puro (Vanilla JS).
+- **Base de Datos:** MySQL / MariaDB con relaciones complejas y esquemas migrados.
+- **Librerías del Cliente:** QuillJS (Editor WYSIWYG).
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## ⚙️ Instalación Local (Guía Rápida)
 
-## Code of Conduct
+Sigue estos pasos para desplegar la plataforma en tu entorno de desarrollo local (ej. Laragon o XAMPP):
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 1. Clonar el repositorio e instalar dependencias
+```bash
+git clone https://github.com/josdelpzlop/NovaCore.git
+cd NovaCore
+composer install
+npm install
+```
 
-## Security Vulnerabilities
+### 2. Configurar el Entorno
+Copia el archivo de ejemplo para crear tu configuración de entorno propia:
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+*(Asegúrate de configurar los parámetros de conexión a tu base de datos local `DB_DATABASE`, `DB_USERNAME`, etc., dentro del archivo `.env`)*.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 3. Migrar y Poblar la Base de Datos
+El proyecto incluye un completo juego de datos de prueba precargados (niveles, lecciones con imágenes de alta calidad, fenómenos y rangos). Lánzalo con:
+```bash
+php artisan migrate:fresh --seed
+```
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## 🔑 Credenciales de Prueba por Defecto
+
+Para facilitar la revisión y corrección del proyecto, el seeder genera automáticamente dos cuentas listas para usar:
+
+| Rol | Email | Contraseña | XP Inicial | Rango |
+| :--- | :--- | :--- | :--- | :--- |
+| **Administrador** | `admin@novacore.com` | `12345678` | 2500 XP | Ente Espacial (MAX) |
+| **Estudiante** | `estudiante@novacore.com` | `12345678` | 0 XP | Explorador Novato |
+
+---
+
+## 👨‍💻 Autor y Licencia
+Desarrollado por **José Manuel** como proyecto académico para la obtención del título de Técnico Superior en Desarrollo de Aplicaciones Web (DAW). 
+
+Distribuido bajo la licencia MIT. Eres libre de usar, estudiar y modificar este código.
