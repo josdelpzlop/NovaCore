@@ -58,8 +58,35 @@
 
         <!-- Content Area (Hidden for Quizzes/Videos) -->
         <div class="form-group" id="content-group">
-            <label for="content" id="content-label">Contenido / HTML</label>
-            <textarea id="content" name="content" rows="6">{{ old('content') }}</textarea>
+            <label for="content" id="content-label">Contenido de la Lección</label>
+            <input type="hidden" id="content" name="content" value="{{ old('content') }}">
+            <!-- Editor de texto enriquecido (Quill) -->
+            <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.1); border-radius: 8px 8px 0 0; border-bottom: none;">
+                <div id="toolbar-container" style="border: none; border-bottom: 1px solid rgba(255,255,255,0.1);">
+                    <span class="ql-formats">
+                        <select class="ql-header">
+                            <option value="2">Encabezado 1</option>
+                            <option value="3">Encabezado 2</option>
+                            <option selected>Párrafo</option>
+                        </select>
+                    </span>
+                    <span class="ql-formats">
+                        <button class="ql-bold"></button>
+                        <button class="ql-italic"></button>
+                        <button class="ql-underline"></button>
+                    </span>
+                    <span class="ql-formats">
+                        <button class="ql-list" value="ordered"></button>
+                        <button class="ql-list" value="bullet"></button>
+                    </span>
+                    <span class="ql-formats">
+                        <button class="ql-clean"></button>
+                    </span>
+                </div>
+            </div>
+            <div id="editor-container" style="background: rgba(0,0,0,0.5); color: white; border: 1px solid rgba(255,255,255,0.1); border-radius: 0 0 8px 8px; min-height: 250px; font-family: inherit; font-size: 1rem;">
+                {!! old('content') !!}
+            </div>
         </div>
 
         <!-- Video Builder Area (Shown only for Videos) -->
@@ -91,7 +118,27 @@
     </form>
 </div>
 
+<link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+<style>
+    /* Estilos Dark Mode para el editor Quill */
+    .ql-stroke { stroke: rgba(255,255,255,0.7) !important; }
+    .ql-fill { fill: rgba(255,255,255,0.7) !important; }
+    .ql-picker-label { color: rgba(255,255,255,0.7) !important; }
+    .ql-snow .ql-picker-options { background-color: #101a2b; border-color: rgba(255,255,255,0.1); }
+    .ql-snow .ql-picker-item { color: white; }
+    .ql-snow .ql-picker-item:hover { color: var(--menta); }
+    .ql-editor h2 { margin-bottom: 10px; }
+    .ql-editor h3 { margin-bottom: 8px; }
+    .ql-editor p { margin-bottom: 10px; }
+</style>
+
 <script>
+    var quill = new Quill('#editor-container', {
+        modules: { toolbar: '#toolbar-container' },
+        theme: 'snow'
+    });
+
     function toggleQuizBuilder() {
         const type = document.getElementById('type').value;
         const quizBuilder = document.getElementById('quiz-builder');
@@ -110,7 +157,7 @@
             videoBuilder.style.display = 'block';
         } else {
             contentGroup.style.display = 'block';
-            contentLabel.innerText = 'Contenido / HTML';
+            contentLabel.innerText = 'Contenido de la Lección';
         }
     }
 
@@ -200,6 +247,9 @@
                 description: document.getElementById('video-description').value
             };
             document.getElementById('content').value = JSON.stringify(videoData);
+        } else {
+            // Sincronizar contenido Quill con input oculto
+            document.getElementById('content').value = quill.root.innerHTML;
         }
     };
 

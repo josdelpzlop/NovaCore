@@ -14,7 +14,7 @@ class EventController extends Controller
     use TranslatesText;
 
     /**
-     * Display a listing of upcoming and ongoing events.
+     * Muestra la lista de eventos próximos y en vivo.
      */
     public function index()
     {
@@ -53,7 +53,7 @@ class EventController extends Controller
     }
 
     /**
-     * Display the specified event.
+     * Muestra la vista de detalle de un evento específico.
      */
     public function show(Event $event)
     {
@@ -66,11 +66,15 @@ class EventController extends Controller
     }
 
     /**
-     * Let a user attend the event.
+     * Permite a un usuario inscribirse en un evento.
      */
     public function attend(Request $request, Event $event)
     {
         $user = Auth::user();
+
+        if ($event->status === 'completed') {
+            return redirect()->back()->with('info', 'La misión ya ha concluido. No se admiten nuevas intercepciones.');
+        }
 
         if ($user->attendedEvents()->where('event_id', $event->id)->exists()) {
             return redirect()->back()->with('info', 'Ya estás registrado en este evento.');

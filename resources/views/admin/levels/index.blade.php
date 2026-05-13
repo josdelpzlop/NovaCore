@@ -26,7 +26,9 @@
                     <td>{{ $level->id }}</td>
                     <td><strong>{{ $level->title }}</strong></td>
                     <td><span style="background: rgba(104,14,188,0.3); padding: 4px 8px; border-radius: 4px; font-size: 0.8rem;">{{ $level->badge }}</span></td>
-                    <td><a href="{{ $level->url }}" target="_blank" style="color: var(--lavanda);">Ver</a></td>
+                    <td><a href="{{ route('levels.show', $level) }}" target="_blank" style="color: var(--lavanda); font-weight: bold; text-decoration: none; display: flex; align-items: center; gap: 5px;">
+                        Ver Nivel <svg style="width: 1rem; height: 1rem;" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    </a></td>
                     <td class="action-links">
                         <a href="{{ route('admin.levels.edit', $level) }}">Editar</a>
                         <form action="{{ route('admin.levels.destroy', $level) }}" method="POST" style="display:inline;">

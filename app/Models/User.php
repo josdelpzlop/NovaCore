@@ -13,7 +13,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
     /**
-     * The attributes that are mass assignable.
+     * Los atributos que se pueden asignar masivamente.
      *
      * @var array<int, string>
      */
@@ -26,7 +26,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
+     * Los atributos ocultos en la serialización.
      *
      * @var array<int, string>
      */
@@ -36,7 +36,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * The attributes that should be cast.
+     * Casteo de tipos de datos.
      *
      * @var array<string, string>
      */
@@ -45,7 +45,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Check if the user is an administrator.
+     * Comprueba si el usuario tiene rol de administrador.
      *
      * @return bool
      */
@@ -55,7 +55,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the lessons that the user has completed.
+     * Obtiene las lecciones que el usuario ha completado.
      */
     public function completedLessons()
     {
@@ -63,7 +63,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the events the user is attending.
+     * Obtiene los eventos a los que el usuario asiste.
      */
     public function attendedEvents()
     {
@@ -71,7 +71,7 @@ class User extends Authenticatable
     }
 
     /**
-     * Get the current equipped title (reward).
+     * Obtiene el título (recompensa) equipado actualmente.
      */
     public function currentReward()
     {

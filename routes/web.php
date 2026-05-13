@@ -99,5 +99,5 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('admin/ranks', App\Http\Controllers\Admin\RankController::class)->names('admin.ranks');
 });
 
-// Cargar rutas de autenticación (login, register, logout, verificación email)
+// Cargar rutas de autenticación (login, register, logout)
 require __DIR__ . '/auth.php';

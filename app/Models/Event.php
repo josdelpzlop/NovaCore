@@ -31,4 +31,17 @@ class Event extends Model
     {
         return $this->belongsToMany(User::class, 'event_user')->withTimestamps();
     }
+
+    /**
+     * Accessor dinámico para el estado del evento.
+     * Si la fecha del evento ya ha pasado, se marca automáticamente como completado.
+     */
+    public function getStatusAttribute($value)
+    {
+        if ($this->event_date && $this->event_date->isPast()) {
+            return 'completed';
+        }
+
+        return $value;
+    }
 }

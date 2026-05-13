@@ -129,7 +129,7 @@
                 
                 @if($fenomeno->image_path)
                 <div style="width: 100%; height: 220px; overflow: hidden; background: #050510; display: flex; align-items: center; justify-content: center; transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);" class="fenomeno-img-container">
-                    <img src="{{ asset('storage/' . $fenomeno->image_path) }}" alt="{{ $fenomeno->title }}" style="width: 100%; height: 100%; object-fit: cover; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);" class="fenomeno-img">
+                    <img src="{{ Str::startsWith($fenomeno->image_path, 'http') ? $fenomeno->image_path : asset('storage/' . $fenomeno->image_path) }}" alt="{{ $fenomeno->title }}" style="width: 100%; height: 100%; object-fit: cover; transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);" class="fenomeno-img">
                 </div>
                 @else
                 <div style="width: 100%; height: 220px; background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center; color: #64748b; font-family: monospace; transition: height 0.5s cubic-bezier(0.4, 0, 0.2, 1);" class="fenomeno-img-container">

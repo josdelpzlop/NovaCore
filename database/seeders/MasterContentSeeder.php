@@ -17,14 +17,30 @@ class MasterContentSeeder extends Seeder
 {
     public function run()
     {
-        // ===== 1. MAKE ADMIN USER =====
-        $admin = User::where('email', 'admin@gmail.com')->first();
-        if ($admin) {
-            $admin->role = 'admin';
-            $admin->password = Hash::make('12345678');
-            $admin->save();
-            echo "Usuario admin@gmail.com actualizado a admin.\n";
-        }
+        // ===== 1. CREACIÓN DE USUARIOS POR DEFECTO =====
+        // Administrador para pruebas
+        User::updateOrCreate(
+            ['email' => 'admin@novacore.com'],
+            [
+                'name' => 'Comandante Nova',
+                'password' => Hash::make('12345678'),
+                'role' => 'admin',
+                'xp' => 2500, // XP alta para que tenga el rango máximo
+            ]
+        );
+
+        // Estudiante normal para pruebas
+        User::updateOrCreate(
+            ['email' => 'estudiante@novacore.com'],
+            [
+                'name' => 'Piloto de Pruebas',
+                'password' => Hash::make('12345678'),
+                'role' => 'user',
+                'xp' => 0, // Empieza desde cero
+            ]
+        );
+
+        echo "Usuarios generados: admin@novacore.com y estudiante@novacore.com (Clave: 12345678)\n";
 
         // ===== 2. RANKS =====
         Rank::truncate();
