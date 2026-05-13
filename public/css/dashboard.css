@@ -231,7 +231,7 @@
 }
 
 .equipped-title-label {
-    color: #64748b;
+    color: #94a3b8;
     font-size: 0.75rem;
     text-transform: uppercase;
     letter-spacing: 2px;
@@ -262,7 +262,7 @@
 }
 
 .no-title p {
-    color: #64748b;
+    color: #94a3b8;
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -281,7 +281,7 @@
     margin-top: 25px;
     padding-top: 25px;
     border-top: 1px solid rgba(255,255,255,0.05);
-    color: #64748b;
+    color: #94a3b8;
     font-size: 0.8rem;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -383,7 +383,7 @@
 }
 
 .progress-xp {
-    color: #94a3b8;
+    color: #cbd5e1;
     font-size: 1.1rem;
     font-weight: bold;
     margin-top: 5px;
@@ -408,7 +408,7 @@
 
 .progress-hint {
     margin: 15px 0 0;
-    color: #94a3b8;
+    color: #cbd5e1;
     font-size: 0.9rem;
 }
 
@@ -452,7 +452,7 @@
 }
 
 .stat-label {
-    color: #94a3b8;
+    color: #cbd5e1;
     font-size: 0.9rem;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -740,7 +740,7 @@
 }
 
 .modal-section--password p {
-    color: #64748b;
+    color: #94a3b8;
     font-size: 0.8rem;
     margin: 0 0 15px;
 }
@@ -818,7 +818,7 @@
 .detail-modal-close {
     background: transparent;
     border: none;
-    color: #94a3b8;
+    color: #cbd5e1;
     font-size: 1.5rem;
     cursor: pointer;
     transition: color 0.3s;
@@ -859,7 +859,7 @@
 }
 
 .detail-empty {
-    color: #94a3b8;
+    color: #cbd5e1;
     text-align: center;
     padding: 20px 0;
 }
